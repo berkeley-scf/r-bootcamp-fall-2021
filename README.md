@@ -22,7 +22,7 @@ No prior experience with R is expected, but some familiarity with programming co
 
 Course logistics
 
-Location: Berkeley campus, TBD. 
+Location: Valley Life Sciences Building (VLSB) Room 2050, Berkeley campus, or virtually on Zoom (see email for link).
 
 Time: 
   - Saturday, August 21, 8:15 am - 5 pm
@@ -31,6 +31,16 @@ Time:
 We'll start formally on Saturday morning at 8:30 am, but please plan to get here by 8:15 so you can sign in and get settled. And if you need help with any software installation please come at 8 am.
 
 Note that street parking in Berkeley near campus on Saturdays is generally subject to two hour limits.
+
+In the past, we've generally provided snacks during breaks. Because of various coronavirus-related limitations, we won't be able to do that this year. Please bring your own drinks and snacks for breaks and please eat only outside during the breaks.
+
+## Health information
+
+Vaccination requirements will follow [campus requirements](https://uhs.berkeley.edu/requirements/covid19) that will be in place as of August 4. In particular, those of you arriving from another country should carefully examine these requirements, which will determine if you can attend the bootcamp in person.
+
+Facial coverings are required while inside buildings on campus, per [recent campus masking policy](https://coronavirus.berkeley.edu/return-to-campus/face-coverings/). 
+
+The bootcamp will be a large room where there is some ability for participants who wish to spread out to spread out. 
 
 ## Preparing for the course - course content
 
@@ -47,6 +57,7 @@ We recommend that you take a look at the syllabus and the background module (htt
 For the presentation materials (including embedded demo code), see the html files in *modules*. The *_slides_* files have individual pages, while the other html files are one continuous page per module. To run the demo code, open the .Rmd file for the module in RStudio. You can then run individual chunks of code.
 
 ## Preparing for the course - software installation
+
 Please come with a fully-charged laptop (Mac, Windows, or Linux are all ok) with R, RStudio, and Git installed. RStudio and Git are optional but highly recommended. 
 
 To install the software, it's best if you can install software directly on your laptop.
