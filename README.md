@@ -20,8 +20,6 @@ No prior experience with R is expected, but some familiarity with programming co
 
 ## Logistics - when, where, and how
 
-Course logistics
-
 Location: Valley Life Sciences Building (VLSB) Room 2050, Berkeley campus, or virtually on Zoom (see email for link).
 
 Time: 
@@ -33,6 +31,9 @@ We'll start formally on Saturday morning at 8:30 am, but please plan to get here
 Note that street parking in Berkeley near campus on Saturdays is generally subject to two hour limits.
 
 In the past, we've generally provided snacks during breaks. Because of various coronavirus-related limitations, we won't be able to do that this year. Please bring your own drinks and snacks for breaks and please eat only outside during the breaks.
+
+You will probably want to [make sure you can use the campus WiFi (EduRoam)](https://berkeley.service-now.com/kb_view.do?sysparm_article=KB0013807) in advance of the event. But if you need wireless access as a guest (i.e., you don't have a CalNet ID), connect to 'CalVisitor'.
+
 
 ## Health information
 
@@ -76,11 +77,10 @@ Note that our ability to troubleshoot R or RStudio installed directly on your ma
 
 ## Course Discussion and Questions
 
-Please ask questions both during the presentations and during the breakout sessions, either directly of the circulating bootcamp staff or using either:
+Please ask questions both during the presentations and during the breakout sessions. 
 
-- The [online discussion forum on Piazza](https://piazza.com/berkeley/fall2021/rbootcampfall2021) at any time during the week of August 16 (though questions will be primarily answered during the event hours).
-- (possibly) The [Zoom virtual front desk](https://dlab.berkeley.edu/frontdesk) for virtual 'in-person' help during the hours of the event.
-
-In general, please use the Piazza discussion board for questions during the bootcamp or if you have software installation problems or logistical questions before the bootcamp. 
+- Questions from those attending in person can be asked to the presenter or to the circulating bootcamp assistants.
+- The [online discussion forum on Piazza](https://piazza.com/berkeley/fall2021/rbootcampfall2021) for discussion and answering questions during (and before) the bootcamp.
+- The [Zoom virtual front desk](https://dlab.berkeley.edu/frontdesk) for virtual 'in-person' help during the hours of the event. This is intended primarily for virtual participants.
 
 If you need to contact us directly with an administrative question you can email r-bootcamp@lists.berkeley.edu.
