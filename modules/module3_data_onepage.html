@@ -1,0 +1,1982 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Matrices and Arrays</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Matrices and Arrays</h1>
+
+<p>If you need to do numeric calculations on an entire non-vector object (dimension &gt; 1), you generally want to use matrices and arrays, not data frames.</p>
+
+<ul>
+<li>Matrices are two-dimensional collections of values of the same type</li>
+<li>We can have numeric, integer, character, or logical matrices, character matrices.</li>
+<li>You can&#39;t mix types within a matrix</li>
+</ul>
+
+<pre><code class="r">mat &lt;- matrix(rnorm(12), nrow = 3, ncol = 4)
+mat
+</code></pre>
+
+<pre><code>##            [,1]        [,2]       [,3]       [,4]
+## [1,]  0.6413694  2.37736408 -0.3657514 -0.7671201
+## [2,] -1.8594748 -0.78063828 -0.5351093 -0.5025631
+## [3,] -0.4932912  0.05880797 -0.1580094 -1.2936068
+</code></pre>
+
+<pre><code class="r"># vectorized calcs work with matrices too
+mat*4
+</code></pre>
+
+<pre><code>##           [,1]       [,2]       [,3]      [,4]
+## [1,]  2.565478  9.5094563 -1.4630055 -3.068480
+## [2,] -7.437899 -3.1225531 -2.1404372 -2.010252
+## [3,] -1.973165  0.2352319 -0.6320376 -5.174427
+</code></pre>
+
+<pre><code class="r">mat &lt;- cbind(mat, 1:3)
+mat
+</code></pre>
+
+<pre><code>##            [,1]        [,2]       [,3]       [,4] [,5]
+## [1,]  0.6413694  2.37736408 -0.3657514 -0.7671201    1
+## [2,] -1.8594748 -0.78063828 -0.5351093 -0.5025631    2
+## [3,] -0.4932912  0.05880797 -0.1580094 -1.2936068    3
+</code></pre>
+
+<pre><code class="r"># Let&#39;s convert the gapminder dataframe to a matrix:
+gm_mat &lt;- as.matrix(gapminder[ , c(&#39;lifeExp&#39;, &#39;gdpPercap&#39;)])
+head(gm_mat)
+</code></pre>
+
+<pre><code>##      lifeExp gdpPercap
+## [1,]  28.801  779.4453
+## [2,]  30.332  820.8530
+## [3,]  31.997  853.1007
+## [4,]  34.020  836.1971
+## [5,]  36.088  739.9811
+## [6,]  38.438  786.1134
+</code></pre>
+
+<pre><code class="r"># What do you think will happen?
+gm_mat &lt;- as.matrix(gapminder)
+head(gm_mat)
+</code></pre>
+
+<pre><code>##      country       continent year   lifeExp    pop          gdpPercap    
+## [1,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1952&quot; &quot;28.80100&quot; &quot;   8425333&quot; &quot;   779.4453&quot;
+## [2,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1957&quot; &quot;30.33200&quot; &quot;   9240934&quot; &quot;   820.8530&quot;
+## [3,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1962&quot; &quot;31.99700&quot; &quot;  10267083&quot; &quot;   853.1007&quot;
+## [4,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1967&quot; &quot;34.02000&quot; &quot;  11537966&quot; &quot;   836.1971&quot;
+## [5,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1972&quot; &quot;36.08800&quot; &quot;  13079460&quot; &quot;   739.9811&quot;
+## [6,] &quot;Afghanistan&quot; &quot;Asia&quot;    &quot;1977&quot; &quot;38.43800&quot; &quot;  14880372&quot; &quot;   786.1134&quot;
+</code></pre>
+
+<p>Arrays are like matrices but can have more or fewer than two dimensions.</p>
+
+<pre><code class="r">arr &lt;- array(rnorm(12), c(2, 3, 4))
+arr
+</code></pre>
+
+<pre><code>## , , 1
+## 
+##            [,1]      [,2]       [,3]
+## [1,] 0.30119533 -1.704484  1.4523688
+## [2,] 0.09728768 -3.182565 -0.7752343
+## 
+## , , 2
+## 
+##            [,1]       [,2]       [,3]
+## [1,] -0.6053518  0.3717079 -1.0015739
+## [2,]  0.4184373 -0.2715693  0.7935532
+## 
+## , , 3
+## 
+##            [,1]      [,2]       [,3]
+## [1,] 0.30119533 -1.704484  1.4523688
+## [2,] 0.09728768 -3.182565 -0.7752343
+## 
+## , , 4
+## 
+##            [,1]       [,2]       [,3]
+## [1,] -0.6053518  0.3717079 -1.0015739
+## [2,]  0.4184373 -0.2715693  0.7935532
+</code></pre>
+
+<h1>Matrices: quick quiz</h1>
+
+<p><strong>POLL 3A</strong>: Recall the gap dataframe has columns that are numeric and columns that are character strings. What do you think will happen if we do this:</p>
+
+<pre><code>as.matrix(gap)
+</code></pre>
+
+<p>1) it will convert to a matrix with no changes
+2) all numeric columns will be converted to character strings
+3) R will throw an error
+4) all character columns will be converted to numeric values
+5) R will drop some of the columns</p>
+
+<h1>Attributes</h1>
+
+<p>Objects have <em>attributes</em>.</p>
+
+<pre><code class="r">attributes(mat)
+</code></pre>
+
+<pre><code>## $dim
+## [1] 3 5
+</code></pre>
+
+<pre><code class="r">rownames(mat) &lt;- c(&#39;first&#39;, &#39;middle&#39;, &#39;last&#39;)
+mat
+</code></pre>
+
+<pre><code>##              [,1]        [,2]       [,3]       [,4] [,5]
+## first   0.6413694  2.37736408 -0.3657514 -0.7671201    1
+## middle -1.8594748 -0.78063828 -0.5351093 -0.5025631    2
+## last   -0.4932912  0.05880797 -0.1580094 -1.2936068    3
+</code></pre>
+
+<pre><code class="r">attributes(mat)
+</code></pre>
+
+<pre><code>## $dim
+## [1] 3 5
+## 
+## $dimnames
+## $dimnames[[1]]
+## [1] &quot;first&quot;  &quot;middle&quot; &quot;last&quot;  
+## 
+## $dimnames[[2]]
+## NULL
+</code></pre>
+
+<pre><code class="r">names(attributes(gapminder))
+</code></pre>
+
+<pre><code>## [1] &quot;names&quot;     &quot;class&quot;     &quot;row.names&quot;
+</code></pre>
+
+<pre><code class="r">attributes(gapminder)$names
+</code></pre>
+
+<pre><code>## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;
+</code></pre>
+
+<pre><code class="r">attributes(gapminder)$row.names[1:10]
+</code></pre>
+
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
+<p>Now let&#39;s do a bit of manipulation and see if you can infer how R represents matrices internally.</p>
+
+<p><strong>POLL 3B</strong>: Consider our matrix &#39;mat&#39;:</p>
+
+<pre><code>mat &lt;- matrix(1:16, nrow = 4, ncol = 4)
+     [,1] [,2] [,3] [,4]
+[1,]    1    5    9   13
+[2,]    2    6   10   14
+[3,]    3    7   11   15
+[4,]    4    8   12   16
+</code></pre>
+
+<p>Suppose I run this code: mat[4]</p>
+
+<p>What do you think will be returned?</p>
+
+<p>1) 13
+2) 4
+3) 13, 14, 15, 16
+4) 4, 8, 12, 16
+5) an error</p>
+
+<pre><code class="r">mat[4]
+</code></pre>
+
+<pre><code>## [1] 2.377364
+</code></pre>
+
+<pre><code class="r">attributes(mat) &lt;- NULL
+mat
+</code></pre>
+
+<pre><code>##  [1]  0.64136945 -1.85947476 -0.49329124  2.37736408 -0.78063828  0.05880797
+##  [7] -0.36575137 -0.53510930 -0.15800940 -0.76712011 -0.50256310 -1.29360683
+## [13]  1.00000000  2.00000000  3.00000000
+</code></pre>
+
+<pre><code class="r">is.matrix(mat)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<p><strong>Question</strong>: What can you infer about what a matrix is in R?</p>
+
+<p><strong>Question</strong>: What kind of object are the attributes themselves? How do I check?</p>
+
+<h1>Matrices are stored column-major</h1>
+
+<p>This is like Fortran, MATLAB and Julia but not like C or Python(numpy). </p>
+
+<pre><code class="r">mat &lt;- matrix(1:12, 3, 4)
+mat
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    4    7   10
+## [2,]    2    5    8   11
+## [3,]    3    6    9   12
+</code></pre>
+
+<pre><code class="r">c(mat)
+</code></pre>
+
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12
+</code></pre>
+
+<p>You can go smoothly back and forth between a matrix (or an array) and a vector:</p>
+
+<pre><code class="r">identical(mat, matrix(c(mat), 3, 4))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">identical(mat, matrix(c(mat), 3, 4, byrow = TRUE))
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<p>This is a common cause of bugs!</p>
+
+<h1>Missing values and other special values</h1>
+
+<p>Since it was designed by statisticians, R handles missing values very well relative to other languages.</p>
+
+<ul>
+<li><code>NA</code> is a missing value</li>
+</ul>
+
+<pre><code class="r">vec &lt;- rnorm(12)
+vec[c(3, 5)] &lt;- NA
+vec
+</code></pre>
+
+<pre><code>##  [1]  1.8829846  0.9604682         NA -0.8138395         NA  0.9937361
+##  [7]  1.7730764 -1.6533931 -0.1749353  0.2409415 -0.7343234 -0.8682853
+</code></pre>
+
+<pre><code class="r">length(vec)
+</code></pre>
+
+<pre><code>## [1] 12
+</code></pre>
+
+<pre><code class="r">sum(vec)
+</code></pre>
+
+<pre><code>## [1] NA
+</code></pre>
+
+<pre><code class="r">sum(vec, na.rm = TRUE)
+</code></pre>
+
+<pre><code>## [1] 1.60643
+</code></pre>
+
+<pre><code class="r">hist(vec)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt=""/></p>
+
+<pre><code class="r">is.na(vec)
+</code></pre>
+
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<p>Be careful because many R functions won&#39;t warn you that they are ignoring the missing values.</p>
+
+<ul>
+<li>To infinity and beyond</li>
+</ul>
+
+<pre><code class="r">big &lt;- 1e500 
+big
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<pre><code class="r">big + 7
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<ul>
+<li><code>NaN</code> stands for Not a Number</li>
+</ul>
+
+<pre><code class="r">sqrt(-5)
+</code></pre>
+
+<pre><code>## Warning in sqrt(-5): NaNs produced
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">big - big
+</code></pre>
+
+<pre><code>## [1] NaN
+</code></pre>
+
+<pre><code class="r">1/0
+</code></pre>
+
+<pre><code>## [1] Inf
+</code></pre>
+
+<ul>
+<li><code>NULL</code></li>
+</ul>
+
+<pre><code class="r">vec &lt;- c(vec, NULL) 
+vec
+</code></pre>
+
+<pre><code>##  [1]  1.8829846  0.9604682         NA -0.8138395         NA  0.9937361
+##  [7]  1.7730764 -1.6533931 -0.1749353  0.2409415 -0.7343234 -0.8682853
+</code></pre>
+
+<pre><code class="r">length(vec)
+</code></pre>
+
+<pre><code>## [1] 12
+</code></pre>
+
+<pre><code class="r">a &lt;- NULL
+a + 7
+</code></pre>
+
+<pre><code>## numeric(0)
+</code></pre>
+
+<pre><code class="r">a[3, 4]
+</code></pre>
+
+<pre><code>## NULL
+</code></pre>
+
+<pre><code class="r">is.null(a)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">myList &lt;- list(a = 7, b = 5)
+myList$a &lt;- NULL  # works for data frames too
+myList
+</code></pre>
+
+<pre><code>## $b
+## [1] 5
+</code></pre>
+
+<p><code>NA</code> can hold a place but <code>NULL</code> cannot.
+<code>NULL</code> is useful for having a function argument default to &#39;nothing&#39;. See <code>help(crossprod)</code>, which can compute either \(X^{\top}X\) or \(X^{\top}Y\).  </p>
+
+<h1>Missing values: quick quiz</h1>
+
+<p><strong>POLL 3C</strong></p>
+
+<p><em>Question 1</em>: Consider the following vector:</p>
+
+<pre><code>vec &lt;- c(3, NA, 7)
+</code></pre>
+
+<p>What is vec[2]:</p>
+
+<p>1) NA
+2) 7</p>
+
+<p><em>Question 2</em>: Consider this vector:</p>
+
+<pre><code>vec &lt;- c(3, NULL, 7)
+</code></pre>
+
+<p>What is vec[2]:</p>
+
+<p>1) NULL
+2) NA
+3) 7
+4) 3</p>
+
+<p><em>Question 3</em>: Consider this list:</p>
+
+<pre><code>mylist &lt;- list(3, NULL, 7)
+</code></pre>
+
+<p>What is mylist[[2]]:</p>
+
+<p>1) 7
+2) NULL
+3) NA
+4) 3</p>
+
+<p><em>Question 4</em>: Consider this code:</p>
+
+<pre><code>mylist &lt;- list(3, 5, 7)
+mylist[[2]] &lt;- NULL
+</code></pre>
+
+<p>What is length(mylist):</p>
+
+<p>1) 3
+2) 2
+3) 1</p>
+
+<h1>Logical vectors</h1>
+
+<pre><code class="r">gapminder2007 &lt;- gapminder[gapminder$year == 2007, ]
+
+wealthy &lt;- gapminder2007$gdpPercap &gt; 35000
+healthy &lt;- gapminder2007$lifeExp &gt; 75
+
+head(wealthy)
+</code></pre>
+
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">table(wealthy)
+</code></pre>
+
+<pre><code>## wealthy
+## FALSE  TRUE 
+##   130    12
+</code></pre>
+
+<pre><code class="r"># note the vectorized boolean arithmetic
+gapminder2007[wealthy &amp; healthy, ]
+</code></pre>
+
+<pre><code>## # A tibble: 12 x 6
+##    country          continent  year lifeExp       pop gdpPercap
+##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+##  1 Austria          Europe     2007    79.8   8199783    36126.
+##  2 Canada           Americas   2007    80.7  33390141    36319.
+##  3 Denmark          Europe     2007    78.3   5468120    35278.
+##  4 Hong Kong, China Asia       2007    82.2   6980412    39725.
+##  5 Iceland          Europe     2007    81.8    301931    36181.
+##  6 Ireland          Europe     2007    78.9   4109086    40676.
+##  7 Kuwait           Asia       2007    77.6   2505559    47307.
+##  8 Netherlands      Europe     2007    79.8  16570613    36798.
+##  9 Norway           Europe     2007    80.2   4627926    49357.
+## 10 Singapore        Asia       2007    80.0   4553009    47143.
+## 11 Switzerland      Europe     2007    81.7   7554661    37506.
+## 12 United States    Americas   2007    78.2 301139947    42952.
+</code></pre>
+
+<pre><code class="r">gapminder2007[wealthy | healthy, ]
+</code></pre>
+
+<pre><code>## # A tibble: 44 x 6
+##    country    continent  year lifeExp      pop gdpPercap
+##    &lt;fct&gt;      &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+##  1 Albania    Europe     2007    76.4  3600523     5937.
+##  2 Argentina  Americas   2007    75.3 40301927    12779.
+##  3 Australia  Oceania    2007    81.2 20434176    34435.
+##  4 Austria    Europe     2007    79.8  8199783    36126.
+##  5 Bahrain    Asia       2007    75.6   708573    29796.
+##  6 Belgium    Europe     2007    79.4 10392226    33693.
+##  7 Canada     Americas   2007    80.7 33390141    36319.
+##  8 Chile      Americas   2007    78.6 16284741    13172.
+##  9 Costa Rica Americas   2007    78.8  4133884     9645.
+## 10 Croatia    Europe     2007    75.7  4493312    14619.
+## # … with 34 more rows
+</code></pre>
+
+<pre><code class="r">gapminder2007[wealthy &amp; !healthy, ]
+</code></pre>
+
+<pre><code>## # A tibble: 0 x 6
+## # … with 6 variables: country &lt;fct&gt;, continent &lt;fct&gt;, year &lt;int&gt;,
+## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;, gdpPercap &lt;dbl&gt;
+</code></pre>
+
+<pre><code class="r"># what am I doing here?
+sum(healthy)
+</code></pre>
+
+<pre><code>## [1] 44
+</code></pre>
+
+<pre><code class="r">mean(healthy)
+</code></pre>
+
+<pre><code>## [1] 0.3098592
+</code></pre>
+
+<p><strong>Question</strong>: What do you think R is doing to do arithmetic on logical vectors?</p>
+
+<h1>Data frames</h1>
+
+<p>A review from Module 1&hellip;</p>
+
+<ul>
+<li>Data frames are combinations of vectors of the same length, but can be of different types</li>
+<li>Data frames are what is used for standard rectangular (record by field) datasets, similar to a spreadsheet</li>
+<li>Data frames are a functionality that both sets R aside from some languages (e.g., Matlab) and provides functionality similar to some statistical packages (e.g., Stata, SAS)</li>
+</ul>
+
+<pre><code class="r">class(gapminder)
+</code></pre>
+
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="r">head(gapminder)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 6
+##   country     continent  year lifeExp      pop gdpPercap
+##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan Asia       1952    28.8  8425333      779.
+## 2 Afghanistan Asia       1957    30.3  9240934      821.
+## 3 Afghanistan Asia       1962    32.0 10267083      853.
+## 4 Afghanistan Asia       1967    34.0 11537966      836.
+## 5 Afghanistan Asia       1972    36.1 13079460      740.
+## 6 Afghanistan Asia       1977    38.4 14880372      786.
+</code></pre>
+
+<pre><code class="r">str(gapminder)
+</code></pre>
+
+<pre><code>## tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)
+##  $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ year     : int [1:1704] 1952 1957 1962 1967 1972 1977 1982 1987 1992 1997 ...
+##  $ lifeExp  : num [1:1704] 28.8 30.3 32 34 36.1 ...
+##  $ pop      : int [1:1704] 8425333 9240934 10267083 11537966 13079460 14880372 12881816 13867957 16317921 22227415 ...
+##  $ gdpPercap: num [1:1704] 779 821 853 836 740 ...
+</code></pre>
+
+<h1>Data frames are (special) lists!</h1>
+
+<pre><code class="r">is.list(gapminder)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">length(gapminder)
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+<pre><code class="r">gapminder[[3]][1:5]
+</code></pre>
+
+<pre><code>## [1] 1952 1957 1962 1967 1972
+</code></pre>
+
+<pre><code class="r">lapply(gapminder, class) 
+</code></pre>
+
+<pre><code>## $country
+## [1] &quot;factor&quot;
+## 
+## $continent
+## [1] &quot;factor&quot;
+## 
+## $year
+## [1] &quot;integer&quot;
+## 
+## $lifeExp
+## [1] &quot;numeric&quot;
+## 
+## $pop
+## [1] &quot;integer&quot;
+## 
+## $gdpPercap
+## [1] &quot;numeric&quot;
+</code></pre>
+
+<p><code>lapply()</code> is a function used on lists; it works here to apply the <code>class()</code> function to each element of the list, which in this case is each field/column.</p>
+
+<h1>But lists are also vectors!</h1>
+
+<pre><code class="r">length(gapminder)
+</code></pre>
+
+<pre><code>## [1] 6
+</code></pre>
+
+<pre><code class="r">someFields &lt;- gapminder[c(3,5)]
+head(someFields)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 2
+##    year      pop
+##   &lt;int&gt;    &lt;int&gt;
+## 1  1952  8425333
+## 2  1957  9240934
+## 3  1962 10267083
+## 4  1967 11537966
+## 5  1972 13079460
+## 6  1977 14880372
+</code></pre>
+
+<pre><code class="r">identical(gapminder[c(3,5)], gapminder[ , c(3,5)])
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>In general the placement of commas in R is crucial, but here, two different operations give the same result because of the underlying structure of data frames.</p>
+
+<h1>Factors</h1>
+
+<ul>
+<li>A factor is a special data type in R used for categorical data. In some cases it works like magic and in others it is incredibly frustrating. </li>
+</ul>
+
+<pre><code class="r">## let&#39;s read the Gapminder data from a file with a special argument:
+gapminder &lt;- read.csv(file.path(&#39;..&#39;, &#39;data&#39;, &#39;gapminder-FiveYearData.csv&#39;),
+          stringsAsFactors = TRUE) # This was the default before R 4.0
+class(gapminder$continent)
+</code></pre>
+
+<pre><code>## [1] &quot;factor&quot;
+</code></pre>
+
+<pre><code class="r">head(gapminder$continent) # What order are the factors in?
+</code></pre>
+
+<pre><code>## [1] Asia Asia Asia Asia Asia Asia
+## Levels: Africa Americas Asia Europe Oceania
+</code></pre>
+
+<pre><code class="r">levels(gapminder[[&quot;continent&quot;]])  # note alternate way to get the variable
+</code></pre>
+
+<pre><code>## [1] &quot;Africa&quot;   &quot;Americas&quot; &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot;
+</code></pre>
+
+<pre><code class="r">summary(gapminder$continent)
+</code></pre>
+
+<pre><code>##   Africa Americas     Asia   Europe  Oceania 
+##      624      300      396      360       24
+</code></pre>
+
+<ul>
+<li>What if we don&#39;t like the order these are in? Factor order is important for all kinds of things like plotting, analysis of variance, regression output, and more</li>
+</ul>
+
+<h1>(Advanced) Ordering the Factor</h1>
+
+<ul>
+<li>Ordered factors simply have an additional attribute explaining the order of the levels of a factor</li>
+<li>This is a useful shortcut when we want to preserve some of the meaning provided by the order</li>
+<li>Think ordinal data</li>
+</ul>
+
+<p>This example is a bit artificial as &#39;continent&#39; doesn&#39;t really have a natural ordering.</p>
+
+<pre><code class="r">gapminder$continent2 &lt;- ordered(gapminder$continent, 
+     levels = levels(gapminder$continent)[c(2,1,3,4,5)])
+
+head(gapminder$continent2)
+</code></pre>
+
+<pre><code>## [1] Asia Asia Asia Asia Asia Asia
+## Levels: Americas &lt; Africa &lt; Asia &lt; Europe &lt; Oceania
+</code></pre>
+
+<pre><code class="r">levels(gapminder$continent2)
+</code></pre>
+
+<pre><code>## [1] &quot;Americas&quot; &quot;Africa&quot;   &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot;
+</code></pre>
+
+<pre><code class="r">boxplot(lifeExp ~ continent2, data = gapminder)
+</code></pre>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAMAAACR9g9NAAAC+lBMVEUAAAABAQECAgIDAwMEBAQFBQUGBgYHBwcICAgJCQkKCgoLCwsMDAwNDQ0ODg4PDw8QEBARERESEhITExMUFBQVFRUWFhYXFxcYGBgZGRkaGhobGxscHBwdHR0eHh4fHx8gICAhISEiIiIjIyMkJCQlJSUmJiYnJycoKCgpKSkqKiorKyssLCwtLS0uLi4vLy8wMDAxMTEyMjIzMzM0NDQ1NTU2NjY3Nzc4ODg5OTk6Ojo7Ozs8PDw9PT0+Pj4/Pz9AQEBBQUFCQkJDQ0NERERFRUVGRkZHR0dISEhJSUlKSkpLS0tMTExNTU1OTk5PT09QUFBRUVFSUlJTU1NUVFRVVVVWVlZXV1dYWFhZWVlaWlpbW1tcXFxdXV1eXl5fX19gYGBhYWFiYmJjY2NkZGRlZWVmZmZnZ2doaGhpaWlqampra2tsbGxtbW1ubm5vb29wcHBxcXFycnJzc3N0dHR1dXV2dnZ3d3d4eHh5eXl6enp7e3t8fHx9fX1+fn5/f3+AgICBgYGCgoKDg4OEhISFhYWGhoaIiIiJiYmKioqLi4uMjIyNjY2Pj4+QkJCRkZGSkpKTk5OUlJSVlZWWlpaXl5eYmJiZmZmampqbm5ucnJydnZ2enp6fn5+goKChoaGioqKjo6OkpKSlpaWmpqanp6eoqKipqamqqqqrq6usrKytra2urq6vr6+wsLCxsbGysrKzs7O0tLS1tbW2tra3t7e4uLi5ubm6urq7u7u8vLy9vb2+vr6/v7/AwMDBwcHCwsLDw8PExMTFxcXGxsbHx8fIyMjJycnKysrLy8vMzMzNzc3Ozs7Pz8/Q0NDR0dHS0tLT09PU1NTV1dXW1tbX19fY2NjZ2dna2trb29vc3Nzd3d3e3t7f39/g4ODh4eHi4uLj4+Pk5OTl5eXm5ubn5+fo6Ojp6enq6urr6+vs7Ozt7e3u7u7v7+/w8PDx8fHy8vLz8/P09PT19fX29vb39/f4+Pj5+fn6+vr7+/v8/Pz9/f3+/v7////mS8kBAAAACXBIWXMAAAsSAAALEgHS3X78AAAY8ElEQVR4nO2dC3gU1dnHU+RDVAyggVAuQlVAaJA7IkkhQLhfVBBBRCmoIO0XQRCxYgWsCgpVERUtUihSufiBRa1VESwIaFFDCKKWSETkIglyJ/fzPN9sdkJ2dnd258ycnTl73v/veTJh9uy++578yO5/NzN7EhggSYLXDQBvgHiiQDxRIJ4oEE8UiCcKxBMF4okC8USBeKJAPFEgnigQTxSIJwrEEwXiiQLxRIF4okA8USCeKBBPFIgnCsQTBeKJAvFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8USBeKJAPFEgnigQTxSIJwrEEwXiiQLxRIF4okA8USCeKBBPFIgnCsQTBeKJAvFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8URxIP7YaiAxa4tjJX7V6MVAXlL3xUz8Ivu3BTHnboinCcQTBeKJAvFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8WZ8M8FIL+Pu/57xukFnQLwZhTuNdDTuZpd73aAzIN4q6V43IBaIt0pvrxsQC8Rb5WevGxALxLvChhEGhnYz7j/gfkcQb5WVTm58LtfAu3cZ94+KatI6EG8VkeEuO1NgMXtAvFVEit8zxcmtXzG+ozB8uHH/FUtFhIg/Fe41rWrihab6Iic3zjc+Tzz9tHE/31IRx+LPPdni4oTqzeeETEU18dKm+qVL7dzKsfhxN289XnJ828i7gwcsit9rfEPsg8+M+8csFYk3fnpTYLFly+zcyrH4pHMV30qvCh6wKH7eDAMdxxv3N1sq4gaOUn0QQsNdYaGdWzkW335dxbePOgQP2Huoz8y2cys3QKo3sqNJm5H3jGrX+PPgAYg3x1mqD+LLL+3cynmqL/3gL/Ne2VhadcEu/8lZd9h6O+r943Zu5QbypPogPAp3fgJfQnzjPx1z0FA7/cgLUr2Ro+M6zzjWvlqLvcEDU0ba6een0ujXiX9USPVDbl07pN7cU3Myggfsib9/t51buQFSvZHEE+xAzSJ2pm7wgD3xNMKdCqm++Qb2t4S97Iurgwcg3hwVUv26SxokL2o0rl7Iizd74pHqufEq1efvOMO2zPpXyOX2xMsLUr1FkOrNUSHVm4JUb44Kqd4UhDtzVEj1pkC8OSqkelOQ6iOgQqo3A6neJdQQj1QfhrzcSMyfH3E4L3xN2cQj1YdytMmtkRg2LOJwk/AH7csmnka44xN/eMBuBww4HLYoxFvFu1RPQrzIVL9vva0XOiZ4l+pJiBfIY8Oevfd2cVnRu1RPQry4VP/ZWG3zrLXzidyGL9WTEC8u1b+wRtvkjhdVzsNUT0K8uHC39s9HP96/eaaockj1VvFa/JlfdXqsb4PI0+MBqd4iXqf6rKFTe42bslxUOaR6q3id6l9cpW323SOsHlK9RbxO9ate0DbbZogqJxSk+hDEpfoTqbvYwd57RJXjTPXtW0eieYOIw023GmqREC/wLdv/dmuUslFYNc5w19mJq2kbDLUgnovSAQtzVt1YIKocxFvF61T/zixts/4JUeU4Uz3Ee8bzvgC1f6ywenypHuI5EZfqP3xQ27z+jKhynEA8J+JSffngRnWT24r7VHm+VA/xnIgLd8dqj37wvsSt0a9oEYQ7i3gt/qFeo9OHZP5GVDmIt4rXqf7mhjnscKemosp5meq7r3JA9/gQL4776mubXq2E1fMw1ddLcEC9+BAvLtW/eG29Nk2Sx4kqxwnEcyIu1Wc3Htl/VLO/iCrnZarv84kD+sSHeHHh7sNfX3xZzavniSqHcGcVr8U/UmvFR+/WSxVVDuKt4nWqH5yibTIbiSqH9+qt4nWqH9P02V0rW7UUVg/v1VvE61T/doOF9z9z/TRR5TiBeE4cpfqzMwM/6v7Xl9Wq1XB6wAV/+M5Bbc5U3yjRAXUIincU7so2fRDIa00XGvY/dPQXG75w19DJS+9LIN4ZQpeD5SuWssABN6sovizixzfkLvsi4jDfEjU97XcfClK9RUzEv9uirwOu4WrhoP3uQ0Gqt4iJ+A3TnMyis/1+3AXig3FT/D/sdx8KjsAJJexKkxKI9zDciRR/MjXDAaknwzYYu5UmIV6U+JgQu5UmJRCvSKqPCbFbaVIC8Yqk+iisXcvVmU7sVpqUQLyHuCjeo480NV1pUgLxiqT6KHj1WbYhK00WHa9g0m1hr45wJ1r8pk1cnek4Fr+1OPiSf4yooEXISnQVQLxo8fZwLD6h/afhByR4qEeqN8e5+M96jg5ZXtSHBOL5Uv23H0RkXeThn4zFmo+PxJj+EYe7vM3Tt0epPuEMW5XSa8kPIQMSiOdj6J0RbURm4Bxjsa93RuKNkRGHd57n6dujcKeJZ2Vvj7iscfCABOL5Uv3Q7Q4aWzKb566+e4qrs8h4KF6jOOS0VAnE8+UxF8U7Y05HAy1aGPetfQiIY/HzQ1K9DsRLjdJ/luVL9S6KP/AcV2exQGnxfKneRfEUFxyUONVDfBXxLZ5GqreH0uIR7syB+AtAfADxLR6p3hylxSPVm6O0eD4gPoAYiE9x70wapHpz3Bd/iZPzSBtytYBwZ4774jtGXPs4Cs25WoB4c5R+jkeqN0dp8Uj15igtng+IDyC+xSPVm6O0eIQ7cyD+AhAfQHyLR6o3R2nxSPXmKC2eD4gPIL7FI9Wbo7R4hDtzIP4CEB9AfItHqjdHafFI9eYoLZ4PiA8gvsUj1ZujtHiEO3Mg/gIQH0B8i0eqN0dp8Uj15igtng+IDyC+xSPVm6O0eIQ7cyD+AhAfQHyLR6o3R2nxSPXmKC2eD4gPIL7FI9Wbo7R4zk8ad3Iab8IUrvvyHoi/AMQHEN/i+VJ9v+dftc+0R3nuCqk+tuKR6s1RWjwfEB9AfC8xKk+qX2X8ZPGURsb9MVyNCgFLjF4Ab9kGEN9LjEK8OUovMSrte/USoPQSo7Km+rOrX/2Wq7UYoPQSo3y4Jv5At7nPD10cu4lYIgZLjK71L1h/Va+wV6eZ6g2M7n3Nda06nORqTjhiXscfPxV6mQS/8ZKGu19et3jphFpbuJoTjmPxeXccyLvxF9V6hqw4CPFm1OjQ6YbWF6/hak44jsXf+FjJ0OmHDj00KHhAAvGSpvr/qfXy+2nVlnE1JxzH4usWsWanGStLCh6QQLykqb76oN/dObuarRVhxeFY/ICVbPSbjP2zXfCABOL5cE187atatmlWP97FH2zTcVBCh3bJIYuJSyBe0lSf2mfsLdOSCriaE47zVF++6ZV5L79XEnK5BOIlDXebL2l0VeIQrt7Eo/SfZSUVP2bL4rmfpZ/gak447osfsiASM+dFHG7N1YKkqT79ncEZs6dt52pOOK6LPzxvbiS6TYk4vJyrBUlTfZeb8ktXNjzM1ZxwXBcfhcxs+/foENfEd+3xn++faJ4Xu5lYQTbxk3Ps32MIkqb69N33j10+PeRlkLvIJv50uKO47CJpuJu0mbHC1LOckxGMbOKFIqn4gp5Tn0pfzzkX0cgmfv0x+/cYgqSpvuzRtu0GRP65xx7ZxAsNd5Km+gVPMba3e2n0K8YSpcXz4Zr4DJ/z3++J2UQsIZt4Cqm+d5m2uX8X31xEI5t4Cqn+iZcY+yEt9K8briKbeKFIKr7k9+lDMkQ+stlBNvEUUr2m3uMjLZl18d9t3cf5ICxBuJM01UuBNfHfdKjbNqnt11yVJRDPB8QHoItPfbyElT7ZjasyUr3UWBOf6IugpSHHU0YEqd6U7Myxy8r4piIca+I7vqlt1vMdLYRUb8bWjJ3fPzmBcy6isSZ+eEKXEV0S+o0Zw3HYCFK9GUN+0ja3HOKbi2isiV9RCcfRAxKEO0lTfcUD0cNxcejVhoot33FPEojnwzXxd+5irKxHXJw02WH4QbYrrQtXZaR6Mw50ufO3vV/mnItorIkvW9R0ZKOlfIEbqd6M/TfcPbHfQs65iMbiO3crr+rdhvO8XjdS/ZEPItI28nCusZhr4u/QHtXK4+O4+h5pu9nHrcdyVXYj1c8ZOD4SfSKO3jnUWMy9cHf69UV74iPcveZ7AC76E1dlN8Ld7CUOXG33SnyfTi+sGnZ9HBxXX/kabjVXZYg3o1/n7ftmNYqDh/rq2ldt7asmV2U3Un18ik//atr4v8fDQ311/csN8XypPj7FDz2qbW6Og4d6N8XzEZ/it/X8dP/j94n9SXAjm3i+VB+f4tmeB8a9LvL9CjtYEX9RVlaW76sGV2WEO6mxIj6pEq7KEC81sh1sSSHVS4FV8ae4/3yMVG/KuXXLcqNfK7ZYE18wpFrKJz35TuVHqjfjYOrTSwctEfuT4Maa+BEP/phSMrMPV2WkejPGfsFYafcwH//rJtbEJ5eyFFZYl6sywp0ZcXQEzvVbNPGf8H3kFMSbMThf2wz/kWei4rEmflPtvkn3Jm/gqoxUb8bmvjmHnxnHM88YYEX8MZZ/bMnslw7wVUaqN+XziSNf9fhzESyJb1LQ6kwFXJXjLtXfctOt9unBd7CC91gR/1jtarUq4Kocd6n+51wnhKy7JznWnuOjOORZaTIKHoY7Wri+0mQU5BU/keva0mNFfKdPO/kJdw3elSaj4GGqjwLfsdrSY0X8jpM7/YS7Bu9Kk1HwMNVHgaD4iPCuNCkUN8VPjdEcPMKK+HaVhLsG70qTUfAw1dPCivisSsJeJWSlye3+j5ZP62+nH3nDnWKIORCjIPC9nYP+E5SG3WKnH3nFE0z1ERl8nu3rnHDRgCPBA0j1UuNYfMIZ1nvy94em3xo8gFQvNSLE1ynRnunrBw8g1UuNc/G5rEMuY3ubBw8g1UuNY/HdG9eqM5Btqf988IBqb9kqhoBUf37vp2z7upCLVROPVG8RpHqpkU08hVRfPvc3PUZyHs8kHNnE8xGfqX7hH8tYVk+PP9NUNvEUUn2G75OBJ+316N51ZBPPF+4eGTvLPg9n2GlQAL18v+xTvvTo3nXiW/yUBCfwrUkuLtXPWsrYkdRiYfVsIZt4vlQ/tV5j+zTsytWZuHBXND5jVPcvhJWzh2ziKaR6xs6G/EnLdWQTz0d8pnopkE08hVQvBbKJl/ctW8WAeKvgvXqL4L16qZFNPI1ULwGyiecDqd42solHqncJ2cTLG+4UA+KtglRvEaR6qZFNPFK9S8gmng+ketvIJh6p3iVkEy9vuFMMiLcKUr1FkOqlRjbxSPUuIZt4PpDqbSObeBKp/v1hfZ4859Wd68gmXt5wJ44Nw48WLwv5IAmXgXiriEv1A32LU9zxvbB6tpBNPIVUX1HpoR3C6tlCNvEUUv3ELYwVpfJ9CLxwZBPPR3ym+vz06c/0fFNYOXvIJp5Eqi/d+g7XNGOBbOLlDXeKAfFWwXv1FkGqlxrZxPOl+hXpGZG4NuJo75lcnUG8RdxI9W6C9+ot4kaqB7aRTTxfuIuCYnlMKEqLF/q0rNj/ItnE86X6KAgVj3BnETdSfRQyBdaC+DAIXGlSXpDqjQheaRKp3iUcixe80iRSvUs4Fi94pUmkepfwfKXJmRMMpIww7r9nqYgJSPXmOBbvdKXJH43LsO/eZ9w/bamICUj15jhP9SErTeb7VyC+fZjD1iQDqT4c2wL+vWlGBZ362W4KxB5B4muFXiTB63jF8phQHIufXNNHQs2awQMSiEeqN8ex+LMTUrOPHLn0iKC1ZYWCVG+OgIf6t1LelvShHqneHBHP8Yf7T5RTvFCQ6kMpf2FM6IWqiVcM2f4sKxTF8phQlBaPVG8OxHtSzHuUFo9Ub45c4s/P7XvbJvt3GVOQ6i1iR/yI1woP3vRP+/cJLCOV+Lw7tM2JQfbvMwjF8phQpBK/Y4ZvK/gzR0Sh2P8iqcSfTitmbIu4nzBSvTlSiWdv9P7zw+nijrNFqjdHLvHsyFsfl0a/licg1VtEgtfxwBylxSuWx4SitHikenMg3pNi3qO0eKR6c5QWLxSkeouoJl4xlBavWB4TitLikerNgXhPinmP0uKR6s1RWrxQkOotopp4xVBavGJ5TChKi0eqNwfiPSnmPUqLR6o3R2nxQkGqt4hq4hVDafGK5TGhKC0eqd4ciPekmPcoLR6p3hylxQsFqd4iqolXDKXFK5bHhKK0eKR6cyDek2Leo7R4pHpzlBYvFKR6i6gmXjGUFq9YHhOK0uKR6s1ReqVJpHpzZFtpUihI9ebIttKkvCDVGxG80iRwCc9XmowliuUxoXi+0mQsQao3JwYrTeqoJh7hLhwlAf9em1HB1UNsN2WX0/0zDDQx7mbsclIc4o0cuTt98efNL/pNXvDAqkX2u5IRpHojg4at7tnwje8zBwcPqCZeMRyLr/Mz29SOsZNXBg9AvNQ4Ft9kLyvYyFj2tcEDqolHqjeyKHmatl3cal7wgGriEe6CyHlL28x/M+RyiJea2P1ZNt7FZ3c0kmzc7X7a6wadAfFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8USBeKJAPFEgnigQTxSIJwrEEwXiiQLxRIF4okA8USCeKBBPFIgnCsQTBeKJAvFEgXiiqCz+2JYDXrcgLwqLfzbj0eH3hfvMTcBUFp89Qtv86W/eNiEv6op/cZW2+e893jYhL+qKf8N3/9sf8rYJeVFX/M+p2exQ7xxvm5AXdcWz3Lt63LTD4x7kRWHxIBIQTxSIJwrEEwXiiQLxRIF4okA8USCeKBBPlNiJf69thg1+WecKcdQUWEtosTqXCix2eUs7P+iWP8ZKvD0yswUWk3YxomyRa2AuXSqwWCUQH5NiEB8CxHMD8SFAvG0gPibFID4EiOdGDfGTRR4rlSGwltBiOZMFFlu+XGCxSlwXf1rkgfCnBNYSWqxc5II2RUUCi1XiunggBxBPFIgnCsQTBeKJAvFEgXiiQDxRYij+muRSk5EdnRyXndUk32khQ70K7JZLuqi6Rp7zXhhb0S2x1QNnIl1DxJxZLMX/p3GzjeFHCk9+6rhs7QKnhYz1KrBbLikr6IJCu93MarHx7Ne3t4n0Vp2AOfuInfipD8+4l7Gc9r2v6PZ+14ZPMba5bYPbClhW+syOO7X/tH+/NnniefZcs8tv+JqVTkxK+iNX2ZHVWm0MU8h2m/4OfOXsFNLFb03Tfh/TKmbI1rRIGnaMrRjeMTHt28qpRyf38lzft24L9Fnpt/P3lJM6un7Xj2w3GUTMxJc3/irrymKWk7Du3I2NC7IvPZtfZ0vpg0NY1mVPF2u9f5W892jX+Xk1dxfeN5GtaX98f+I3PGVZrTPhCtlu09+BVs5WoSDxWmP76n5WNGE0W5GwtnhOR6ZPPTqv9fd/G+CflX47vaechGfLH09jdpsMImbiP+7C2HXvspwG5ewPkxlrkrekD2MHq53Kqlvm6332VMb2fFJ0lBVkjmKbmv27jK+sT3yYQrbb9HeglbNVqOI5vvYF8Vpj8+9m7OjF5Su06iV19+tTj17osQkV3za29M9Kv53eU06N02xPiu0mg4iZ+Ek1k5JqjGU51zH26BOMNcubnZSicSirdcUP+J7nfFcqmdakc89RrPyJq+tmWvsTlF7WJz5MIdtt+jvQytkqFPAbv10TrzX24Bxtv2b+Ct/nM7Xdqk89eqElAyu+LRvsn5V+O72nnJaMfV0h3vZsA4iV+JJ62nNQdmJhlfiXtKfSkk9YVkqFr5kztG9rVnbIZ8tHsQOH2d52q3nK+sSHKWS7TX8HWjlbhSrFd2NsaVrFDOffw1h+jbIVN2jxIWmfPvXofHt5xUuD9AX+Wem303vy/Sj94u3ONpBYiX+vhW/bdH2V+AP1txc92rNS/OcN9+WnLVjYq/hE2jD2TJ8fj3f6K0/ZKvGGQrbb9HeglbNVSBeffcmB89394r+94suSSbdpz/FvlT11fbk+dQs80vrfhd/d1bXEPyv9dnpPVeLtzjaQWIn/7XTfNnNUlXi2oVWdjLxK8WzJr5LGFZ3ISE57vcH/nRqaWH9SCU/ZKvGGQrbb9HeglbNVKKlGTY3V5dMbXz7JL56talHvlp/Yin6Dr7xxL9OnboW/dk1sllmgz0q/nd5TlXi7sw0E79zFkhVjvO7AFIiPJRBPlLztXndgCsQTBeKJAvFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8USBeKJAPFEgnigQTxSIJwrEEwXiGRtofiLiQMbebZuYutvVflwB4hmrbn4iYnX2w2X/Oj29tav9uAI18f6TEf2nNOpnIQ5JSNnWqXJHP0+xamhZX8ZO/OJnr/sWDjHx/pMR9VMa9bMQtV/rnZ0qd/TzFKuGzhQwtulqr/sWDzHx/pMR9VMa9bMQdfH+Hf08xaohjbcarPe6b/EQE+8/GVE/pVE/C1EX79/Rz1OsGmInRl231eOuYwEx8f6TEfVTGvVzknTx/h39PMWqoeIbflfsddexgJh4/8mI+imNF+wWVonXz1OsGlrTsVDD677FQ0y8fjKi/5TGSrs3N952Qbx+nmLV0NQEHye87ls41MQDHYgnCsQTBeKJAvFEgXiiQDxRIJ4oEE8UiCcKxBMF4okC8USBeKJAPFEgnigQTxSIJwrEE+X/AVClXTsFa4QuAAAAAElFTkSuQmCC" alt=""/></p>
+
+<h1>(Advanced) Reclassifying Factors</h1>
+
+<ul>
+<li>Turning factors into other data types can be tricky. All factors have an underlying numeric structure.</li>
+</ul>
+
+<pre><code class="r">students &lt;- factor(c(&#39;basic&#39;,&#39;proficient&#39;,&#39;advanced&#39;,&#39;basic&#39;, 
+      &#39;advanced&#39;, &#39;minimal&#39;))
+levels(students)
+</code></pre>
+
+<pre><code>## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;
+</code></pre>
+
+<pre><code class="r">unclass(students)
+</code></pre>
+
+<pre><code>## [1] 2 4 1 2 1 3
+## attr(,&quot;levels&quot;)
+## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;
+</code></pre>
+
+<ul>
+<li>Hmmm, what happened?</li>
+<li>Be careful! The best way to convert a factor is to convert it to a character first.</li>
+</ul>
+
+<pre><code class="r">students &lt;- factor(c(&#39;basic&#39;,&#39;proficient&#39;,&#39;advanced&#39;,&#39;basic&#39;, 
+      &#39;advanced&#39;, &#39;minimal&#39;))
+score = c(minimal = 3, basic = 1, advanced = 13, proficient = 7) # a named vector
+score[&quot;advanced&quot;]  # look up by name
+</code></pre>
+
+<pre><code>## advanced 
+##       13
+</code></pre>
+
+<pre><code class="r">students[3]
+</code></pre>
+
+<pre><code>## [1] advanced
+## Levels: advanced basic minimal proficient
+</code></pre>
+
+<pre><code class="r">score[students[3]]
+</code></pre>
+
+<pre><code>## minimal 
+##       3
+</code></pre>
+
+<pre><code class="r">score[as.character(students[3])]
+</code></pre>
+
+<pre><code>## advanced 
+##       13
+</code></pre>
+
+<p>What went wrong and how did we fix it?  Notice how easily this could be a big bug in your code.</p>
+
+<h1>Subsetting</h1>
+
+<p>There are many ways to select subsets in R. The syntax below is useful for vectors, matrices, data frames, arrays and lists.</p>
+
+<pre><code class="r">vec &lt;- gapminder2007$lifeExp
+mat &lt;- matrix(1:20, 4, 5)
+rownames(mat) &lt;- letters[1:4]
+mat
+</code></pre>
+
+<pre><code>##   [,1] [,2] [,3] [,4] [,5]
+## a    1    5    9   13   17
+## b    2    6   10   14   18
+## c    3    7   11   15   19
+## d    4    8   12   16   20
+</code></pre>
+
+<p>1) by direct indexing</p>
+
+<pre><code class="r">vec[c(3, 5, 12:14)]
+</code></pre>
+
+<pre><code>## [1] 72.301 75.320 65.554 74.852 50.728
+</code></pre>
+
+<pre><code class="r">vec[-c(3,5)]
+</code></pre>
+
+<pre><code>##   [1] 43.828 76.423 42.731 81.235 79.829 75.635 64.062 79.441 56.728 65.554
+##  [11] 74.852 50.728 72.390 73.005 52.295 49.580 59.723 50.430 80.653 44.741
+##  [21] 50.651 78.553 72.961 72.889 65.152 46.462 55.322 78.782 48.328 75.748
+##  [31] 78.273 76.486 78.332 54.791 72.235 74.994 71.338 71.878 51.579 58.040
+##  [41] 52.947 79.313 80.657 56.735 59.448 79.406 60.022 79.483 70.259 56.007
+##  [51] 46.388 60.916 70.198 82.208 73.338 81.757 64.698 70.650 70.964 59.545
+##  [61] 78.885 80.745 80.546 72.567 82.603 72.535 54.110 67.297 78.623 77.588
+##  [71] 71.993 42.592 45.678 73.952 59.443 48.303 74.241 54.467 64.164 72.801
+##  [81] 76.195 66.803 74.543 71.164 42.082 62.069 52.906 63.785 79.762 80.204
+##  [91] 72.899 56.867 46.859 80.196 75.640 65.483 75.537 71.752 71.421 71.688
+## [101] 75.563 78.098 78.746 76.442 72.476 46.242 65.528 72.777 63.062 74.002
+## [111] 42.568 79.972 74.663 77.926 48.159 49.339 80.941 72.396 58.556 39.613
+## [121] 80.884 81.701 74.143 78.400 52.517 70.616 58.420 69.819 73.923 71.777
+## [131] 51.542 79.425 78.242 76.384 73.747 74.249 73.422 62.698 42.384 43.487
+</code></pre>
+
+<pre><code class="r">gapminder[c(2,4), 5]
+</code></pre>
+
+<pre><code>## [1] 30.332 34.020
+</code></pre>
+
+<pre><code class="r">gapminder[c(2,4), &#39;lifeExp&#39;]
+</code></pre>
+
+<pre><code>## [1] 30.332 34.020
+</code></pre>
+
+<pre><code class="r">## Advanced: subset using a 2-column matrix of indices:
+rowInd &lt;- c(1, 3, 4)
+colInd &lt;- c(2, 2, 1)
+elemInd &lt;- cbind(rowInd, colInd)
+elemInd
+</code></pre>
+
+<pre><code>##      rowInd colInd
+## [1,]      1      2
+## [2,]      3      2
+## [3,]      4      1
+</code></pre>
+
+<pre><code class="r">gapminder[elemInd]
+</code></pre>
+
+<pre><code>## [1] &quot;1952&quot;        &quot;1962&quot;        &quot;Afghanistan&quot;
+</code></pre>
+
+<p>2) by a vector of logicals</p>
+
+<pre><code class="r">wealthy &lt;- gapminder$gdpPercap &gt; 50000
+gapminder$gdpPercap[wealthy]
+</code></pre>
+
+<pre><code>## [1] 108382.35 113523.13  95458.11  80894.88 109347.87  59265.48
+</code></pre>
+
+<pre><code class="r">gapminder[wealthy, ]
+</code></pre>
+
+<pre><code>##     country year     pop continent lifeExp gdpPercap continent2
+## 853  Kuwait 1952  160000      Asia  55.565 108382.35       Asia
+## 854  Kuwait 1957  212846      Asia  58.033 113523.13       Asia
+## 855  Kuwait 1962  358266      Asia  60.470  95458.11       Asia
+## 856  Kuwait 1967  575003      Asia  64.624  80894.88       Asia
+## 857  Kuwait 1972  841934      Asia  67.712 109347.87       Asia
+## 858  Kuwait 1977 1140357      Asia  69.343  59265.48       Asia
+</code></pre>
+
+<p>What happened in the last subsetting operation?</p>
+
+<p>3) by a vector of names</p>
+
+<pre><code class="r">mat[c(&#39;a&#39;, &#39;d&#39;, &#39;a&#39;), ]
+</code></pre>
+
+<pre><code>##   [,1] [,2] [,3] [,4] [,5]
+## a    1    5    9   13   17
+## d    4    8   12   16   20
+## a    1    5    9   13   17
+</code></pre>
+
+<p>4) using <em>subset()</em></p>
+
+<pre><code class="r">subset(gapminder, gdpPercap &gt; 50000)
+</code></pre>
+
+<pre><code>##     country year     pop continent lifeExp gdpPercap continent2
+## 853  Kuwait 1952  160000      Asia  55.565 108382.35       Asia
+## 854  Kuwait 1957  212846      Asia  58.033 113523.13       Asia
+## 855  Kuwait 1962  358266      Asia  60.470  95458.11       Asia
+## 856  Kuwait 1967  575003      Asia  64.624  80894.88       Asia
+## 857  Kuwait 1972  841934      Asia  67.712 109347.87       Asia
+## 858  Kuwait 1977 1140357      Asia  69.343  59265.48       Asia
+</code></pre>
+
+<p>5) using <em>dplyr</em> tools such as <em>filter()</em> and <em>select()</em> &ndash; more in Module 6</p>
+
+<h1>Assignment into subsets</h1>
+
+<p>We can assign into subsets by using similar syntax, as we saw with vectors.</p>
+
+<pre><code class="r">vec &lt;- rnorm(20)
+vec[c(3, 5, 12:14)] &lt;- 1:5
+vec
+</code></pre>
+
+<pre><code>##  [1]  0.65223023  0.17035046  1.00000000  0.12622665  2.00000000  0.11606831
+##  [7] -0.63989746  1.84806033  0.56055255  0.50891980  1.03369852  3.00000000
+## [13]  4.00000000  5.00000000 -1.15585413  0.74348837 -0.19444215 -0.34194177
+## [19]  0.45266760  0.05199573
+</code></pre>
+
+<pre><code class="r">mat[2, 3:5] &lt;- rnorm(3)
+mat[mat[,1] &gt; 0, ] &lt;- -Inf
+mat
+</code></pre>
+
+<pre><code>##   [,1] [,2] [,3] [,4] [,5]
+## a -Inf -Inf -Inf -Inf -Inf
+## b -Inf -Inf -Inf -Inf -Inf
+## c -Inf -Inf -Inf -Inf -Inf
+## d -Inf -Inf -Inf -Inf -Inf
+</code></pre>
+
+<h1>Subsetting: quick quiz</h1>
+
+<p><strong>POLL 3D</strong></p>
+
+<p><em>Question 1</em>: Suppose I want to select the 3rd elements from the 2nd and 4th columns of a matrix or dataframe. Which syntax will work?</p>
+
+<p>Here&#39;s a test matrix:</p>
+
+<pre><code>mat &lt;- matrix(1:16, nrow = 4, ncol = 4)
+</code></pre>
+
+<p>1) mat[3, (2, 4)]
+2) mat[c(FALSE, FALSE, TRUE, FALSE), c(FALSE, TRUE, FALSE, TRUE)]
+3) mat[c(FALSE, FALSE, TRUE, FALSE), c(2, 4)]
+4) mat[3, c(2, 4)]
+5) mat(3, c(2, 4))
+6) mat[3, ][c(2, 4)]
+7) mat[ , c(2, 4)][3, ]
+8) mat[ , c(2, 4)][3]
+9) mat[c(2, 4)][3, ]</p>
+
+<p><em>Question 2</em>: (Advanced) One of those answers won&#39;t work with a matrix but will work with a dataframe. Which one?</p>
+
+<p>1) mat[3, (2, 4)]
+2) mat[c(FALSE, FALSE, TRUE, FALSE), c(FALSE, TRUE, FALSE, TRUE)]
+3) mat[c(FALSE, FALSE, TRUE, FALSE), c(2, 4)]
+4) mat[3, c(2, 4)]
+5) mat(3, c(2, 4))
+6) mat[3, ][c(2, 4)]
+7) mat[ , c(2, 4)][3, ]
+8) mat[ , c(2, 4)][3]
+9) mat[c(2, 4)][3, ]</p>
+
+<h1>Strings</h1>
+
+<p>R has lots of functionality for character strings. Usually these are stored as vectors of strings, each with arbitrary length.</p>
+
+<pre><code class="r">chars &lt;- c(&#39;hi&#39;, &#39;hallo&#39;, &quot;mother&#39;s&quot;, &#39;father\&#39;s&#39;, &quot;He said, \&quot;hi\&quot;&quot; )
+length(chars)
+</code></pre>
+
+<pre><code>## [1] 5
+</code></pre>
+
+<pre><code class="r">nchar(chars)
+</code></pre>
+
+<pre><code>## [1]  2  5  8  8 13
+</code></pre>
+
+<pre><code class="r">paste(&quot;bill&quot;, &quot;clinton&quot;, sep = &quot; &quot;)  # paste together a set of strings
+</code></pre>
+
+<pre><code>## [1] &quot;bill clinton&quot;
+</code></pre>
+
+<pre><code class="r">paste(chars, collapse = &#39; &#39;)  # paste together things from a vector
+</code></pre>
+
+<pre><code>## [1] &quot;hi hallo mother&#39;s father&#39;s He said, \&quot;hi\&quot;&quot;
+</code></pre>
+
+<pre><code class="r">strsplit(&quot;This is the R bootcamp&quot;, split = &quot; &quot;)
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] &quot;This&quot;     &quot;is&quot;       &quot;the&quot;      &quot;R&quot;        &quot;bootcamp&quot;
+</code></pre>
+
+<pre><code class="r">countries &lt;- as.character(gapminder2007$country)
+substring(countries, 1, 3)
+</code></pre>
+
+<pre><code>##   [1] &quot;Afg&quot; &quot;Alb&quot; &quot;Alg&quot; &quot;Ang&quot; &quot;Arg&quot; &quot;Aus&quot; &quot;Aus&quot; &quot;Bah&quot; &quot;Ban&quot; &quot;Bel&quot; &quot;Ben&quot; &quot;Bol&quot;
+##  [13] &quot;Bos&quot; &quot;Bot&quot; &quot;Bra&quot; &quot;Bul&quot; &quot;Bur&quot; &quot;Bur&quot; &quot;Cam&quot; &quot;Cam&quot; &quot;Can&quot; &quot;Cen&quot; &quot;Cha&quot; &quot;Chi&quot;
+##  [25] &quot;Chi&quot; &quot;Col&quot; &quot;Com&quot; &quot;Con&quot; &quot;Con&quot; &quot;Cos&quot; &quot;Cot&quot; &quot;Cro&quot; &quot;Cub&quot; &quot;Cze&quot; &quot;Den&quot; &quot;Dji&quot;
+##  [37] &quot;Dom&quot; &quot;Ecu&quot; &quot;Egy&quot; &quot;El &quot; &quot;Equ&quot; &quot;Eri&quot; &quot;Eth&quot; &quot;Fin&quot; &quot;Fra&quot; &quot;Gab&quot; &quot;Gam&quot; &quot;Ger&quot;
+##  [49] &quot;Gha&quot; &quot;Gre&quot; &quot;Gua&quot; &quot;Gui&quot; &quot;Gui&quot; &quot;Hai&quot; &quot;Hon&quot; &quot;Hon&quot; &quot;Hun&quot; &quot;Ice&quot; &quot;Ind&quot; &quot;Ind&quot;
+##  [61] &quot;Ira&quot; &quot;Ira&quot; &quot;Ire&quot; &quot;Isr&quot; &quot;Ita&quot; &quot;Jam&quot; &quot;Jap&quot; &quot;Jor&quot; &quot;Ken&quot; &quot;Kor&quot; &quot;Kor&quot; &quot;Kuw&quot;
+##  [73] &quot;Leb&quot; &quot;Les&quot; &quot;Lib&quot; &quot;Lib&quot; &quot;Mad&quot; &quot;Mal&quot; &quot;Mal&quot; &quot;Mal&quot; &quot;Mau&quot; &quot;Mau&quot; &quot;Mex&quot; &quot;Mon&quot;
+##  [85] &quot;Mon&quot; &quot;Mor&quot; &quot;Moz&quot; &quot;Mya&quot; &quot;Nam&quot; &quot;Nep&quot; &quot;Net&quot; &quot;New&quot; &quot;Nic&quot; &quot;Nig&quot; &quot;Nig&quot; &quot;Nor&quot;
+##  [97] &quot;Oma&quot; &quot;Pak&quot; &quot;Pan&quot; &quot;Par&quot; &quot;Per&quot; &quot;Phi&quot; &quot;Pol&quot; &quot;Por&quot; &quot;Pue&quot; &quot;Reu&quot; &quot;Rom&quot; &quot;Rwa&quot;
+## [109] &quot;Sao&quot; &quot;Sau&quot; &quot;Sen&quot; &quot;Ser&quot; &quot;Sie&quot; &quot;Sin&quot; &quot;Slo&quot; &quot;Slo&quot; &quot;Som&quot; &quot;Sou&quot; &quot;Spa&quot; &quot;Sri&quot;
+## [121] &quot;Sud&quot; &quot;Swa&quot; &quot;Swe&quot; &quot;Swi&quot; &quot;Syr&quot; &quot;Tai&quot; &quot;Tan&quot; &quot;Tha&quot; &quot;Tog&quot; &quot;Tri&quot; &quot;Tun&quot; &quot;Tur&quot;
+## [133] &quot;Uga&quot; &quot;Uni&quot; &quot;Uni&quot; &quot;Uru&quot; &quot;Ven&quot; &quot;Vie&quot; &quot;Wes&quot; &quot;Yem&quot; &quot;Zam&quot; &quot;Zim&quot;
+</code></pre>
+
+<pre><code class="r">tmp &lt;- countries
+substring(tmp, 5, 10) &lt;- &quot;______&quot;
+tmp[1:20]
+</code></pre>
+
+<pre><code>##  [1] &quot;Afgh______n&quot;            &quot;Alba___&quot;                &quot;Alge___&quot;               
+##  [4] &quot;Ango__&quot;                 &quot;Arge_____&quot;              &quot;Aust_____&quot;             
+##  [7] &quot;Aust___&quot;                &quot;Bahr___&quot;                &quot;Bang______&quot;            
+## [10] &quot;Belg___&quot;                &quot;Beni_&quot;                  &quot;Boli___&quot;               
+## [13] &quot;Bosn______ Herzegovina&quot; &quot;Bots____&quot;               &quot;Braz__&quot;                
+## [16] &quot;Bulg____&quot;               &quot;Burk______so&quot;           &quot;Buru___&quot;               
+## [19] &quot;Camb____&quot;               &quot;Came____&quot;
+</code></pre>
+
+<p>We can search for patterns in character vectors and replace patterns (both vectorized!)</p>
+
+<pre><code class="r">indexes &lt;- grep(&quot;Korea&quot;, countries)
+indexes
+</code></pre>
+
+<pre><code>## [1] 70 71
+</code></pre>
+
+<pre><code class="r">countries[indexes]
+</code></pre>
+
+<pre><code>## [1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;
+</code></pre>
+
+<pre><code class="r">countries2 &lt;- gsub(&quot;Korea Dem. Rep.&quot;, &quot;North Korea&quot;, countries)
+countries2[indexes]
+</code></pre>
+
+<pre><code>## [1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;
+</code></pre>
+
+<h1>Regular expressions (regex or regexp)</h1>
+
+<p>Some of you may be familiar with using <em>regular expressions</em>, which is functionality for doing sophisticated pattern matching and replacement with strings. <em>Python</em> and <em>Perl</em> are both used extensively for such text manipulation. </p>
+
+<p>R has a full set of regular expression capabilities available through the <em>grep()</em>, <em>gregexpr()</em>, and <em>gsub()</em> functions (among others - many R functions will work with regular expressions). A particularly nice way to make use of this functionality is to use the <em>stringr</em> package, which is more user-friendly than directly using the core R functions.</p>
+
+<p>You can basically do any regular expression/string manipulations in R, though the syntax may be a bit clunky at times.</p>
+
+<h1>More details on reading data into R</h1>
+
+<p>Remember that you&#39;ll need to know the current working directory so that you know where R is looking for files.</p>
+
+<p>The workhorse for reading into a data frame is <em>read.table()</em>, which allows any separator (CSV, tab-delimited, etc.). <em>read.csv()</em> is a special case of <em>read.table()</em> for CSV files.</p>
+
+<p>You&#39;ve already seen a bit of this, but let&#39;s work through a more involved example, so you can see some of the steps and tricks involved in reading data into R.</p>
+
+<pre><code class="r">rta &lt;- read.table(&quot;../data/RTAData.csv&quot;, sep = &quot;,&quot;, head = TRUE)
+rta[1:5, 1:5]
+</code></pre>
+
+<pre><code>##               time X40010 X40015 X40020 X40025
+## 1 2010-03-01 14:58    821    209    828    258
+## 2 2010-03-01 15:01    804    209    804    248
+## 3 2010-03-01 15:04    892    212    801    237
+## 4 2010-03-01 15:07    857    214    821    243
+## 5 2010-03-01 15:10    849    222    834    252
+</code></pre>
+
+<pre><code class="r">dim(rta)
+</code></pre>
+
+<pre><code>## [1] 120822     62
+</code></pre>
+
+<pre><code class="r"># great, we&#39;re all set, right?
+# Not so fast...
+unlist(lapply(rta, class))[1:5]
+</code></pre>
+
+<pre><code>##        time      X40010      X40015      X40020      X40025 
+## &quot;character&quot; &quot;character&quot; &quot;character&quot; &quot;character&quot; &quot;character&quot;
+</code></pre>
+
+<pre><code class="r"># let&#39;s delve more deeply
+unique(rta[ , 2])
+</code></pre>
+
+<pre><code>##    [1] &quot;821&quot;  &quot;804&quot;  &quot;892&quot;  &quot;857&quot;  &quot;849&quot;  &quot;895&quot;  &quot;844&quot;  &quot;841&quot;  &quot;847&quot;  &quot;869&quot; 
+##   [11] &quot;991&quot;  &quot;944&quot;  &quot;894&quot;  &quot;926&quot;  &quot;947&quot;  &quot;902&quot;  &quot;904&quot;  &quot;840&quot;  &quot;893&quot;  &quot;898&quot; 
+##   [21] &quot;916&quot;  &quot;874&quot;  &quot;883&quot;  &quot;868&quot;  &quot;927&quot;  &quot;974&quot;  &quot;1041&quot; &quot;1263&quot; &quot;1414&quot; &quot;1722&quot;
+##   [31] &quot;2071&quot; &quot;2135&quot; &quot;2259&quot; &quot;2474&quot; &quot;2931&quot; &quot;2771&quot; &quot;1851&quot; &quot;1724&quot; &quot;2385&quot; &quot;2695&quot;
+##   [41] &quot;1964&quot; &quot;1717&quot; &quot;2054&quot; &quot;2186&quot; &quot;2061&quot; &quot;2400&quot; &quot;2603&quot; &quot;2110&quot; &quot;2051&quot; &quot;1637&quot;
+##   [51] &quot;1885&quot; &quot;2142&quot; &quot;2503&quot; &quot;2397&quot; &quot;2087&quot; &quot;2034&quot; &quot;1850&quot; &quot;2115&quot; &quot;2044&quot; &quot;2443&quot;
+##   [61] &quot;1833&quot; &quot;1340&quot; &quot;1866&quot; &quot;2339&quot; &quot;2296&quot; &quot;2262&quot; &quot;2993&quot; &quot;3646&quot; &quot;2814&quot; &quot;2477&quot;
+##   [71] &quot;3331&quot; &quot;3751&quot; &quot;3567&quot; &quot;3065&quot; &quot;2557&quot; &quot;2783&quot; &quot;2563&quot; &quot;2542&quot; &quot;2635&quot; &quot;1947&quot;
+##   [81] &quot;1681&quot; &quot;1570&quot; &quot;1223&quot; &quot;1007&quot; &quot;937&quot;  &quot;891&quot;  &quot;838&quot;  &quot;845&quot;  &quot;850&quot;  &quot;809&quot; 
+##   [91] &quot;835&quot;  &quot;832&quot;  &quot;816&quot;  &quot;784&quot;  &quot;801&quot;  &quot;802&quot;  &quot;833&quot;  &quot;820&quot;  &quot;793&quot;  &quot;817&quot; 
+##  [101] &quot;864&quot;  &quot;812&quot;  &quot;837&quot;  &quot;799&quot;  &quot;797&quot;  &quot;808&quot;  &quot;819&quot;  &quot;834&quot;  &quot;818&quot;  &quot;810&quot; 
+##  [111] &quot;830&quot;  &quot;770&quot;  &quot;814&quot;  &quot;790&quot;  &quot;788&quot;  &quot;813&quot;  &quot;806&quot;  &quot;815&quot;  &quot;800&quot;  &quot;822&quot; 
+##  [121] &quot;780&quot;  &quot;807&quot;  &quot;765&quot;  &quot;785&quot;  &quot;783&quot;  &quot;769&quot;  &quot;839&quot;  &quot;792&quot;  &quot;805&quot;  &quot;779&quot; 
+##  [131] &quot;789&quot;  &quot;791&quot;  &quot;796&quot;  &quot;798&quot;  &quot;761&quot;  &quot;781&quot;  &quot;753&quot;  &quot;794&quot;  &quot;775&quot;  &quot;773&quot; 
+##  [141] &quot;774&quot;  &quot;768&quot;  &quot;759&quot;  &quot;755&quot;  &quot;754&quot;  &quot;747&quot;  &quot;749&quot;  &quot;740&quot;  &quot;731&quot;  &quot;751&quot; 
+##  [151] &quot;766&quot;  &quot;795&quot;  &quot;750&quot;  &quot;777&quot;  &quot;742&quot;  &quot;733&quot;  &quot;763&quot;  &quot;767&quot;  &quot;738&quot;  &quot;778&quot; 
+##  [161] &quot;671&quot;  &quot;760&quot;  &quot;745&quot;  &quot;736&quot;  &quot;782&quot;  &quot;737&quot;  &quot;786&quot;  &quot;682&quot;  &quot;687&quot;  &quot;707&quot; 
+##  [171] &quot;771&quot;  &quot;729&quot;  &quot;787&quot;  &quot;710&quot;  &quot;735&quot;  &quot;683&quot;  &quot;756&quot;  &quot;734&quot;  &quot;718&quot;  &quot;746&quot; 
+##  [181] &quot;719&quot;  &quot;714&quot;  &quot;741&quot;  &quot;758&quot;  &quot;757&quot;  &quot;811&quot;  &quot;846&quot;  &quot;829&quot;  &quot;828&quot;  &quot;856&quot; 
+##  [191] &quot;861&quot;  &quot;863&quot;  &quot;871&quot;  &quot;875&quot;  &quot;842&quot;  &quot;897&quot;  &quot;880&quot;  &quot;877&quot;  &quot;890&quot;  &quot;910&quot; 
+##  [201] &quot;848&quot;  &quot;860&quot;  &quot;884&quot;  &quot;887&quot;  &quot;854&quot;  &quot;921&quot;  &quot;886&quot;  &quot;851&quot;  &quot;873&quot;  &quot;911&quot; 
+##  [211] &quot;867&quot;  &quot;843&quot;  &quot;876&quot;  &quot;858&quot;  &quot;831&quot;  &quot;862&quot;  &quot;825&quot;  &quot;827&quot;  &quot;826&quot;  &quot;824&quot; 
+##  [221] &quot;803&quot;  &quot;776&quot;  &quot;823&quot;  &quot;872&quot;  &quot;852&quot;  &quot;836&quot;  &quot;853&quot;  &quot;907&quot;  &quot;905&quot;  &quot;1089&quot;
+##  [231] &quot;1188&quot; &quot;885&quot;  &quot;896&quot;  &quot;932&quot;  &quot;900&quot;  &quot;870&quot;  &quot;922&quot;  &quot;936&quot;  &quot;882&quot;  &quot;859&quot; 
+##  [241] &quot;879&quot;  &quot;968&quot;  &quot;906&quot;  &quot;855&quot;  &quot;764&quot;  &quot;748&quot;  &quot;752&quot;  &quot;762&quot;  &quot;772&quot;  &quot;704&quot; 
+##  [251] &quot;723&quot;  &quot;726&quot;  &quot;721&quot;  &quot;708&quot;  &quot;717&quot;  &quot;715&quot;  &quot;732&quot;  &quot;711&quot;  &quot;699&quot;  &quot;706&quot; 
+##  [261] &quot;724&quot;  &quot;730&quot;  &quot;725&quot;  &quot;722&quot;  &quot;744&quot;  &quot;743&quot;  &quot;866&quot;  &quot;878&quot;  &quot;986&quot;  &quot;889&quot; 
+##  [271] &quot;1011&quot; &quot;1161&quot; &quot;919&quot;  &quot;914&quot;  &quot;1035&quot; &quot;1251&quot; &quot;1689&quot; &quot;1827&quot; &quot;1725&quot; &quot;1672&quot;
+##  [281] &quot;1795&quot; &quot;1354&quot; &quot;1677&quot; &quot;1888&quot; &quot;1744&quot; &quot;2622&quot; &quot;2497&quot; &quot;1756&quot; &quot;1798&quot; &quot;2130&quot;
+##  [291] &quot;2191&quot; &quot;1604&quot; &quot;2354&quot; &quot;2091&quot; &quot;2550&quot; &quot;2900&quot; &quot;2657&quot; &quot;2486&quot; &quot;2755&quot; &quot;1898&quot;
+##  [301] &quot;2112&quot; &quot;2235&quot; &quot;2447&quot; &quot;2390&quot; &quot;1739&quot; &quot;1847&quot; &quot;1683&quot; &quot;1429&quot; &quot;865&quot;  &quot;988&quot; 
+##  [311] &quot;&quot;     &quot;727&quot;  &quot;970&quot;  &quot;1133&quot; &quot;958&quot;  &quot;915&quot;  &quot;952&quot;  &quot;943&quot;  &quot;1054&quot; &quot;990&quot; 
+##  [321] &quot;938&quot;  &quot;951&quot;  &quot;930&quot;  &quot;909&quot;  &quot;949&quot;  &quot;940&quot;  &quot;918&quot;  &quot;899&quot;  &quot;720&quot;  &quot;702&quot; 
+##  [331] &quot;728&quot;  &quot;705&quot;  &quot;908&quot;  &quot;1074&quot; &quot;2346&quot; &quot;1132&quot; &quot;1006&quot; &quot;901&quot;  &quot;917&quot;  &quot;881&quot; 
+##  [341] &quot;931&quot;  &quot;934&quot;  &quot;920&quot;  &quot;946&quot;  &quot;967&quot;  &quot;1624&quot; &quot;1526&quot; &quot;1209&quot; &quot;1392&quot; &quot;1171&quot;
+##  [351] &quot;1330&quot; &quot;1399&quot; &quot;1836&quot; &quot;1848&quot; &quot;2077&quot; &quot;2351&quot; &quot;2628&quot; &quot;2773&quot; &quot;2920&quot; &quot;2545&quot;
+##  [361] &quot;2815&quot; &quot;2892&quot; &quot;2514&quot; &quot;2465&quot; &quot;3119&quot; &quot;3525&quot; &quot;3216&quot; &quot;2823&quot; &quot;2469&quot; &quot;2554&quot;
+##  [371] &quot;2678&quot; &quot;2612&quot; &quot;2951&quot; &quot;3037&quot; &quot;3212&quot; &quot;2548&quot; &quot;3050&quot; &quot;2894&quot; &quot;3066&quot; &quot;3133&quot;
+##  [381] &quot;3264&quot; &quot;3181&quot; &quot;2871&quot; &quot;3228&quot; &quot;3063&quot; &quot;2982&quot; &quot;3207&quot; &quot;2914&quot; &quot;3418&quot; &quot;3105&quot;
+##  [391] &quot;3114&quot; &quot;2615&quot; &quot;2324&quot; &quot;2326&quot; &quot;2182&quot; &quot;2688&quot; &quot;2461&quot; &quot;2410&quot; &quot;2289&quot; &quot;1926&quot;
+##  [401] &quot;1803&quot; &quot;1791&quot; &quot;1698&quot; &quot;1571&quot; &quot;1322&quot; &quot;1401&quot; &quot;1356&quot; &quot;1515&quot; &quot;1569&quot; &quot;1557&quot;
+##  [411] &quot;1371&quot; &quot;1238&quot; &quot;992&quot;  &quot;964&quot;  &quot;929&quot;  &quot;975&quot;  &quot;971&quot;  &quot;913&quot;  &quot;935&quot;  &quot;912&quot; 
+##  [421] &quot;950&quot;  &quot;979&quot;  &quot;923&quot;  &quot;739&quot;  &quot;903&quot;  &quot;963&quot;  &quot;948&quot;  &quot;969&quot;  &quot;939&quot;  &quot;888&quot; 
+##  [431] &quot;712&quot;  &quot;925&quot;  &quot;1055&quot; &quot;1501&quot; &quot;3011&quot; &quot;3068&quot; &quot;3292&quot; &quot;3747&quot; &quot;3456&quot; &quot;3458&quot;
+##  [441] &quot;2388&quot; &quot;1227&quot; &quot;1034&quot; &quot;1061&quot; &quot;1213&quot; &quot;960&quot;  &quot;957&quot;  &quot;1218&quot; &quot;1257&quot; &quot;1538&quot;
+##  [451] &quot;2174&quot; &quot;1860&quot; &quot;1755&quot; &quot;1758&quot; &quot;1904&quot; &quot;1627&quot; &quot;1834&quot; &quot;1625&quot; &quot;1726&quot; &quot;2103&quot;
+##  [461] &quot;2246&quot; &quot;2041&quot; &quot;2093&quot; &quot;2261&quot; &quot;2607&quot; &quot;2438&quot; &quot;2278&quot; &quot;2393&quot; &quot;2509&quot; &quot;1796&quot;
+##  [471] &quot;1603&quot; &quot;2118&quot; &quot;2045&quot; &quot;1567&quot; &quot;1255&quot; &quot;933&quot;  &quot;954&quot;  &quot;713&quot;  &quot;709&quot;  &quot;716&quot; 
+##  [481] &quot;691&quot;  &quot;989&quot;  &quot;1193&quot; &quot;1338&quot; &quot;1959&quot; &quot;2098&quot; &quot;1987&quot; &quot;2153&quot; &quot;2379&quot; &quot;1994&quot;
+##  [491] &quot;1593&quot; &quot;1716&quot; &quot;1761&quot; &quot;2786&quot; &quot;2777&quot; &quot;2313&quot; &quot;2398&quot; &quot;3184&quot; &quot;2748&quot; &quot;1911&quot;
+##  [501] &quot;2386&quot; &quot;2352&quot; &quot;2489&quot; &quot;2396&quot; &quot;2510&quot; &quot;2062&quot; &quot;2358&quot; &quot;2868&quot; &quot;2649&quot; &quot;2187&quot;
+##  [511] &quot;2138&quot; &quot;2162&quot; &quot;1983&quot; &quot;1790&quot; &quot;1451&quot; &quot;1259&quot; &quot;1404&quot; &quot;1295&quot; &quot;924&quot;  &quot;985&quot; 
+##  [521] &quot;669&quot;  &quot;1076&quot; &quot;1008&quot; &quot;961&quot;  &quot;1536&quot; &quot;1819&quot; &quot;2601&quot; &quot;2722&quot; &quot;3266&quot; &quot;3279&quot;
+##  [531] &quot;2930&quot; &quot;3286&quot; &quot;3329&quot; &quot;3454&quot; &quot;2642&quot; &quot;1657&quot; &quot;1229&quot; &quot;684&quot;  &quot;962&quot;  &quot;1044&quot;
+##  [541] &quot;1216&quot; &quot;1651&quot; &quot;1155&quot; &quot;1328&quot; &quot;2488&quot; &quot;2806&quot; &quot;3153&quot; &quot;2975&quot; &quot;2189&quot; &quot;1999&quot;
+##  [551] &quot;1953&quot; &quot;2573&quot; &quot;2707&quot; &quot;2119&quot; &quot;1870&quot; &quot;2155&quot; &quot;2227&quot; &quot;2200&quot; &quot;2468&quot; &quot;2588&quot;
+##  [561] &quot;2327&quot; &quot;1818&quot; &quot;1856&quot; &quot;1881&quot; &quot;2317&quot; &quot;2859&quot; &quot;3527&quot; &quot;4083&quot; &quot;4393&quot; &quot;3732&quot;
+##  [571] &quot;2648&quot; &quot;1853&quot; &quot;2070&quot; &quot;2639&quot; &quot;2253&quot; &quot;2208&quot; &quot;2446&quot; &quot;1735&quot; &quot;1560&quot; &quot;1693&quot;
+##  [581] &quot;1610&quot; &quot;1353&quot; &quot;1360&quot; &quot;1267&quot; &quot;1012&quot; &quot;1000&quot; &quot;978&quot;  &quot;955&quot;  &quot;1018&quot; &quot;928&quot; 
+##  [591] &quot;953&quot;  &quot;942&quot;  &quot;1002&quot; &quot;941&quot;  &quot;1068&quot; &quot;1086&quot; &quot;1247&quot; &quot;1208&quot; &quot;1287&quot; &quot;2039&quot;
+##  [601] &quot;2099&quot; &quot;1582&quot; &quot;2295&quot; &quot;2472&quot; &quot;1990&quot; &quot;2001&quot; &quot;1878&quot; &quot;2308&quot; &quot;2078&quot; &quot;2055&quot;
+##  [611] &quot;2283&quot; &quot;2108&quot; &quot;2338&quot; &quot;1905&quot; &quot;2256&quot; &quot;2362&quot; &quot;2626&quot; &quot;2990&quot; &quot;3090&quot; &quot;3147&quot;
+##  [621] &quot;1323&quot; &quot;1141&quot; &quot;984&quot;  &quot;693&quot;  &quot;1037&quot; &quot;1296&quot; &quot;1107&quot; &quot;1168&quot; &quot;1633&quot; &quot;1611&quot;
+##  [631] &quot;1984&quot; &quot;1944&quot; &quot;2225&quot; &quot;2705&quot; &quot;1688&quot; &quot;1352&quot; &quot;1727&quot; &quot;2383&quot; &quot;2452&quot; &quot;2266&quot;
+##  [641] &quot;2739&quot; &quot;2504&quot; &quot;1874&quot; &quot;2528&quot; &quot;2116&quot; &quot;1988&quot; &quot;2046&quot; &quot;1945&quot; &quot;2176&quot; &quot;1621&quot;
+##  [651] &quot;2006&quot; &quot;2516&quot; &quot;2709&quot; &quot;2753&quot; &quot;2248&quot; &quot;2159&quot; &quot;1605&quot; &quot;1449&quot; &quot;1388&quot; &quot;1277&quot;
+##  [661] &quot;1202&quot; &quot;1013&quot; &quot;1025&quot; &quot;1031&quot; &quot;1022&quot; &quot;994&quot;  &quot;945&quot;  &quot;997&quot;  &quot;1180&quot; &quot;973&quot; 
+##  [671] &quot;972&quot;  &quot;1017&quot; &quot;1049&quot; &quot;1062&quot; &quot;1059&quot; &quot;1096&quot; &quot;980&quot;  &quot;976&quot;  &quot;1121&quot; &quot;1042&quot;
+##  [681] &quot;694&quot;  &quot;696&quot;  &quot;644&quot;  &quot;1084&quot; &quot;1149&quot; &quot;1039&quot; &quot;1094&quot; &quot;1113&quot; &quot;1272&quot; &quot;1398&quot;
+##  [691] &quot;1102&quot; &quot;1126&quot; &quot;1709&quot; &quot;1775&quot; &quot;2305&quot; &quot;3254&quot; &quot;3392&quot; &quot;2909&quot; &quot;2865&quot; &quot;2541&quot;
+##  [701] &quot;2215&quot; &quot;2536&quot; &quot;2333&quot; &quot;1854&quot; &quot;1368&quot; &quot;1154&quot; &quot;685&quot;  &quot;703&quot;  &quot;1256&quot; &quot;1308&quot;
+##  [711] &quot;1305&quot; &quot;1203&quot; &quot;1336&quot; &quot;1292&quot; &quot;1131&quot; &quot;1051&quot; &quot;1284&quot; &quot;1306&quot; &quot;1191&quot; &quot;1147&quot;
+##  [721] &quot;689&quot;  &quot;1134&quot; &quot;1483&quot; &quot;1406&quot; &quot;1124&quot; &quot;1072&quot; &quot;1446&quot; &quot;1244&quot; &quot;1136&quot; &quot;956&quot; 
+##  [731] &quot;3314&quot; &quot;3342&quot; &quot;2644&quot; &quot;1103&quot; &quot;1015&quot; &quot;959&quot;  &quot;1081&quot; &quot;987&quot;  &quot;1010&quot; &quot;983&quot; 
+##  [741] &quot;966&quot;  &quot;1023&quot; &quot;1005&quot; &quot;675&quot;  &quot;701&quot;  &quot;1424&quot; &quot;1719&quot; &quot;1600&quot; &quot;1579&quot; &quot;1588&quot;
+##  [751] &quot;981&quot;  &quot;1764&quot; &quot;2081&quot; &quot;1765&quot; &quot;2145&quot; &quot;1901&quot; &quot;2840&quot; &quot;1835&quot; &quot;1824&quot; &quot;2109&quot;
+##  [761] &quot;2100&quot; &quot;2830&quot; &quot;2597&quot; &quot;2206&quot; &quot;2287&quot; &quot;2303&quot; &quot;1931&quot; &quot;1669&quot; &quot;3220&quot; &quot;2664&quot;
+##  [771] &quot;2436&quot; &quot;1871&quot; &quot;2606&quot; &quot;2866&quot; &quot;2126&quot; &quot;2040&quot; &quot;2391&quot; &quot;2344&quot; &quot;2746&quot; &quot;2517&quot;
+##  [781] &quot;2535&quot; &quot;2297&quot; &quot;1941&quot; &quot;1965&quot; &quot;2637&quot; &quot;3493&quot; &quot;2655&quot; &quot;2633&quot; &quot;3867&quot; &quot;2668&quot;
+##  [791] &quot;2937&quot; &quot;3049&quot; &quot;2852&quot; &quot;2277&quot; &quot;2586&quot; &quot;2730&quot; &quot;2553&quot; &quot;2149&quot; &quot;1640&quot; &quot;1387&quot;
+##  [801] &quot;1129&quot; &quot;1304&quot; &quot;1396&quot; &quot;1098&quot; &quot;698&quot;  &quot;1060&quot; &quot;2511&quot; &quot;1799&quot; &quot;2026&quot; &quot;2442&quot;
+##  [811] &quot;2151&quot; &quot;2310&quot; &quot;2502&quot; &quot;1975&quot; &quot;3009&quot; &quot;2959&quot; &quot;2221&quot; &quot;2163&quot; &quot;2322&quot; &quot;1867&quot;
+##  [821] &quot;1902&quot; &quot;2966&quot; &quot;2494&quot; &quot;2114&quot; &quot;2365&quot; &quot;2782&quot; &quot;2592&quot; &quot;2523&quot; &quot;2408&quot; &quot;1914&quot;
+##  [831] &quot;2316&quot; &quot;2857&quot; &quot;2729&quot; &quot;2949&quot; &quot;2697&quot; &quot;2238&quot; &quot;1351&quot; &quot;1151&quot; &quot;977&quot;  &quot;965&quot; 
+##  [841] &quot;993&quot;  &quot;1057&quot; &quot;1692&quot; &quot;1642&quot; &quot;1494&quot; &quot;1566&quot; &quot;1797&quot; &quot;2030&quot; &quot;3014&quot; &quot;2499&quot;
+##  [851] &quot;2144&quot; &quot;2258&quot; &quot;2371&quot; &quot;2027&quot; &quot;2090&quot; &quot;2552&quot; &quot;3047&quot; &quot;3048&quot; &quot;2411&quot; &quot;3023&quot;
+##  [861] &quot;3084&quot; &quot;2911&quot; &quot;3138&quot; &quot;3281&quot; &quot;2686&quot; &quot;2899&quot; &quot;2620&quot; &quot;2456&quot; &quot;2332&quot; &quot;2532&quot;
+##  [871] &quot;2810&quot; &quot;2482&quot; &quot;2005&quot; &quot;1829&quot; &quot;1618&quot; &quot;1389&quot; &quot;1482&quot; &quot;1793&quot; &quot;1732&quot; &quot;1470&quot;
+##  [881] &quot;1069&quot; &quot;1333&quot; &quot;1936&quot; &quot;1921&quot; &quot;1869&quot; &quot;1395&quot; &quot;1334&quot; &quot;1178&quot; &quot;1104&quot; &quot;1004&quot;
+##  [891] &quot;1009&quot; &quot;982&quot;  &quot;1444&quot; &quot;1270&quot; &quot;1027&quot; &quot;1157&quot; &quot;1412&quot; &quot;1518&quot; &quot;1558&quot; &quot;1506&quot;
+##  [901] &quot;1381&quot; &quot;1173&quot; &quot;1331&quot; &quot;1250&quot; &quot;1181&quot; &quot;1184&quot; &quot;1003&quot; &quot;1026&quot; &quot;2105&quot; &quot;2560&quot;
+##  [911] &quot;2677&quot; &quot;2986&quot; &quot;2843&quot; &quot;2269&quot; &quot;2770&quot; &quot;2918&quot; &quot;2833&quot; &quot;3150&quot; &quot;2544&quot; &quot;2934&quot;
+##  [921] &quot;2997&quot; &quot;2816&quot; &quot;3394&quot; &quot;3861&quot; &quot;3631&quot; &quot;3275&quot; &quot;3019&quot; &quot;2905&quot; &quot;3039&quot; &quot;3622&quot;
+##  [931] &quot;4632&quot; &quot;4671&quot; &quot;4530&quot; &quot;4868&quot; &quot;4709&quot; &quot;4206&quot; &quot;3315&quot; &quot;3368&quot; &quot;3919&quot; &quot;4161&quot;
+##  [941] &quot;4538&quot; &quot;4388&quot; &quot;4370&quot; &quot;4645&quot; &quot;3948&quot; &quot;2493&quot; &quot;2085&quot; &quot;2425&quot; &quot;2384&quot; &quot;2925&quot;
+##  [951] &quot;2670&quot; &quot;2219&quot; &quot;2013&quot; &quot;2357&quot; &quot;2193&quot; &quot;1186&quot; &quot;1232&quot; &quot;1291&quot; &quot;1241&quot; &quot;1357&quot;
+##  [961] &quot;1346&quot; &quot;1159&quot; &quot;1075&quot; &quot;697&quot;  &quot;1313&quot; &quot;1666&quot; &quot;2197&quot; &quot;3038&quot; &quot;3420&quot; &quot;3374&quot;
+##  [971] &quot;2988&quot; &quot;2370&quot; &quot;2228&quot; &quot;2529&quot; &quot;2684&quot; &quot;1915&quot; &quot;1981&quot; &quot;1972&quot; &quot;2285&quot; &quot;2350&quot;
+##  [981] &quot;2213&quot; &quot;1806&quot; &quot;1938&quot; &quot;2294&quot; &quot;1373&quot; &quot;1437&quot; &quot;998&quot;  &quot;1014&quot; &quot;995&quot;  &quot;1032&quot;
+##  [991] &quot;1030&quot; &quot;1453&quot; &quot;1092&quot; &quot;2369&quot; &quot;2673&quot; &quot;1880&quot; &quot;1416&quot; &quot;1425&quot; &quot;2525&quot; &quot;2996&quot;
+## [1001] &quot;2139&quot; &quot;1973&quot; &quot;1927&quot; &quot;1816&quot; &quot;2424&quot; &quot;2113&quot; &quot;2220&quot; &quot;2312&quot; &quot;1979&quot; &quot;1787&quot;
+## [1011] &quot;1091&quot; &quot;1048&quot; &quot;1808&quot; &quot;1260&quot; &quot;1077&quot; &quot;1443&quot; &quot;1456&quot; &quot;1858&quot; &quot;1810&quot; &quot;1679&quot;
+## [1021] &quot;1729&quot; &quot;2527&quot; &quot;2749&quot; &quot;2583&quot; &quot;2092&quot; &quot;2336&quot; &quot;1971&quot; &quot;2804&quot; &quot;2710&quot; &quot;1801&quot;
+## [1031] &quot;1742&quot; &quot;2515&quot; &quot;2659&quot; &quot;1788&quot; &quot;2025&quot; &quot;1946&quot; &quot;2106&quot; &quot;2658&quot; &quot;2738&quot; &quot;2862&quot;
+## [1041] &quot;2580&quot; &quot;2660&quot; &quot;4164&quot; &quot;3485&quot; &quot;3543&quot; &quot;3858&quot; &quot;3588&quot; &quot;3156&quot; &quot;3015&quot; &quot;2661&quot;
+## [1051] &quot;2636&quot; &quot;3699&quot; &quot;2968&quot; &quot;3067&quot; &quot;3238&quot; &quot;3010&quot; &quot;2161&quot; &quot;1776&quot; &quot;1568&quot; &quot;1488&quot;
+## [1061] &quot;1481&quot; &quot;1842&quot; &quot;1632&quot; &quot;1468&quot; &quot;1830&quot; &quot;1772&quot; &quot;1811&quot; &quot;1269&quot; &quot;1925&quot; &quot;2340&quot;
+## [1071] &quot;2241&quot; &quot;2507&quot; &quot;2216&quot; &quot;2602&quot; &quot;2581&quot; &quot;2335&quot; &quot;2271&quot; &quot;2331&quot; &quot;2585&quot; &quot;2758&quot;
+## [1081] &quot;2251&quot; &quot;2275&quot; &quot;2209&quot; &quot;2760&quot; &quot;2594&quot; &quot;2463&quot; &quot;2654&quot; &quot;2543&quot; &quot;2439&quot; &quot;2211&quot;
+## [1091] &quot;2167&quot; &quot;2534&quot; &quot;2292&quot; &quot;2539&quot; &quot;2593&quot; &quot;1700&quot; &quot;1511&quot; &quot;1172&quot; &quot;1112&quot; &quot;1082&quot;
+## [1101] &quot;686&quot;  &quot;1199&quot; &quot;1088&quot; &quot;1777&quot; &quot;2750&quot; &quot;1655&quot; &quot;2286&quot; &quot;2476&quot; &quot;2693&quot; &quot;2646&quot;
+## [1111] &quot;2907&quot; &quot;3382&quot; &quot;2457&quot; &quot;1980&quot; &quot;1903&quot; &quot;2348&quot; &quot;1800&quot; &quot;1807&quot; &quot;2129&quot; &quot;2309&quot;
+## [1121] &quot;2347&quot; &quot;2300&quot; &quot;2632&quot; &quot;2766&quot; &quot;2406&quot; &quot;2723&quot; &quot;3356&quot; &quot;2875&quot; &quot;2614&quot; &quot;2453&quot;
+## [1131] &quot;2083&quot; &quot;2037&quot; &quot;1884&quot; &quot;1738&quot; &quot;1607&quot; &quot;1943&quot; &quot;1458&quot; &quot;1268&quot; &quot;1487&quot; &quot;1832&quot;
+## [1141] &quot;1817&quot; &quot;1099&quot; &quot;1038&quot; &quot;1606&quot; &quot;1245&quot; &quot;2555&quot; &quot;1955&quot; &quot;1226&quot; &quot;1164&quot; &quot;1152&quot;
+## [1151] &quot;1020&quot; &quot;1021&quot; &quot;1070&quot; &quot;996&quot;  &quot;999&quot;  &quot;1347&quot; &quot;1844&quot; &quot;1690&quot; &quot;1746&quot; &quot;1846&quot;
+## [1161] &quot;2125&quot; &quot;2307&quot; &quot;2073&quot; &quot;2207&quot; &quot;1993&quot; &quot;2343&quot; &quot;2244&quot; &quot;2599&quot; &quot;2011&quot; &quot;2172&quot;
+## [1171] &quot;2050&quot; &quot;2731&quot; &quot;3188&quot; &quot;3536&quot; &quot;3595&quot; &quot;2205&quot; &quot;2409&quot; &quot;2769&quot; &quot;1868&quot; &quot;1882&quot;
+## [1181] &quot;2961&quot; &quot;2571&quot; &quot;2094&quot; &quot;1910&quot; &quot;1918&quot; &quot;2192&quot; &quot;2063&quot; &quot;2270&quot; &quot;1958&quot; &quot;1612&quot;
+## [1191] &quot;1644&quot; &quot;1550&quot; &quot;1537&quot; &quot;1108&quot; &quot;1033&quot; &quot;678&quot;  &quot;1576&quot; &quot;1706&quot; &quot;2230&quot; &quot;2249&quot;
+## [1201] &quot;1680&quot; &quot;1838&quot; &quot;2475&quot; &quot;2826&quot; &quot;2879&quot; &quot;2508&quot; &quot;2440&quot; &quot;2226&quot; &quot;2676&quot; &quot;2861&quot;
+## [1211] &quot;2671&quot; &quot;3165&quot; &quot;2719&quot; &quot;3118&quot; &quot;3660&quot; &quot;3398&quot; &quot;2623&quot; &quot;3675&quot; &quot;4070&quot; &quot;4401&quot;
+## [1221] &quot;4492&quot; &quot;4489&quot; &quot;4050&quot; &quot;3336&quot; &quot;2785&quot; &quot;3992&quot; &quot;4443&quot; &quot;3432&quot; &quot;3720&quot; &quot;4087&quot;
+## [1231] &quot;4183&quot; &quot;3685&quot; &quot;1663&quot; &quot;1258&quot; &quot;1150&quot; &quot;1524&quot; &quot;1718&quot; &quot;1248&quot; &quot;1045&quot; &quot;1120&quot;
+## [1241] &quot;1948&quot; &quot;1930&quot; &quot;1849&quot; &quot;2401&quot; &quot;1580&quot; &quot;2204&quot; &quot;2185&quot; &quot;2334&quot; &quot;2647&quot; &quot;2737&quot;
+## [1251] &quot;2117&quot; &quot;2451&quot; &quot;2820&quot; &quot;3034&quot; &quot;2537&quot; &quot;2445&quot; &quot;1996&quot; &quot;2086&quot; &quot;2609&quot; &quot;2801&quot;
+## [1261] &quot;3030&quot; &quot;4326&quot; &quot;4420&quot; &quot;3792&quot; &quot;4535&quot; &quot;4527&quot; &quot;3565&quot; &quot;3221&quot; &quot;2932&quot; &quot;2845&quot;
+## [1271] &quot;3201&quot; &quot;3451&quot; &quot;2872&quot; &quot;2779&quot; &quot;2624&quot; &quot;2072&quot; &quot;1768&quot; &quot;1815&quot; &quot;2146&quot; &quot;2353&quot;
+## [1281] &quot;2836&quot; &quot;2829&quot; &quot;2690&quot; &quot;2950&quot; &quot;2596&quot; &quot;2181&quot; &quot;2247&quot; &quot;1278&quot; &quot;1243&quot; &quot;1195&quot;
+## [1291] &quot;1383&quot; &quot;1577&quot; &quot;1307&quot; &quot;1595&quot; &quot;1648&quot; &quot;1379&quot; &quot;1185&quot; &quot;1617&quot; &quot;1608&quot; &quot;1873&quot;
+## [1301] &quot;1862&quot; &quot;1572&quot; &quot;1553&quot; &quot;1522&quot; &quot;1489&quot; &quot;1493&quot; &quot;1513&quot; &quot;2576&quot; &quot;2799&quot; &quot;2798&quot;
+## [1311] &quot;2491&quot; &quot;1890&quot; &quot;1500&quot; &quot;1410&quot; &quot;1457&quot; &quot;1645&quot; &quot;1364&quot; &quot;1101&quot; &quot;1763&quot; &quot;1820&quot;
+## [1321] &quot;1986&quot; &quot;2012&quot; &quot;2360&quot; &quot;1912&quot; &quot;2164&quot; &quot;2201&quot; &quot;2096&quot; &quot;1855&quot; &quot;1863&quot; &quot;1786&quot;
+## [1331] &quot;1778&quot; &quot;1530&quot; &quot;1823&quot; &quot;1954&quot; &quot;1932&quot; &quot;2154&quot; &quot;1957&quot; &quot;1715&quot; &quot;1995&quot; &quot;2177&quot;
+## [1341] &quot;2237&quot; &quot;1153&quot; &quot;1028&quot; &quot;1043&quot; &quot;1016&quot; &quot;1040&quot; &quot;1036&quot; &quot;1097&quot; &quot;1122&quot; &quot;1053&quot;
+## [1351] &quot;1029&quot; &quot;1105&quot; &quot;1024&quot; &quot;1276&quot; &quot;2031&quot; &quot;3193&quot; &quot;4192&quot; &quot;3872&quot; &quot;2666&quot; &quot;1283&quot;
+## [1361] &quot;1301&quot; &quot;1484&quot; &quot;1480&quot; &quot;1063&quot; &quot;1400&quot; &quot;1274&quot; &quot;1431&quot; &quot;1654&quot; &quot;2065&quot; &quot;1961&quot;
+## [1371] &quot;2214&quot; &quot;2043&quot; &quot;1908&quot; &quot;2173&quot; &quot;1887&quot; &quot;2587&quot; &quot;2627&quot; &quot;2418&quot; &quot;2434&quot; &quot;2329&quot;
+## [1381] &quot;1592&quot; &quot;1427&quot; &quot;2224&quot; &quot;1664&quot; &quot;1318&quot; &quot;1138&quot; &quot;1385&quot; &quot;1201&quot; &quot;1262&quot; &quot;1324&quot;
+## [1391] &quot;1435&quot; &quot;1434&quot; &quot;2841&quot; &quot;1380&quot; &quot;1505&quot; &quot;2097&quot; &quot;2042&quot; &quot;1699&quot; &quot;1804&quot; &quot;2505&quot;
+## [1401] &quot;2049&quot; &quot;1992&quot; &quot;2733&quot; &quot;2524&quot; &quot;2234&quot; &quot;2349&quot; &quot;2281&quot; &quot;2634&quot; &quot;2849&quot; &quot;3115&quot;
+## [1411] &quot;3004&quot; &quot;2605&quot; &quot;2458&quot; &quot;2584&quot; &quot;2851&quot; &quot;2663&quot; &quot;2422&quot; &quot;2265&quot; &quot;1794&quot; &quot;1411&quot;
+## [1421] &quot;1773&quot; &quot;1962&quot; &quot;2263&quot; &quot;2028&quot; &quot;1751&quot; &quot;1512&quot; &quot;1093&quot; &quot;1146&quot; &quot;1332&quot; &quot;1312&quot;
+## [1431] &quot;1359&quot; &quot;1723&quot; &quot;2254&quot; &quot;2577&quot; &quot;3078&quot; &quot;3287&quot; &quot;3376&quot; &quot;3800&quot; &quot;3242&quot; &quot;2838&quot;
+## [1441] &quot;3283&quot; &quot;3208&quot; &quot;3352&quot; &quot;3568&quot; &quot;3111&quot; &quot;3082&quot; &quot;3570&quot; &quot;3134&quot; &quot;2405&quot; &quot;2913&quot;
+## [1451] &quot;3086&quot; &quot;3243&quot; &quot;2538&quot; &quot;2184&quot; &quot;2910&quot; &quot;3245&quot; &quot;2643&quot; &quot;2427&quot; &quot;2972&quot; &quot;3259&quot;
+## [1461] &quot;3237&quot; &quot;3299&quot; &quot;2989&quot; &quot;4033&quot; &quot;4343&quot; &quot;2992&quot; &quot;3639&quot; &quot;3130&quot; &quot;2652&quot; &quot;2143&quot;
+## [1471] &quot;2506&quot; &quot;2337&quot; &quot;1659&quot; &quot;1117&quot; &quot;1073&quot; &quot;1365&quot; &quot;1455&quot; &quot;1591&quot; &quot;1521&quot; &quot;2059&quot;
+## [1481] &quot;2018&quot; &quot;2169&quot; &quot;2689&quot; &quot;2740&quot; &quot;3533&quot; &quot;2945&quot; &quot;2940&quot; &quot;2789&quot; &quot;2835&quot; &quot;2881&quot;
+## [1491] &quot;2886&quot; &quot;3770&quot; &quot;5370&quot; &quot;5233&quot; &quot;5369&quot; &quot;5354&quot; &quot;4438&quot; &quot;3923&quot; &quot;3952&quot; &quot;4256&quot;
+## [1501] &quot;3479&quot; &quot;2203&quot; &quot;1703&quot; &quot;1358&quot; &quot;1236&quot; &quot;2165&quot; &quot;1891&quot; &quot;1421&quot; &quot;1599&quot; &quot;1556&quot;
+## [1511] &quot;2038&quot; &quot;2809&quot; &quot;2774&quot; &quot;3035&quot; &quot;3072&quot; &quot;3864&quot; &quot;4472&quot; &quot;4875&quot; &quot;3416&quot; &quot;2701&quot;
+## [1521] &quot;3402&quot; &quot;1543&quot; &quot;1447&quot; &quot;1821&quot; &quot;1145&quot; &quot;700&quot;  &quot;1377&quot; &quot;2156&quot; &quot;1498&quot; &quot;1635&quot;
+## [1531] &quot;1896&quot; &quot;1770&quot; &quot;1813&quot; &quot;2328&quot; &quot;2922&quot; &quot;2420&quot; &quot;2179&quot; &quot;2984&quot; &quot;3174&quot; &quot;2827&quot;
+## [1541] &quot;2311&quot; &quot;3223&quot; &quot;4073&quot; &quot;5291&quot; &quot;4179&quot; &quot;2540&quot; &quot;3085&quot; &quot;3956&quot; &quot;3426&quot; &quot;3511&quot;
+## [1551] &quot;3449&quot; &quot;2969&quot; &quot;3225&quot; &quot;3632&quot; &quot;3610&quot; &quot;1917&quot; &quot;2068&quot; &quot;2136&quot; &quot;2008&quot; &quot;2935&quot;
+## [1561] &quot;2053&quot; &quot;1741&quot; &quot;1426&quot; &quot;1109&quot; &quot;1228&quot; &quot;1841&quot; &quot;2245&quot; &quot;1939&quot; &quot;1826&quot; &quot;1728&quot;
+## [1571] &quot;1339&quot; &quot;1204&quot; &quot;1056&quot; &quot;1176&quot; &quot;1273&quot; &quot;1477&quot; &quot;2428&quot; &quot;2864&quot; &quot;1840&quot; &quot;4105&quot;
+## [1581] &quot;4433&quot; &quot;3654&quot; &quot;3407&quot; &quot;3874&quot; &quot;3563&quot; &quot;2708&quot; &quot;1937&quot; &quot;4355&quot; &quot;4197&quot; &quot;3121&quot;
+## [1591] &quot;2022&quot; &quot;2107&quot; &quot;2455&quot; &quot;4813&quot; &quot;4523&quot; &quot;3226&quot; &quot;2492&quot; &quot;3326&quot; &quot;3743&quot; &quot;4030&quot;
+## [1601] &quot;4372&quot; &quot;4039&quot; &quot;4165&quot; &quot;3510&quot; &quot;3790&quot; &quot;2726&quot; &quot;3274&quot; &quot;3355&quot; &quot;3135&quot; &quot;3495&quot;
+## [1611] &quot;2074&quot; &quot;2021&quot; &quot;1952&quot; &quot;2778&quot; &quot;3108&quot; &quot;2921&quot; &quot;2264&quot; &quot;2032&quot; &quot;1949&quot; &quot;2236&quot;
+## [1621] &quot;2056&quot; &quot;1492&quot; &quot;1585&quot; &quot;1535&quot; &quot;1445&quot; &quot;2048&quot; &quot;2268&quot; &quot;3322&quot; &quot;3136&quot; &quot;3779&quot;
+## [1631] &quot;2432&quot; &quot;2171&quot; &quot;1928&quot; &quot;1769&quot; &quot;1563&quot; &quot;1486&quot; &quot;1474&quot; &quot;1712&quot; &quot;1665&quot; &quot;1463&quot;
+## [1641] &quot;1198&quot; &quot;1748&quot; &quot;2604&quot; &quot;1390&quot; &quot;695&quot;  &quot;1615&quot; &quot;2483&quot; &quot;4153&quot; &quot;3841&quot; &quot;2956&quot;
+## [1651] &quot;2685&quot; &quot;3218&quot; &quot;3107&quot; &quot;2987&quot; &quot;2893&quot; &quot;3466&quot; &quot;3200&quot; &quot;3106&quot; &quot;2853&quot; &quot;3205&quot;
+## [1661] &quot;3559&quot; &quot;3532&quot; &quot;3334&quot; &quot;3196&quot; &quot;4080&quot; &quot;3826&quot; &quot;4317&quot; &quot;3289&quot; &quot;2805&quot; &quot;2196&quot;
+## [1671] &quot;1900&quot; &quot;1861&quot; &quot;1766&quot; &quot;1831&quot; &quot;1071&quot; &quot;1940&quot; &quot;2917&quot; &quot;4207&quot; &quot;3483&quot; &quot;3217&quot;
+## [1681] &quot;4008&quot; &quot;3036&quot; &quot;2818&quot; &quot;3431&quot; &quot;3655&quot; &quot;3472&quot; &quot;3337&quot; &quot;2616&quot; &quot;2198&quot; &quot;1909&quot;
+## [1691] &quot;1736&quot; &quot;1967&quot; &quot;1705&quot; &quot;1265&quot; &quot;1634&quot; &quot;2407&quot; &quot;1619&quot; &quot;1189&quot; &quot;1052&quot; &quot;1440&quot;
+## [1701] &quot;1394&quot; &quot;1517&quot; &quot;1532&quot; &quot;1733&quot; &quot;1779&quot; &quot;1539&quot; &quot;1668&quot; &quot;1923&quot; &quot;1614&quot; &quot;1142&quot;
+## [1711] &quot;1384&quot; &quot;1531&quot; &quot;3058&quot; &quot;3197&quot; &quot;3162&quot; &quot;3443&quot; &quot;3302&quot; &quot;3876&quot; &quot;4364&quot; &quot;4925&quot;
+## [1721] &quot;4276&quot; &quot;3831&quot; &quot;2736&quot; &quot;2617&quot; &quot;2298&quot; &quot;1590&quot; &quot;1407&quot; &quot;1144&quot; &quot;2846&quot; &quot;3083&quot;
+## [1731] &quot;3295&quot; &quot;4120&quot; &quot;3158&quot; &quot;3029&quot; &quot;4122&quot; &quot;4129&quot; &quot;4340&quot; &quot;5067&quot; &quot;3753&quot; &quot;3303&quot;
+## [1741] &quot;2551&quot; &quot;1516&quot; &quot;1653&quot; &quot;1476&quot; &quot;1311&quot; &quot;1288&quot; &quot;1508&quot; &quot;1760&quot; &quot;1960&quot; &quot;2378&quot;
+## [1751] &quot;2948&quot; &quot;3204&quot; &quot;2973&quot; &quot;2484&quot; &quot;2342&quot; &quot;2314&quot; &quot;2520&quot; &quot;3262&quot; &quot;2790&quot; &quot;1895&quot;
+## [1761] &quot;692&quot;  &quot;1466&quot; &quot;1977&quot; &quot;2873&quot; &quot;3974&quot; &quot;3349&quot; &quot;3330&quot; &quot;3444&quot; &quot;4089&quot; &quot;3405&quot;
+## [1771] &quot;2927&quot; &quot;3596&quot; &quot;3307&quot; &quot;2995&quot; &quot;3144&quot; &quot;2998&quot; &quot;2977&quot; &quot;3693&quot; &quot;4090&quot; &quot;3733&quot;
+## [1781] &quot;3316&quot; &quot;2887&quot; &quot;3305&quot; &quot;3583&quot; &quot;2929&quot; &quot;1876&quot; &quot;2080&quot; &quot;2715&quot; &quot;3291&quot; &quot;3957&quot;
+## [1791] &quot;3695&quot; &quot;2916&quot; &quot;2651&quot; &quot;3001&quot; &quot;2793&quot; &quot;2036&quot; &quot;1166&quot; &quot;1234&quot; &quot;1310&quot; &quot;1115&quot;
+## [1801] &quot;3234&quot; &quot;4319&quot; &quot;4575&quot; &quot;3541&quot; &quot;4094&quot; &quot;4044&quot; &quot;3378&quot; &quot;3517&quot; &quot;2500&quot; &quot;1485&quot;
+## [1811] &quot;1090&quot; &quot;1622&quot; &quot;2016&quot; &quot;2020&quot; &quot;2867&quot; &quot;1674&quot; &quot;1319&quot; &quot;1433&quot; &quot;1439&quot; &quot;1242&quot;
+## [1821] &quot;1196&quot; &quot;1865&quot; &quot;2559&quot; &quot;3190&quot; &quot;3846&quot; &quot;3277&quot; &quot;2361&quot; &quot;2367&quot; &quot;2240&quot; &quot;3132&quot;
+## [1831] &quot;3972&quot; &quot;1297&quot; &quot;1673&quot; &quot;3294&quot; &quot;3505&quot; &quot;3767&quot; &quot;2754&quot; &quot;1363&quot; &quot;3555&quot; &quot;2645&quot;
+## [1841] &quot;3095&quot; &quot;1670&quot; &quot;2373&quot; &quot;2669&quot; &quot;2775&quot; &quot;2800&quot; &quot;1671&quot; &quot;1294&quot; &quot;1623&quot; &quot;1397&quot;
+## [1851] &quot;2714&quot; &quot;2991&quot; &quot;3168&quot; &quot;2675&quot; &quot;2947&quot; &quot;3041&quot; &quot;3140&quot; &quot;2567&quot; &quot;2831&quot; &quot;2964&quot;
+## [1861] &quot;1080&quot; &quot;1065&quot; &quot;1200&quot; &quot;1581&quot; &quot;1100&quot; &quot;1106&quot; &quot;681&quot;  &quot;2033&quot; &quot;1721&quot; &quot;2232&quot;
+## [1871] &quot;3258&quot; &quot;2832&quot; &quot;2454&quot; &quot;3018&quot; &quot;3246&quot; &quot;3255&quot; &quot;2558&quot; &quot;3112&quot; &quot;4264&quot; &quot;4784&quot;
+## [1881] &quot;4309&quot; &quot;2242&quot; &quot;2380&quot; &quot;3092&quot; &quot;3079&quot; &quot;3835&quot; &quot;2546&quot; &quot;1730&quot; &quot;1578&quot; &quot;1019&quot;
+## [1891] &quot;1001&quot; &quot;1782&quot; &quot;1974&quot; &quot;2575&quot; &quot;2120&quot; &quot;1685&quot; &quot;2010&quot; &quot;3024&quot; &quot;1529&quot; &quot;1335&quot;
+## [1901] &quot;1183&quot; &quot;1235&quot; &quot;1976&quot; &quot;1697&quot; &quot;1893&quot; &quot;1137&quot; &quot;1116&quot; &quot;1222&quot; &quot;1177&quot; &quot;1316&quot;
+## [1911] &quot;1207&quot; &quot;2417&quot; &quot;2896&quot; &quot;2279&quot; &quot;1877&quot; &quot;2104&quot; &quot;2089&quot; &quot;2140&quot; &quot;1951&quot; &quot;1230&quot;
+## [1921] &quot;679&quot;  &quot;1327&quot; &quot;1079&quot; &quot;2002&quot; &quot;2403&quot; &quot;2124&quot; &quot;1839&quot; &quot;2341&quot; &quot;2902&quot; &quot;3413&quot;
+## [1931] &quot;3319&quot; &quot;2903&quot; &quot;2752&quot; &quot;3045&quot; &quot;2939&quot; &quot;3186&quot; &quot;3613&quot; &quot;3921&quot; &quot;3618&quot; &quot;3141&quot;
+## [1941] &quot;3904&quot; &quot;3247&quot; &quot;2699&quot; &quot;4246&quot; &quot;4561&quot; &quot;4758&quot; &quot;3787&quot; &quot;3898&quot; &quot;3980&quot; &quot;4002&quot;
+## [1951] &quot;4832&quot; &quot;5511&quot; &quot;4935&quot; &quot;3963&quot; &quot;2180&quot; &quot;2318&quot; &quot;2132&quot; &quot;1809&quot; &quot;1314&quot; &quot;677&quot; 
+## [1961] &quot;1956&quot; &quot;2429&quot; &quot;2412&quot; &quot;2147&quot; &quot;2704&quot; &quot;2395&quot; &quot;2681&quot; &quot;2735&quot; &quot;2547&quot; &quot;3032&quot;
+## [1971] &quot;2363&quot; &quot;2376&quot; &quot;1701&quot; &quot;1822&quot; &quot;2320&quot; &quot;3702&quot; &quot;3482&quot; &quot;3507&quot; &quot;3936&quot; &quot;3599&quot;
+## [1981] &quot;1123&quot; &quot;1285&quot; &quot;1541&quot; &quot;1602&quot; &quot;1544&quot; &quot;1950&quot; &quot;1643&quot; &quot;1467&quot; &quot;1767&quot; &quot;1420&quot;
+## [1991] &quot;1211&quot; &quot;1460&quot; &quot;3232&quot; &quot;2888&quot; &quot;1573&quot; &quot;1497&quot; &quot;1321&quot; &quot;1361&quot; &quot;1158&quot; &quot;1085&quot;
+## [2001] &quot;1046&quot; &quot;1179&quot; &quot;1275&quot; &quot;1374&quot; &quot;1441&quot; &quot;1682&quot; &quot;1382&quot; &quot;1252&quot; &quot;1837&quot; &quot;1969&quot;
+## [2011] &quot;1510&quot; &quot;1066&quot; &quot;1549&quot; &quot;2195&quot; &quot;2570&quot; &quot;2813&quot; &quot;2250&quot; &quot;1968&quot; &quot;2058&quot; &quot;2572&quot;
+## [2021] &quot;3044&quot; &quot;2680&quot; &quot;3812&quot; &quot;3730&quot; &quot;2700&quot; &quot;2720&quot; &quot;3189&quot; &quot;2983&quot; &quot;1966&quot; &quot;1845&quot;
+## [2031] &quot;1509&quot; &quot;1465&quot; &quot;1564&quot; &quot;1156&quot; &quot;1872&quot; &quot;2330&quot; &quot;2765&quot; &quot;2848&quot; &quot;2166&quot; &quot;2591&quot;
+## [2041] &quot;3008&quot; &quot;2885&quot; &quot;2725&quot; &quot;3390&quot; &quot;3560&quot; &quot;4418&quot; &quot;3427&quot; &quot;2223&quot; &quot;2549&quot; &quot;3199&quot;
+## [2051] &quot;2824&quot; &quot;3589&quot; &quot;3584&quot; &quot;2757&quot; &quot;2437&quot; &quot;2850&quot; &quot;2694&quot; &quot;1496&quot; &quot;1194&quot; &quot;1317&quot;
+## [2061] &quot;1349&quot; &quot;1991&quot; &quot;2152&quot; &quot;2834&quot; &quot;2433&quot; &quot;3128&quot; &quot;2734&quot; &quot;3424&quot; &quot;3999&quot; &quot;3327&quot;
+## [2071] &quot;3764&quot; &quot;2687&quot; &quot;3129&quot; &quot;3608&quot; &quot;3903&quot; &quot;3960&quot; &quot;3209&quot; &quot;3393&quot; &quot;4278&quot; &quot;2732&quot;
+## [2081] &quot;2430&quot; &quot;1879&quot; &quot;2084&quot; &quot;2123&quot; &quot;2924&quot; &quot;3185&quot; &quot;3558&quot; &quot;3428&quot; &quot;2131&quot; &quot;1479&quot;
+## [2091] &quot;1111&quot; &quot;1609&quot; &quot;2960&quot; &quot;3269&quot; &quot;3006&quot; &quot;3665&quot; &quot;3529&quot; &quot;4258&quot; &quot;4436&quot; &quot;4028&quot;
+## [2101] &quot;4742&quot; &quot;4102&quot; &quot;4586&quot; &quot;4549&quot; &quot;4383&quot; &quot;3989&quot; &quot;3582&quot; &quot;3860&quot; &quot;4840&quot; &quot;4212&quot;
+## [2111] &quot;3607&quot; &quot;4509&quot; &quot;4071&quot; &quot;3003&quot; &quot;2282&quot; &quot;2426&quot; &quot;1825&quot; &quot;1812&quot; &quot;1933&quot; &quot;1502&quot;
+## [2121] &quot;1345&quot; &quot;1087&quot; &quot;690&quot;  &quot;3099&quot; &quot;3932&quot; &quot;4331&quot; &quot;4325&quot; &quot;4019&quot; &quot;3351&quot; &quot;4041&quot;
+## [2131] &quot;3055&quot; &quot;2101&quot; &quot;1212&quot; &quot;1047&quot; &quot;3325&quot; &quot;3149&quot; &quot;3445&quot; &quot;3470&quot; &quot;3439&quot; &quot;2781&quot;
+## [2141] &quot;3636&quot; &quot;3206&quot; &quot;3679&quot; &quot;4508&quot; &quot;4284&quot; &quot;3951&quot; &quot;4172&quot; &quot;5023&quot; &quot;4544&quot; &quot;3102&quot;
+## [2151] &quot;4400&quot; &quot;4806&quot; &quot;4862&quot; &quot;5302&quot; &quot;5077&quot; &quot;6011&quot; &quot;6688&quot; &quot;6473&quot; &quot;6425&quot; &quot;5924&quot;
+## [2161] &quot;3836&quot; &quot;4396&quot; &quot;4685&quot; &quot;4796&quot; &quot;4897&quot; &quot;4636&quot; &quot;3604&quot; &quot;1906&quot; &quot;2029&quot; &quot;1461&quot;
+## [2171] &quot;1546&quot; &quot;2102&quot; &quot;3285&quot; &quot;4088&quot; &quot;3435&quot; &quot;2767&quot; &quot;3371&quot; &quot;2811&quot; &quot;3734&quot; &quot;3662&quot;
+## [2181] &quot;4254&quot; &quot;3916&quot; &quot;4119&quot; &quot;4213&quot; &quot;3978&quot; &quot;3028&quot; &quot;3687&quot; &quot;3626&quot; &quot;4244&quot; &quot;4015&quot;
+## [2191] &quot;3494&quot; &quot;3492&quot; &quot;3419&quot; &quot;1678&quot; &quot;1083&quot; &quot;2817&quot; &quot;2999&quot; &quot;3180&quot; &quot;2566&quot; &quot;3069&quot;
+## [2201] &quot;3754&quot; &quot;4005&quot; &quot;3288&quot; &quot;3648&quot; &quot;4262&quot; &quot;3822&quot; &quot;3089&quot; &quot;3159&quot; &quot;3634&quot; &quot;3514&quot;
+## [2211] &quot;4361&quot; &quot;3988&quot; &quot;2449&quot; &quot;2926&quot; &quot;2183&quot; &quot;2954&quot; &quot;1843&quot; &quot;1548&quot; &quot;1140&quot; &quot;2942&quot;
+## [2221] &quot;2377&quot; &quot;2629&quot; &quot;3585&quot; &quot;3411&quot; &quot;3088&quot; &quot;3178&quot; &quot;3194&quot; &quot;3310&quot; &quot;2691&quot; &quot;2698&quot;
+## [2231] &quot;3280&quot; &quot;3562&quot; &quot;3714&quot; &quot;4540&quot; &quot;4837&quot; &quot;3290&quot; &quot;2121&quot; &quot;2619&quot; &quot;3403&quot; &quot;3824&quot;
+## [2241] &quot;5109&quot; &quot;4136&quot; &quot;1478&quot; &quot;2958&quot; &quot;4551&quot; &quot;4027&quot; &quot;2974&quot; &quot;3553&quot; &quot;3346&quot; &quot;3399&quot;
+## [2251] &quot;2856&quot; &quot;2802&quot; &quot;3742&quot; &quot;3000&quot; &quot;2564&quot; &quot;2625&quot; &quot;1814&quot; &quot;3806&quot; &quot;3843&quot; &quot;3343&quot;
+## [2261] &quot;1110&quot; &quot;1174&quot; &quot;1432&quot; &quot;1130&quot; &quot;665&quot;  &quot;1436&quot; &quot;2035&quot; &quot;2064&quot; &quot;2794&quot; &quot;2521&quot;
+## [2271] &quot;3408&quot; &quot;3253&quot; &quot;3169&quot; &quot;2884&quot; &quot;4756&quot; &quot;3892&quot; &quot;3222&quot; &quot;2481&quot; &quot;3930&quot; &quot;5259&quot;
+## [2281] &quot;5346&quot; &quot;5250&quot; &quot;5069&quot; &quot;4195&quot; &quot;4190&quot; &quot;2375&quot; &quot;1430&quot; &quot;2941&quot; &quot;2441&quot; &quot;3152&quot;
+## [2291] &quot;2301&quot; &quot;3182&quot; &quot;4098&quot; &quot;3462&quot; &quot;2260&quot; &quot;2667&quot; &quot;3647&quot; &quot;3464&quot; &quot;4182&quot; &quot;4111&quot;
+## [2301] &quot;3953&quot; &quot;4707&quot; &quot;4468&quot; &quot;4431&quot; &quot;4230&quot; &quot;4032&quot; &quot;3863&quot; &quot;3801&quot; &quot;3962&quot; &quot;3656&quot;
+## [2311] &quot;2724&quot; &quot;2803&quot; &quot;3309&quot; &quot;3098&quot; &quot;2854&quot; &quot;1661&quot; &quot;2255&quot; &quot;2325&quot; &quot;2448&quot; &quot;2683&quot;
+## [2321] &quot;2763&quot; &quot;2797&quot; &quot;3013&quot; &quot;3143&quot; &quot;2319&quot; &quot;2807&quot; &quot;3244&quot; &quot;2611&quot; &quot;3139&quot; &quot;2394&quot;
+## [2331] &quot;2218&quot; &quot;1187&quot; &quot;3834&quot; &quot;2878&quot; &quot;2210&quot; &quot;3807&quot; &quot;4013&quot; &quot;4220&quot; &quot;3703&quot; &quot;3944&quot;
+## [2341] &quot;3521&quot; &quot;3600&quot; &quot;3983&quot; &quot;3597&quot; &quot;2716&quot; &quot;2847&quot; &quot;1934&quot; &quot;1780&quot; &quot;1652&quot; &quot;1302&quot;
+## [2351] &quot;1114&quot; &quot;1169&quot; &quot;1058&quot; &quot;1162&quot; &quot;1135&quot; &quot;1533&quot; &quot;1792&quot; &quot;3007&quot; &quot;2222&quot; &quot;2946&quot;
+## [2361] &quot;2883&quot; &quot;2842&quot; &quot;3304&quot; &quot;3450&quot; &quot;4394&quot; &quot;4106&quot; &quot;3043&quot; &quot;3021&quot; &quot;3491&quot; &quot;3046&quot;
+## [2371] &quot;3481&quot; &quot;3284&quot; &quot;2460&quot; &quot;2822&quot; &quot;2561&quot; &quot;3586&quot; &quot;2915&quot; &quot;1221&quot; &quot;1626&quot; &quot;2471&quot;
+## [2381] &quot;1289&quot; &quot;2962&quot; &quot;2473&quot; &quot;2870&quot; &quot;2188&quot; &quot;3879&quot; &quot;3925&quot; &quot;4108&quot; &quot;4590&quot; &quot;3676&quot;
+## [2391] &quot;3557&quot; &quot;3799&quot; &quot;4950&quot; &quot;5606&quot; &quot;4728&quot; &quot;4712&quot; &quot;4537&quot; &quot;2562&quot; &quot;3875&quot; &quot;4894&quot;
+## [2401] &quot;4287&quot; &quot;3340&quot; &quot;3578&quot; &quot;3460&quot; &quot;3073&quot; &quot;3554&quot; &quot;2943&quot; &quot;2003&quot; &quot;1774&quot; &quot;1555&quot;
+## [2411] &quot;1419&quot; &quot;1167&quot; &quot;2518&quot; &quot;2366&quot; &quot;2589&quot; &quot;3137&quot; &quot;2568&quot; &quot;2414&quot; &quot;2717&quot; &quot;3345&quot;
+## [2421] &quot;2490&quot; &quot;2150&quot; &quot;3321&quot; &quot;3198&quot; &quot;1367&quot; &quot;1170&quot; &quot;1864&quot; &quot;2257&quot; &quot;3990&quot; &quot;1998&quot;
+## [2431] &quot;1907&quot; &quot;2009&quot; &quot;1286&quot; &quot;1450&quot; &quot;1852&quot; &quot;1375&quot; &quot;1293&quot; &quot;1525&quot; &quot;2768&quot; &quot;1686&quot;
+## [2441] &quot;1714&quot; &quot;3012&quot; &quot;2936&quot; &quot;1281&quot; &quot;1290&quot; &quot;1499&quot; &quot;1629&quot; &quot;1471&quot; &quot;1540&quot; &quot;2444&quot;
+## [2451] &quot;2565&quot; &quot;1613&quot; &quot;1886&quot; &quot;1118&quot; &quot;2047&quot; &quot;2389&quot; &quot;2000&quot; &quot;2662&quot; &quot;3384&quot; &quot;1343&quot;
+## [2461] &quot;1919&quot; &quot;2007&quot; &quot;2480&quot; &quot;3815&quot; &quot;4490&quot; &quot;2423&quot; &quot;1929&quot; &quot;1143&quot; &quot;2194&quot; &quot;1942&quot;
+## [2471] &quot;2212&quot; &quot;2345&quot; &quot;2122&quot; &quot;3080&quot; &quot;4785&quot; &quot;3884&quot; &quot;3176&quot; &quot;3033&quot; &quot;1528&quot; &quot;2141&quot;
+## [2481] &quot;1762&quot; &quot;2450&quot; &quot;2368&quot; &quot;2239&quot; &quot;3016&quot; &quot;3729&quot; &quot;2970&quot; &quot;3853&quot; &quot;3054&quot; &quot;2323&quot;
+## [2491] &quot;1552&quot; &quot;1828&quot; &quot;2582&quot; &quot;2863&quot; &quot;3640&quot; &quot;4151&quot; &quot;4314&quot; &quot;5053&quot; &quot;4358&quot; &quot;2321&quot;
+## [2501] &quot;3195&quot; &quot;3986&quot; &quot;3239&quot; &quot;3358&quot; &quot;2821&quot; &quot;2906&quot; &quot;1584&quot; &quot;1309&quot; &quot;1064&quot; &quot;2706&quot;
+## [2511] &quot;3897&quot; &quot;3323&quot; &quot;3260&quot; &quot;3100&quot; &quot;3103&quot; &quot;2674&quot; &quot;3359&quot; &quot;5101&quot; &quot;6472&quot; &quot;6976&quot;
+## [2521] &quot;5189&quot; &quot;4673&quot; &quot;4760&quot; &quot;4787&quot; &quot;4211&quot; &quot;4384&quot; &quot;3878&quot; &quot;3681&quot; &quot;3518&quot; &quot;3709&quot;
+## [2531] &quot;1616&quot; &quot;1266&quot; &quot;1320&quot; &quot;1708&quot; &quot;2079&quot; &quot;1899&quot; &quot;3071&quot; &quot;3241&quot; &quot;3395&quot; &quot;3404&quot;
+## [2541] &quot;3575&quot; &quot;4303&quot; &quot;4126&quot; &quot;4224&quot; &quot;4332&quot; &quot;3857&quot; &quot;4064&quot; &quot;3883&quot; &quot;3236&quot; &quot;4735&quot;
+## [2551] &quot;4116&quot; &quot;6416&quot; &quot;5849&quot; &quot;4457&quot; &quot;3093&quot; &quot;4452&quot; &quot;4193&quot; &quot;3556&quot; &quot;3926&quot; &quot;3711&quot;
+## [2561] &quot;1220&quot; &quot;2901&quot; &quot;2621&quot; &quot;2280&quot; &quot;2487&quot; &quot;3848&quot; &quot;3434&quot; &quot;3166&quot; &quot;2431&quot; &quot;3765&quot;
+## [2571] &quot;4656&quot; &quot;4504&quot; &quot;2967&quot; &quot;2795&quot; &quot;3706&quot; &quot;3429&quot; &quot;3271&quot; &quot;5562&quot; &quot;6661&quot; &quot;7905&quot;
+## [2581] &quot;6099&quot; &quot;2747&quot; &quot;3256&quot; &quot;3233&quot; &quot;3113&quot; &quot;3425&quot; &quot;4059&quot; &quot;3126&quot; &quot;1720&quot; &quot;2284&quot;
+## [2591] &quot;3724&quot; &quot;2057&quot; &quot;1165&quot; &quot;1409&quot; &quot;1491&quot; &quot;2304&quot; &quot;2501&quot; &quot;2640&quot; &quot;3170&quot; &quot;2745&quot;
+## [2601] &quot;3415&quot; &quot;4034&quot; &quot;4222&quot; &quot;3968&quot; &quot;2355&quot; &quot;4831&quot; &quot;4675&quot; &quot;2513&quot; &quot;1913&quot; &quot;1857&quot;
+## [2611] &quot;2531&quot; &quot;3910&quot; &quot;3364&quot; &quot;4063&quot; &quot;4482&quot; &quot;4639&quot; &quot;1362&quot; &quot;2976&quot; &quot;2069&quot; &quot;2199&quot;
+## [2621] &quot;1163&quot; &quot;1271&quot; &quot;2148&quot; &quot;2356&quot; &quot;3076&quot; &quot;3052&quot; &quot;3672&quot; &quot;3748&quot; &quot;4912&quot; &quot;5245&quot;
+## [2631] &quot;3282&quot; &quot;4546&quot; &quot;4697&quot; &quot;3357&quot; &quot;2792&quot; &quot;3160&quot; &quot;3388&quot; &quot;3421&quot; &quot;1325&quot; &quot;1749&quot;
+## [2641] &quot;3713&quot; &quot;4096&quot; &quot;4818&quot; &quot;5446&quot; &quot;7093&quot; &quot;6643&quot; &quot;5936&quot; &quot;6892&quot; &quot;5869&quot; &quot;5463&quot;
+## [2651] &quot;5443&quot; &quot;5709&quot; &quot;5290&quot; &quot;5980&quot; &quot;6996&quot; &quot;6435&quot; &quot;5659&quot; &quot;5873&quot; &quot;6006&quot; &quot;5429&quot;
+## [2661] &quot;5094&quot; &quot;5682&quot; &quot;5834&quot; &quot;5847&quot; &quot;5553&quot; &quot;5531&quot; &quot;5387&quot; &quot;5286&quot; &quot;4529&quot; &quot;4972&quot;
+## [2671] &quot;4932&quot; &quot;4732&quot; &quot;5188&quot; &quot;5115&quot; &quot;4778&quot; &quot;4114&quot; &quot;4460&quot; &quot;4610&quot; &quot;3811&quot; &quot;3397&quot;
+## [2681] &quot;1889&quot; &quot;1630&quot; &quot;3387&quot; &quot;3964&quot; &quot;4038&quot; &quot;3735&quot; &quot;2965&quot; &quot;1658&quot; &quot;2252&quot; &quot;3452&quot;
+## [2691] &quot;3539&quot; &quot;3905&quot; &quot;4402&quot; &quot;4191&quot; &quot;4467&quot; &quot;4603&quot; &quot;4043&quot; &quot;4797&quot; &quot;4536&quot; &quot;5181&quot;
+## [2701] &quot;6150&quot; &quot;5555&quot; &quot;3915&quot; &quot;3758&quot; &quot;4426&quot; &quot;4642&quot; &quot;4976&quot; &quot;3977&quot; &quot;3422&quot; &quot;2780&quot;
+## [2711] &quot;2233&quot; &quot;3447&quot; &quot;1754&quot; &quot;1586&quot; &quot;1160&quot; &quot;1589&quot; &quot;3002&quot; &quot;2837&quot; &quot;3497&quot; &quot;3145&quot;
+## [2721] &quot;3341&quot; &quot;4825&quot; &quot;4798&quot; &quot;3738&quot; &quot;4113&quot; &quot;4295&quot; &quot;3793&quot; &quot;3503&quot; &quot;4539&quot; &quot;4082&quot;
+## [2731] &quot;6035&quot; &quot;6338&quot; &quot;5031&quot; &quot;5055&quot; &quot;4012&quot; &quot;3664&quot; &quot;3961&quot; &quot;4286&quot; &quot;3945&quot; &quot;2168&quot;
+## [2741] &quot;1545&quot; &quot;1205&quot; &quot;1215&quot; &quot;1298&quot; &quot;1442&quot; &quot;1504&quot; &quot;1348&quot; &quot;1315&quot; &quot;1237&quot; &quot;1378&quot;
+## [2751] &quot;1225&quot; &quot;1197&quot; &quot;3268&quot; &quot;2519&quot; &quot;2772&quot; &quot;3231&quot; &quot;3540&quot; &quot;3059&quot; &quot;3966&quot; &quot;5075&quot;
+## [2761] &quot;4268&quot; &quot;3210&quot; &quot;4315&quot; &quot;3827&quot; &quot;3417&quot; &quot;2595&quot; &quot;1695&quot; &quot;3552&quot; &quot;3471&quot; &quot;4296&quot;
+## [2771] &quot;4093&quot; &quot;4235&quot; &quot;3657&quot; &quot;4779&quot; &quot;4576&quot; &quot;4677&quot; &quot;5342&quot; &quot;4961&quot; &quot;4686&quot; &quot;3856&quot;
+## [2781] &quot;4231&quot; &quot;4914&quot; &quot;4699&quot; &quot;3781&quot; &quot;5385&quot; &quot;6005&quot; &quot;1920&quot; &quot;3805&quot; &quot;3040&quot; &quot;x&quot;   
+## [2791] &quot;2858&quot; &quot;3573&quot; &quot;5084&quot; &quot;5836&quot; &quot;4557&quot; &quot;2137&quot; &quot;3117&quot; &quot;2776&quot; &quot;3161&quot; &quot;2860&quot;
+## [2801] &quot;2630&quot; &quot;1805&quot; &quot;1789&quot; &quot;2764&quot; &quot;3967&quot; &quot;3075&quot; &quot;3457&quot; &quot;1784&quot; &quot;1337&quot; &quot;1402&quot;
+## [2811] &quot;1935&quot; &quot;2067&quot; &quot;2574&quot; &quot;2479&quot; &quot;2404&quot; &quot;2274&quot; &quot;3947&quot; &quot;4321&quot; &quot;4270&quot; &quot;1239&quot;
+## [2821] &quot;3851&quot; &quot;3513&quot; &quot;4134&quot; &quot;4859&quot; &quot;5564&quot; &quot;6069&quot; &quot;6749&quot; &quot;5937&quot; &quot;5447&quot; &quot;6823&quot;
+## [2831] &quot;6504&quot; &quot;6273&quot; &quot;5197&quot; &quot;5287&quot; &quot;4938&quot; &quot;4927&quot; &quot;5294&quot; &quot;5257&quot; &quot;5167&quot; &quot;4977&quot;
+## [2841] &quot;4916&quot; &quot;4583&quot; &quot;3768&quot; &quot;680&quot;  &quot;2421&quot; &quot;1982&quot; &quot;2299&quot; &quot;2618&quot; &quot;2923&quot; &quot;1583&quot;
+## [2851] &quot;1542&quot; &quot;1523&quot; &quot;2291&quot; &quot;2692&quot; &quot;2512&quot; &quot;2938&quot; &quot;2600&quot; &quot;5110&quot; &quot;4853&quot; &quot;3814&quot;
+## [2861] &quot;1620&quot; &quot;2756&quot; &quot;3796&quot; &quot;4597&quot; &quot;3984&quot; &quot;2751&quot; &quot;3020&quot; &quot;2882&quot; &quot;1771&quot; &quot;2127&quot;
+## [2871] &quot;1598&quot; &quot;1711&quot; &quot;2598&quot; &quot;3769&quot; &quot;4147&quot; &quot;4078&quot; &quot;4465&quot; &quot;4757&quot; &quot;4996&quot; &quot;5785&quot;
+## [2881] &quot;4548&quot; &quot;3705&quot; &quot;3522&quot; &quot;4379&quot; &quot;3619&quot; &quot;3893&quot; &quot;4714&quot; &quot;3651&quot; &quot;3690&quot; &quot;2638&quot;
+## [2891] &quot;2928&quot; &quot;2052&quot; &quot;2160&quot; &quot;1656&quot; &quot;1894&quot; &quot;1350&quot; &quot;1403&quot; &quot;1279&quot; &quot;1475&quot; &quot;1376&quot;
+## [2901] &quot;1303&quot; &quot;1127&quot; &quot;662&quot;  &quot;3229&quot; &quot;2641&quot; &quot;3958&quot; &quot;5540&quot; &quot;6717&quot; &quot;6022&quot; &quot;4716&quot;
+## [2911] &quot;3954&quot; &quot;4731&quot; &quot;4947&quot; &quot;4065&quot; &quot;4572&quot; &quot;5119&quot; &quot;4507&quot; &quot;4339&quot; &quot;4378&quot; &quot;3635&quot;
+## [2921] &quot;4144&quot; &quot;1875&quot; &quot;1978&quot; &quot;2569&quot; &quot;2381&quot; &quot;2978&quot; &quot;2796&quot; &quot;1326&quot; &quot;1454&quot; &quot;1369&quot;
+## [2931] &quot;1649&quot; &quot;1922&quot; &quot;1587&quot; &quot;1370&quot; &quot;1417&quot; &quot;1473&quot; &quot;1182&quot; &quot;1386&quot; &quot;1344&quot; &quot;1675&quot;
+## [2941] &quot;1503&quot; &quot;1214&quot; &quot;1641&quot; &quot;1551&quot; &quot;2217&quot; &quot;2372&quot; &quot;1128&quot; &quot;2759&quot; &quot;1462&quot; &quot;1647&quot;
+## [2951] &quot;1752&quot; &quot;2157&quot; &quot;1638&quot; &quot;2402&quot; &quot;2578&quot; &quot;2023&quot; &quot;2727&quot; &quot;1175&quot; &quot;1139&quot; &quot;3361&quot;
+## [2961] &quot;3379&quot; &quot;3624&quot; &quot;3335&quot; &quot;2392&quot; &quot;1676&quot; &quot;1342&quot; &quot;1575&quot; &quot;1190&quot; &quot;1916&quot; &quot;1745&quot;
+## [2971] &quot;1710&quot; &quot;2272&quot; &quot;1192&quot; &quot;2953&quot; &quot;2653&quot; &quot;2462&quot; &quot;4061&quot; &quot;3324&quot; &quot;3746&quot; &quot;2696&quot;
+## [2981] &quot;3859&quot; &quot;4356&quot; &quot;3731&quot; &quot;3602&quot; &quot;3917&quot; &quot;4302&quot; &quot;4786&quot; &quot;4327&quot; &quot;3715&quot; &quot;5323&quot;
+## [2991] &quot;4349&quot; &quot;3975&quot; &quot;3849&quot; &quot;3795&quot; &quot;4300&quot; &quot;5112&quot; &quot;3515&quot; &quot;5435&quot; &quot;4866&quot; &quot;4816&quot;
+## [3001] &quot;2718&quot; &quot;3087&quot; &quot;1067&quot; &quot;1125&quot; &quot;672&quot;  &quot;2302&quot; &quot;2435&quot; &quot;2761&quot; &quot;1574&quot; &quot;1405&quot;
+## [3011] &quot;3423&quot; &quot;3886&quot; &quot;2522&quot; &quot;3317&quot; &quot;3784&quot; &quot;3941&quot; &quot;3985&quot; &quot;4710&quot; &quot;5060&quot; &quot;5353&quot;
+## [3021] &quot;5070&quot; &quot;6143&quot; &quot;6459&quot; &quot;5913&quot; &quot;6190&quot; &quot;6364&quot; &quot;4754&quot; &quot;5708&quot; &quot;5809&quot; &quot;5568&quot;
+## [3031] &quot;4432&quot; &quot;1734&quot; &quot;1737&quot; &quot;3546&quot; &quot;3891&quot; &quot;4588&quot; &quot;4185&quot; &quot;4839&quot; &quot;5680&quot; &quot;5068&quot;
+## [3041] &quot;4589&quot; &quot;3680&quot; &quot;3661&quot; &quot;645&quot;
+</code></pre>
+
+<pre><code class="r">sort(unique(rta[ , 2]))
+</code></pre>
+
+<pre><code>##    [1] &quot;&quot;     &quot;1000&quot; &quot;1001&quot; &quot;1002&quot; &quot;1003&quot; &quot;1004&quot; &quot;1005&quot; &quot;1006&quot; &quot;1007&quot; &quot;1008&quot;
+##   [11] &quot;1009&quot; &quot;1010&quot; &quot;1011&quot; &quot;1012&quot; &quot;1013&quot; &quot;1014&quot; &quot;1015&quot; &quot;1016&quot; &quot;1017&quot; &quot;1018&quot;
+##   [21] &quot;1019&quot; &quot;1020&quot; &quot;1021&quot; &quot;1022&quot; &quot;1023&quot; &quot;1024&quot; &quot;1025&quot; &quot;1026&quot; &quot;1027&quot; &quot;1028&quot;
+##   [31] &quot;1029&quot; &quot;1030&quot; &quot;1031&quot; &quot;1032&quot; &quot;1033&quot; &quot;1034&quot; &quot;1035&quot; &quot;1036&quot; &quot;1037&quot; &quot;1038&quot;
+##   [41] &quot;1039&quot; &quot;1040&quot; &quot;1041&quot; &quot;1042&quot; &quot;1043&quot; &quot;1044&quot; &quot;1045&quot; &quot;1046&quot; &quot;1047&quot; &quot;1048&quot;
+##   [51] &quot;1049&quot; &quot;1051&quot; &quot;1052&quot; &quot;1053&quot; &quot;1054&quot; &quot;1055&quot; &quot;1056&quot; &quot;1057&quot; &quot;1058&quot; &quot;1059&quot;
+##   [61] &quot;1060&quot; &quot;1061&quot; &quot;1062&quot; &quot;1063&quot; &quot;1064&quot; &quot;1065&quot; &quot;1066&quot; &quot;1067&quot; &quot;1068&quot; &quot;1069&quot;
+##   [71] &quot;1070&quot; &quot;1071&quot; &quot;1072&quot; &quot;1073&quot; &quot;1074&quot; &quot;1075&quot; &quot;1076&quot; &quot;1077&quot; &quot;1079&quot; &quot;1080&quot;
+##   [81] &quot;1081&quot; &quot;1082&quot; &quot;1083&quot; &quot;1084&quot; &quot;1085&quot; &quot;1086&quot; &quot;1087&quot; &quot;1088&quot; &quot;1089&quot; &quot;1090&quot;
+##   [91] &quot;1091&quot; &quot;1092&quot; &quot;1093&quot; &quot;1094&quot; &quot;1096&quot; &quot;1097&quot; &quot;1098&quot; &quot;1099&quot; &quot;1100&quot; &quot;1101&quot;
+##  [101] &quot;1102&quot; &quot;1103&quot; &quot;1104&quot; &quot;1105&quot; &quot;1106&quot; &quot;1107&quot; &quot;1108&quot; &quot;1109&quot; &quot;1110&quot; &quot;1111&quot;
+##  [111] &quot;1112&quot; &quot;1113&quot; &quot;1114&quot; &quot;1115&quot; &quot;1116&quot; &quot;1117&quot; &quot;1118&quot; &quot;1120&quot; &quot;1121&quot; &quot;1122&quot;
+##  [121] &quot;1123&quot; &quot;1124&quot; &quot;1125&quot; &quot;1126&quot; &quot;1127&quot; &quot;1128&quot; &quot;1129&quot; &quot;1130&quot; &quot;1131&quot; &quot;1132&quot;
+##  [131] &quot;1133&quot; &quot;1134&quot; &quot;1135&quot; &quot;1136&quot; &quot;1137&quot; &quot;1138&quot; &quot;1139&quot; &quot;1140&quot; &quot;1141&quot; &quot;1142&quot;
+##  [141] &quot;1143&quot; &quot;1144&quot; &quot;1145&quot; &quot;1146&quot; &quot;1147&quot; &quot;1149&quot; &quot;1150&quot; &quot;1151&quot; &quot;1152&quot; &quot;1153&quot;
+##  [151] &quot;1154&quot; &quot;1155&quot; &quot;1156&quot; &quot;1157&quot; &quot;1158&quot; &quot;1159&quot; &quot;1160&quot; &quot;1161&quot; &quot;1162&quot; &quot;1163&quot;
+##  [161] &quot;1164&quot; &quot;1165&quot; &quot;1166&quot; &quot;1167&quot; &quot;1168&quot; &quot;1169&quot; &quot;1170&quot; &quot;1171&quot; &quot;1172&quot; &quot;1173&quot;
+##  [171] &quot;1174&quot; &quot;1175&quot; &quot;1176&quot; &quot;1177&quot; &quot;1178&quot; &quot;1179&quot; &quot;1180&quot; &quot;1181&quot; &quot;1182&quot; &quot;1183&quot;
+##  [181] &quot;1184&quot; &quot;1185&quot; &quot;1186&quot; &quot;1187&quot; &quot;1188&quot; &quot;1189&quot; &quot;1190&quot; &quot;1191&quot; &quot;1192&quot; &quot;1193&quot;
+##  [191] &quot;1194&quot; &quot;1195&quot; &quot;1196&quot; &quot;1197&quot; &quot;1198&quot; &quot;1199&quot; &quot;1200&quot; &quot;1201&quot; &quot;1202&quot; &quot;1203&quot;
+##  [201] &quot;1204&quot; &quot;1205&quot; &quot;1207&quot; &quot;1208&quot; &quot;1209&quot; &quot;1211&quot; &quot;1212&quot; &quot;1213&quot; &quot;1214&quot; &quot;1215&quot;
+##  [211] &quot;1216&quot; &quot;1218&quot; &quot;1220&quot; &quot;1221&quot; &quot;1222&quot; &quot;1223&quot; &quot;1225&quot; &quot;1226&quot; &quot;1227&quot; &quot;1228&quot;
+##  [221] &quot;1229&quot; &quot;1230&quot; &quot;1232&quot; &quot;1234&quot; &quot;1235&quot; &quot;1236&quot; &quot;1237&quot; &quot;1238&quot; &quot;1239&quot; &quot;1241&quot;
+##  [231] &quot;1242&quot; &quot;1243&quot; &quot;1244&quot; &quot;1245&quot; &quot;1247&quot; &quot;1248&quot; &quot;1250&quot; &quot;1251&quot; &quot;1252&quot; &quot;1255&quot;
+##  [241] &quot;1256&quot; &quot;1257&quot; &quot;1258&quot; &quot;1259&quot; &quot;1260&quot; &quot;1262&quot; &quot;1263&quot; &quot;1265&quot; &quot;1266&quot; &quot;1267&quot;
+##  [251] &quot;1268&quot; &quot;1269&quot; &quot;1270&quot; &quot;1271&quot; &quot;1272&quot; &quot;1273&quot; &quot;1274&quot; &quot;1275&quot; &quot;1276&quot; &quot;1277&quot;
+##  [261] &quot;1278&quot; &quot;1279&quot; &quot;1281&quot; &quot;1283&quot; &quot;1284&quot; &quot;1285&quot; &quot;1286&quot; &quot;1287&quot; &quot;1288&quot; &quot;1289&quot;
+##  [271] &quot;1290&quot; &quot;1291&quot; &quot;1292&quot; &quot;1293&quot; &quot;1294&quot; &quot;1295&quot; &quot;1296&quot; &quot;1297&quot; &quot;1298&quot; &quot;1301&quot;
+##  [281] &quot;1302&quot; &quot;1303&quot; &quot;1304&quot; &quot;1305&quot; &quot;1306&quot; &quot;1307&quot; &quot;1308&quot; &quot;1309&quot; &quot;1310&quot; &quot;1311&quot;
+##  [291] &quot;1312&quot; &quot;1313&quot; &quot;1314&quot; &quot;1315&quot; &quot;1316&quot; &quot;1317&quot; &quot;1318&quot; &quot;1319&quot; &quot;1320&quot; &quot;1321&quot;
+##  [301] &quot;1322&quot; &quot;1323&quot; &quot;1324&quot; &quot;1325&quot; &quot;1326&quot; &quot;1327&quot; &quot;1328&quot; &quot;1330&quot; &quot;1331&quot; &quot;1332&quot;
+##  [311] &quot;1333&quot; &quot;1334&quot; &quot;1335&quot; &quot;1336&quot; &quot;1337&quot; &quot;1338&quot; &quot;1339&quot; &quot;1340&quot; &quot;1342&quot; &quot;1343&quot;
+##  [321] &quot;1344&quot; &quot;1345&quot; &quot;1346&quot; &quot;1347&quot; &quot;1348&quot; &quot;1349&quot; &quot;1350&quot; &quot;1351&quot; &quot;1352&quot; &quot;1353&quot;
+##  [331] &quot;1354&quot; &quot;1356&quot; &quot;1357&quot; &quot;1358&quot; &quot;1359&quot; &quot;1360&quot; &quot;1361&quot; &quot;1362&quot; &quot;1363&quot; &quot;1364&quot;
+##  [341] &quot;1365&quot; &quot;1367&quot; &quot;1368&quot; &quot;1369&quot; &quot;1370&quot; &quot;1371&quot; &quot;1373&quot; &quot;1374&quot; &quot;1375&quot; &quot;1376&quot;
+##  [351] &quot;1377&quot; &quot;1378&quot; &quot;1379&quot; &quot;1380&quot; &quot;1381&quot; &quot;1382&quot; &quot;1383&quot; &quot;1384&quot; &quot;1385&quot; &quot;1386&quot;
+##  [361] &quot;1387&quot; &quot;1388&quot; &quot;1389&quot; &quot;1390&quot; &quot;1392&quot; &quot;1394&quot; &quot;1395&quot; &quot;1396&quot; &quot;1397&quot; &quot;1398&quot;
+##  [371] &quot;1399&quot; &quot;1400&quot; &quot;1401&quot; &quot;1402&quot; &quot;1403&quot; &quot;1404&quot; &quot;1405&quot; &quot;1406&quot; &quot;1407&quot; &quot;1409&quot;
+##  [381] &quot;1410&quot; &quot;1411&quot; &quot;1412&quot; &quot;1414&quot; &quot;1416&quot; &quot;1417&quot; &quot;1419&quot; &quot;1420&quot; &quot;1421&quot; &quot;1424&quot;
+##  [391] &quot;1425&quot; &quot;1426&quot; &quot;1427&quot; &quot;1429&quot; &quot;1430&quot; &quot;1431&quot; &quot;1432&quot; &quot;1433&quot; &quot;1434&quot; &quot;1435&quot;
+##  [401] &quot;1436&quot; &quot;1437&quot; &quot;1439&quot; &quot;1440&quot; &quot;1441&quot; &quot;1442&quot; &quot;1443&quot; &quot;1444&quot; &quot;1445&quot; &quot;1446&quot;
+##  [411] &quot;1447&quot; &quot;1449&quot; &quot;1450&quot; &quot;1451&quot; &quot;1453&quot; &quot;1454&quot; &quot;1455&quot; &quot;1456&quot; &quot;1457&quot; &quot;1458&quot;
+##  [421] &quot;1460&quot; &quot;1461&quot; &quot;1462&quot; &quot;1463&quot; &quot;1465&quot; &quot;1466&quot; &quot;1467&quot; &quot;1468&quot; &quot;1470&quot; &quot;1471&quot;
+##  [431] &quot;1473&quot; &quot;1474&quot; &quot;1475&quot; &quot;1476&quot; &quot;1477&quot; &quot;1478&quot; &quot;1479&quot; &quot;1480&quot; &quot;1481&quot; &quot;1482&quot;
+##  [441] &quot;1483&quot; &quot;1484&quot; &quot;1485&quot; &quot;1486&quot; &quot;1487&quot; &quot;1488&quot; &quot;1489&quot; &quot;1491&quot; &quot;1492&quot; &quot;1493&quot;
+##  [451] &quot;1494&quot; &quot;1496&quot; &quot;1497&quot; &quot;1498&quot; &quot;1499&quot; &quot;1500&quot; &quot;1501&quot; &quot;1502&quot; &quot;1503&quot; &quot;1504&quot;
+##  [461] &quot;1505&quot; &quot;1506&quot; &quot;1508&quot; &quot;1509&quot; &quot;1510&quot; &quot;1511&quot; &quot;1512&quot; &quot;1513&quot; &quot;1515&quot; &quot;1516&quot;
+##  [471] &quot;1517&quot; &quot;1518&quot; &quot;1521&quot; &quot;1522&quot; &quot;1523&quot; &quot;1524&quot; &quot;1525&quot; &quot;1526&quot; &quot;1528&quot; &quot;1529&quot;
+##  [481] &quot;1530&quot; &quot;1531&quot; &quot;1532&quot; &quot;1533&quot; &quot;1535&quot; &quot;1536&quot; &quot;1537&quot; &quot;1538&quot; &quot;1539&quot; &quot;1540&quot;
+##  [491] &quot;1541&quot; &quot;1542&quot; &quot;1543&quot; &quot;1544&quot; &quot;1545&quot; &quot;1546&quot; &quot;1548&quot; &quot;1549&quot; &quot;1550&quot; &quot;1551&quot;
+##  [501] &quot;1552&quot; &quot;1553&quot; &quot;1555&quot; &quot;1556&quot; &quot;1557&quot; &quot;1558&quot; &quot;1560&quot; &quot;1563&quot; &quot;1564&quot; &quot;1566&quot;
+##  [511] &quot;1567&quot; &quot;1568&quot; &quot;1569&quot; &quot;1570&quot; &quot;1571&quot; &quot;1572&quot; &quot;1573&quot; &quot;1574&quot; &quot;1575&quot; &quot;1576&quot;
+##  [521] &quot;1577&quot; &quot;1578&quot; &quot;1579&quot; &quot;1580&quot; &quot;1581&quot; &quot;1582&quot; &quot;1583&quot; &quot;1584&quot; &quot;1585&quot; &quot;1586&quot;
+##  [531] &quot;1587&quot; &quot;1588&quot; &quot;1589&quot; &quot;1590&quot; &quot;1591&quot; &quot;1592&quot; &quot;1593&quot; &quot;1595&quot; &quot;1598&quot; &quot;1599&quot;
+##  [541] &quot;1600&quot; &quot;1602&quot; &quot;1603&quot; &quot;1604&quot; &quot;1605&quot; &quot;1606&quot; &quot;1607&quot; &quot;1608&quot; &quot;1609&quot; &quot;1610&quot;
+##  [551] &quot;1611&quot; &quot;1612&quot; &quot;1613&quot; &quot;1614&quot; &quot;1615&quot; &quot;1616&quot; &quot;1617&quot; &quot;1618&quot; &quot;1619&quot; &quot;1620&quot;
+##  [561] &quot;1621&quot; &quot;1622&quot; &quot;1623&quot; &quot;1624&quot; &quot;1625&quot; &quot;1626&quot; &quot;1627&quot; &quot;1629&quot; &quot;1630&quot; &quot;1632&quot;
+##  [571] &quot;1633&quot; &quot;1634&quot; &quot;1635&quot; &quot;1637&quot; &quot;1638&quot; &quot;1640&quot; &quot;1641&quot; &quot;1642&quot; &quot;1643&quot; &quot;1644&quot;
+##  [581] &quot;1645&quot; &quot;1647&quot; &quot;1648&quot; &quot;1649&quot; &quot;1651&quot; &quot;1652&quot; &quot;1653&quot; &quot;1654&quot; &quot;1655&quot; &quot;1656&quot;
+##  [591] &quot;1657&quot; &quot;1658&quot; &quot;1659&quot; &quot;1661&quot; &quot;1663&quot; &quot;1664&quot; &quot;1665&quot; &quot;1666&quot; &quot;1668&quot; &quot;1669&quot;
+##  [601] &quot;1670&quot; &quot;1671&quot; &quot;1672&quot; &quot;1673&quot; &quot;1674&quot; &quot;1675&quot; &quot;1676&quot; &quot;1677&quot; &quot;1678&quot; &quot;1679&quot;
+##  [611] &quot;1680&quot; &quot;1681&quot; &quot;1682&quot; &quot;1683&quot; &quot;1685&quot; &quot;1686&quot; &quot;1688&quot; &quot;1689&quot; &quot;1690&quot; &quot;1692&quot;
+##  [621] &quot;1693&quot; &quot;1695&quot; &quot;1697&quot; &quot;1698&quot; &quot;1699&quot; &quot;1700&quot; &quot;1701&quot; &quot;1703&quot; &quot;1705&quot; &quot;1706&quot;
+##  [631] &quot;1708&quot; &quot;1709&quot; &quot;1710&quot; &quot;1711&quot; &quot;1712&quot; &quot;1714&quot; &quot;1715&quot; &quot;1716&quot; &quot;1717&quot; &quot;1718&quot;
+##  [641] &quot;1719&quot; &quot;1720&quot; &quot;1721&quot; &quot;1722&quot; &quot;1723&quot; &quot;1724&quot; &quot;1725&quot; &quot;1726&quot; &quot;1727&quot; &quot;1728&quot;
+##  [651] &quot;1729&quot; &quot;1730&quot; &quot;1732&quot; &quot;1733&quot; &quot;1734&quot; &quot;1735&quot; &quot;1736&quot; &quot;1737&quot; &quot;1738&quot; &quot;1739&quot;
+##  [661] &quot;1741&quot; &quot;1742&quot; &quot;1744&quot; &quot;1745&quot; &quot;1746&quot; &quot;1748&quot; &quot;1749&quot; &quot;1751&quot; &quot;1752&quot; &quot;1754&quot;
+##  [671] &quot;1755&quot; &quot;1756&quot; &quot;1758&quot; &quot;1760&quot; &quot;1761&quot; &quot;1762&quot; &quot;1763&quot; &quot;1764&quot; &quot;1765&quot; &quot;1766&quot;
+##  [681] &quot;1767&quot; &quot;1768&quot; &quot;1769&quot; &quot;1770&quot; &quot;1771&quot; &quot;1772&quot; &quot;1773&quot; &quot;1774&quot; &quot;1775&quot; &quot;1776&quot;
+##  [691] &quot;1777&quot; &quot;1778&quot; &quot;1779&quot; &quot;1780&quot; &quot;1782&quot; &quot;1784&quot; &quot;1786&quot; &quot;1787&quot; &quot;1788&quot; &quot;1789&quot;
+##  [701] &quot;1790&quot; &quot;1791&quot; &quot;1792&quot; &quot;1793&quot; &quot;1794&quot; &quot;1795&quot; &quot;1796&quot; &quot;1797&quot; &quot;1798&quot; &quot;1799&quot;
+##  [711] &quot;1800&quot; &quot;1801&quot; &quot;1803&quot; &quot;1804&quot; &quot;1805&quot; &quot;1806&quot; &quot;1807&quot; &quot;1808&quot; &quot;1809&quot; &quot;1810&quot;
+##  [721] &quot;1811&quot; &quot;1812&quot; &quot;1813&quot; &quot;1814&quot; &quot;1815&quot; &quot;1816&quot; &quot;1817&quot; &quot;1818&quot; &quot;1819&quot; &quot;1820&quot;
+##  [731] &quot;1821&quot; &quot;1822&quot; &quot;1823&quot; &quot;1824&quot; &quot;1825&quot; &quot;1826&quot; &quot;1827&quot; &quot;1828&quot; &quot;1829&quot; &quot;1830&quot;
+##  [741] &quot;1831&quot; &quot;1832&quot; &quot;1833&quot; &quot;1834&quot; &quot;1835&quot; &quot;1836&quot; &quot;1837&quot; &quot;1838&quot; &quot;1839&quot; &quot;1840&quot;
+##  [751] &quot;1841&quot; &quot;1842&quot; &quot;1843&quot; &quot;1844&quot; &quot;1845&quot; &quot;1846&quot; &quot;1847&quot; &quot;1848&quot; &quot;1849&quot; &quot;1850&quot;
+##  [761] &quot;1851&quot; &quot;1852&quot; &quot;1853&quot; &quot;1854&quot; &quot;1855&quot; &quot;1856&quot; &quot;1857&quot; &quot;1858&quot; &quot;1860&quot; &quot;1861&quot;
+##  [771] &quot;1862&quot; &quot;1863&quot; &quot;1864&quot; &quot;1865&quot; &quot;1866&quot; &quot;1867&quot; &quot;1868&quot; &quot;1869&quot; &quot;1870&quot; &quot;1871&quot;
+##  [781] &quot;1872&quot; &quot;1873&quot; &quot;1874&quot; &quot;1875&quot; &quot;1876&quot; &quot;1877&quot; &quot;1878&quot; &quot;1879&quot; &quot;1880&quot; &quot;1881&quot;
+##  [791] &quot;1882&quot; &quot;1884&quot; &quot;1885&quot; &quot;1886&quot; &quot;1887&quot; &quot;1888&quot; &quot;1889&quot; &quot;1890&quot; &quot;1891&quot; &quot;1893&quot;
+##  [801] &quot;1894&quot; &quot;1895&quot; &quot;1896&quot; &quot;1898&quot; &quot;1899&quot; &quot;1900&quot; &quot;1901&quot; &quot;1902&quot; &quot;1903&quot; &quot;1904&quot;
+##  [811] &quot;1905&quot; &quot;1906&quot; &quot;1907&quot; &quot;1908&quot; &quot;1909&quot; &quot;1910&quot; &quot;1911&quot; &quot;1912&quot; &quot;1913&quot; &quot;1914&quot;
+##  [821] &quot;1915&quot; &quot;1916&quot; &quot;1917&quot; &quot;1918&quot; &quot;1919&quot; &quot;1920&quot; &quot;1921&quot; &quot;1922&quot; &quot;1923&quot; &quot;1925&quot;
+##  [831] &quot;1926&quot; &quot;1927&quot; &quot;1928&quot; &quot;1929&quot; &quot;1930&quot; &quot;1931&quot; &quot;1932&quot; &quot;1933&quot; &quot;1934&quot; &quot;1935&quot;
+##  [841] &quot;1936&quot; &quot;1937&quot; &quot;1938&quot; &quot;1939&quot; &quot;1940&quot; &quot;1941&quot; &quot;1942&quot; &quot;1943&quot; &quot;1944&quot; &quot;1945&quot;
+##  [851] &quot;1946&quot; &quot;1947&quot; &quot;1948&quot; &quot;1949&quot; &quot;1950&quot; &quot;1951&quot; &quot;1952&quot; &quot;1953&quot; &quot;1954&quot; &quot;1955&quot;
+##  [861] &quot;1956&quot; &quot;1957&quot; &quot;1958&quot; &quot;1959&quot; &quot;1960&quot; &quot;1961&quot; &quot;1962&quot; &quot;1964&quot; &quot;1965&quot; &quot;1966&quot;
+##  [871] &quot;1967&quot; &quot;1968&quot; &quot;1969&quot; &quot;1971&quot; &quot;1972&quot; &quot;1973&quot; &quot;1974&quot; &quot;1975&quot; &quot;1976&quot; &quot;1977&quot;
+##  [881] &quot;1978&quot; &quot;1979&quot; &quot;1980&quot; &quot;1981&quot; &quot;1982&quot; &quot;1983&quot; &quot;1984&quot; &quot;1986&quot; &quot;1987&quot; &quot;1988&quot;
+##  [891] &quot;1990&quot; &quot;1991&quot; &quot;1992&quot; &quot;1993&quot; &quot;1994&quot; &quot;1995&quot; &quot;1996&quot; &quot;1998&quot; &quot;1999&quot; &quot;2000&quot;
+##  [901] &quot;2001&quot; &quot;2002&quot; &quot;2003&quot; &quot;2005&quot; &quot;2006&quot; &quot;2007&quot; &quot;2008&quot; &quot;2009&quot; &quot;2010&quot; &quot;2011&quot;
+##  [911] &quot;2012&quot; &quot;2013&quot; &quot;2016&quot; &quot;2018&quot; &quot;2020&quot; &quot;2021&quot; &quot;2022&quot; &quot;2023&quot; &quot;2025&quot; &quot;2026&quot;
+##  [921] &quot;2027&quot; &quot;2028&quot; &quot;2029&quot; &quot;2030&quot; &quot;2031&quot; &quot;2032&quot; &quot;2033&quot; &quot;2034&quot; &quot;2035&quot; &quot;2036&quot;
+##  [931] &quot;2037&quot; &quot;2038&quot; &quot;2039&quot; &quot;2040&quot; &quot;2041&quot; &quot;2042&quot; &quot;2043&quot; &quot;2044&quot; &quot;2045&quot; &quot;2046&quot;
+##  [941] &quot;2047&quot; &quot;2048&quot; &quot;2049&quot; &quot;2050&quot; &quot;2051&quot; &quot;2052&quot; &quot;2053&quot; &quot;2054&quot; &quot;2055&quot; &quot;2056&quot;
+##  [951] &quot;2057&quot; &quot;2058&quot; &quot;2059&quot; &quot;2061&quot; &quot;2062&quot; &quot;2063&quot; &quot;2064&quot; &quot;2065&quot; &quot;2067&quot; &quot;2068&quot;
+##  [961] &quot;2069&quot; &quot;2070&quot; &quot;2071&quot; &quot;2072&quot; &quot;2073&quot; &quot;2074&quot; &quot;2077&quot; &quot;2078&quot; &quot;2079&quot; &quot;2080&quot;
+##  [971] &quot;2081&quot; &quot;2083&quot; &quot;2084&quot; &quot;2085&quot; &quot;2086&quot; &quot;2087&quot; &quot;2089&quot; &quot;2090&quot; &quot;2091&quot; &quot;2092&quot;
+##  [981] &quot;2093&quot; &quot;2094&quot; &quot;2096&quot; &quot;2097&quot; &quot;2098&quot; &quot;2099&quot; &quot;2100&quot; &quot;2101&quot; &quot;2102&quot; &quot;2103&quot;
+##  [991] &quot;2104&quot; &quot;2105&quot; &quot;2106&quot; &quot;2107&quot; &quot;2108&quot; &quot;2109&quot; &quot;2110&quot; &quot;2112&quot; &quot;2113&quot; &quot;2114&quot;
+## [1001] &quot;2115&quot; &quot;2116&quot; &quot;2117&quot; &quot;2118&quot; &quot;2119&quot; &quot;2120&quot; &quot;2121&quot; &quot;2122&quot; &quot;2123&quot; &quot;2124&quot;
+## [1011] &quot;2125&quot; &quot;2126&quot; &quot;2127&quot; &quot;2129&quot; &quot;2130&quot; &quot;2131&quot; &quot;2132&quot; &quot;2135&quot; &quot;2136&quot; &quot;2137&quot;
+## [1021] &quot;2138&quot; &quot;2139&quot; &quot;2140&quot; &quot;2141&quot; &quot;2142&quot; &quot;2143&quot; &quot;2144&quot; &quot;2145&quot; &quot;2146&quot; &quot;2147&quot;
+## [1031] &quot;2148&quot; &quot;2149&quot; &quot;2150&quot; &quot;2151&quot; &quot;2152&quot; &quot;2153&quot; &quot;2154&quot; &quot;2155&quot; &quot;2156&quot; &quot;2157&quot;
+## [1041] &quot;2159&quot; &quot;2160&quot; &quot;2161&quot; &quot;2162&quot; &quot;2163&quot; &quot;2164&quot; &quot;2165&quot; &quot;2166&quot; &quot;2167&quot; &quot;2168&quot;
+## [1051] &quot;2169&quot; &quot;2171&quot; &quot;2172&quot; &quot;2173&quot; &quot;2174&quot; &quot;2176&quot; &quot;2177&quot; &quot;2179&quot; &quot;2180&quot; &quot;2181&quot;
+## [1061] &quot;2182&quot; &quot;2183&quot; &quot;2184&quot; &quot;2185&quot; &quot;2186&quot; &quot;2187&quot; &quot;2188&quot; &quot;2189&quot; &quot;2191&quot; &quot;2192&quot;
+## [1071] &quot;2193&quot; &quot;2194&quot; &quot;2195&quot; &quot;2196&quot; &quot;2197&quot; &quot;2198&quot; &quot;2199&quot; &quot;2200&quot; &quot;2201&quot; &quot;2203&quot;
+## [1081] &quot;2204&quot; &quot;2205&quot; &quot;2206&quot; &quot;2207&quot; &quot;2208&quot; &quot;2209&quot; &quot;2210&quot; &quot;2211&quot; &quot;2212&quot; &quot;2213&quot;
+## [1091] &quot;2214&quot; &quot;2215&quot; &quot;2216&quot; &quot;2217&quot; &quot;2218&quot; &quot;2219&quot; &quot;2220&quot; &quot;2221&quot; &quot;2222&quot; &quot;2223&quot;
+## [1101] &quot;2224&quot; &quot;2225&quot; &quot;2226&quot; &quot;2227&quot; &quot;2228&quot; &quot;2230&quot; &quot;2232&quot; &quot;2233&quot; &quot;2234&quot; &quot;2235&quot;
+## [1111] &quot;2236&quot; &quot;2237&quot; &quot;2238&quot; &quot;2239&quot; &quot;2240&quot; &quot;2241&quot; &quot;2242&quot; &quot;2244&quot; &quot;2245&quot; &quot;2246&quot;
+## [1121] &quot;2247&quot; &quot;2248&quot; &quot;2249&quot; &quot;2250&quot; &quot;2251&quot; &quot;2252&quot; &quot;2253&quot; &quot;2254&quot; &quot;2255&quot; &quot;2256&quot;
+## [1131] &quot;2257&quot; &quot;2258&quot; &quot;2259&quot; &quot;2260&quot; &quot;2261&quot; &quot;2262&quot; &quot;2263&quot; &quot;2264&quot; &quot;2265&quot; &quot;2266&quot;
+## [1141] &quot;2268&quot; &quot;2269&quot; &quot;2270&quot; &quot;2271&quot; &quot;2272&quot; &quot;2274&quot; &quot;2275&quot; &quot;2277&quot; &quot;2278&quot; &quot;2279&quot;
+## [1151] &quot;2280&quot; &quot;2281&quot; &quot;2282&quot; &quot;2283&quot; &quot;2284&quot; &quot;2285&quot; &quot;2286&quot; &quot;2287&quot; &quot;2289&quot; &quot;2291&quot;
+## [1161] &quot;2292&quot; &quot;2294&quot; &quot;2295&quot; &quot;2296&quot; &quot;2297&quot; &quot;2298&quot; &quot;2299&quot; &quot;2300&quot; &quot;2301&quot; &quot;2302&quot;
+## [1171] &quot;2303&quot; &quot;2304&quot; &quot;2305&quot; &quot;2307&quot; &quot;2308&quot; &quot;2309&quot; &quot;2310&quot; &quot;2311&quot; &quot;2312&quot; &quot;2313&quot;
+## [1181] &quot;2314&quot; &quot;2316&quot; &quot;2317&quot; &quot;2318&quot; &quot;2319&quot; &quot;2320&quot; &quot;2321&quot; &quot;2322&quot; &quot;2323&quot; &quot;2324&quot;
+## [1191] &quot;2325&quot; &quot;2326&quot; &quot;2327&quot; &quot;2328&quot; &quot;2329&quot; &quot;2330&quot; &quot;2331&quot; &quot;2332&quot; &quot;2333&quot; &quot;2334&quot;
+## [1201] &quot;2335&quot; &quot;2336&quot; &quot;2337&quot; &quot;2338&quot; &quot;2339&quot; &quot;2340&quot; &quot;2341&quot; &quot;2342&quot; &quot;2343&quot; &quot;2344&quot;
+## [1211] &quot;2345&quot; &quot;2346&quot; &quot;2347&quot; &quot;2348&quot; &quot;2349&quot; &quot;2350&quot; &quot;2351&quot; &quot;2352&quot; &quot;2353&quot; &quot;2354&quot;
+## [1221] &quot;2355&quot; &quot;2356&quot; &quot;2357&quot; &quot;2358&quot; &quot;2360&quot; &quot;2361&quot; &quot;2362&quot; &quot;2363&quot; &quot;2365&quot; &quot;2366&quot;
+## [1231] &quot;2367&quot; &quot;2368&quot; &quot;2369&quot; &quot;2370&quot; &quot;2371&quot; &quot;2372&quot; &quot;2373&quot; &quot;2375&quot; &quot;2376&quot; &quot;2377&quot;
+## [1241] &quot;2378&quot; &quot;2379&quot; &quot;2380&quot; &quot;2381&quot; &quot;2383&quot; &quot;2384&quot; &quot;2385&quot; &quot;2386&quot; &quot;2388&quot; &quot;2389&quot;
+## [1251] &quot;2390&quot; &quot;2391&quot; &quot;2392&quot; &quot;2393&quot; &quot;2394&quot; &quot;2395&quot; &quot;2396&quot; &quot;2397&quot; &quot;2398&quot; &quot;2400&quot;
+## [1261] &quot;2401&quot; &quot;2402&quot; &quot;2403&quot; &quot;2404&quot; &quot;2405&quot; &quot;2406&quot; &quot;2407&quot; &quot;2408&quot; &quot;2409&quot; &quot;2410&quot;
+## [1271] &quot;2411&quot; &quot;2412&quot; &quot;2414&quot; &quot;2417&quot; &quot;2418&quot; &quot;2420&quot; &quot;2421&quot; &quot;2422&quot; &quot;2423&quot; &quot;2424&quot;
+## [1281] &quot;2425&quot; &quot;2426&quot; &quot;2427&quot; &quot;2428&quot; &quot;2429&quot; &quot;2430&quot; &quot;2431&quot; &quot;2432&quot; &quot;2433&quot; &quot;2434&quot;
+## [1291] &quot;2435&quot; &quot;2436&quot; &quot;2437&quot; &quot;2438&quot; &quot;2439&quot; &quot;2440&quot; &quot;2441&quot; &quot;2442&quot; &quot;2443&quot; &quot;2444&quot;
+## [1301] &quot;2445&quot; &quot;2446&quot; &quot;2447&quot; &quot;2448&quot; &quot;2449&quot; &quot;2450&quot; &quot;2451&quot; &quot;2452&quot; &quot;2453&quot; &quot;2454&quot;
+## [1311] &quot;2455&quot; &quot;2456&quot; &quot;2457&quot; &quot;2458&quot; &quot;2460&quot; &quot;2461&quot; &quot;2462&quot; &quot;2463&quot; &quot;2465&quot; &quot;2468&quot;
+## [1321] &quot;2469&quot; &quot;2471&quot; &quot;2472&quot; &quot;2473&quot; &quot;2474&quot; &quot;2475&quot; &quot;2476&quot; &quot;2477&quot; &quot;2479&quot; &quot;2480&quot;
+## [1331] &quot;2481&quot; &quot;2482&quot; &quot;2483&quot; &quot;2484&quot; &quot;2486&quot; &quot;2487&quot; &quot;2488&quot; &quot;2489&quot; &quot;2490&quot; &quot;2491&quot;
+## [1341] &quot;2492&quot; &quot;2493&quot; &quot;2494&quot; &quot;2497&quot; &quot;2499&quot; &quot;2500&quot; &quot;2501&quot; &quot;2502&quot; &quot;2503&quot; &quot;2504&quot;
+## [1351] &quot;2505&quot; &quot;2506&quot; &quot;2507&quot; &quot;2508&quot; &quot;2509&quot; &quot;2510&quot; &quot;2511&quot; &quot;2512&quot; &quot;2513&quot; &quot;2514&quot;
+## [1361] &quot;2515&quot; &quot;2516&quot; &quot;2517&quot; &quot;2518&quot; &quot;2519&quot; &quot;2520&quot; &quot;2521&quot; &quot;2522&quot; &quot;2523&quot; &quot;2524&quot;
+## [1371] &quot;2525&quot; &quot;2527&quot; &quot;2528&quot; &quot;2529&quot; &quot;2531&quot; &quot;2532&quot; &quot;2534&quot; &quot;2535&quot; &quot;2536&quot; &quot;2537&quot;
+## [1381] &quot;2538&quot; &quot;2539&quot; &quot;2540&quot; &quot;2541&quot; &quot;2542&quot; &quot;2543&quot; &quot;2544&quot; &quot;2545&quot; &quot;2546&quot; &quot;2547&quot;
+## [1391] &quot;2548&quot; &quot;2549&quot; &quot;2550&quot; &quot;2551&quot; &quot;2552&quot; &quot;2553&quot; &quot;2554&quot; &quot;2555&quot; &quot;2557&quot; &quot;2558&quot;
+## [1401] &quot;2559&quot; &quot;2560&quot; &quot;2561&quot; &quot;2562&quot; &quot;2563&quot; &quot;2564&quot; &quot;2565&quot; &quot;2566&quot; &quot;2567&quot; &quot;2568&quot;
+## [1411] &quot;2569&quot; &quot;2570&quot; &quot;2571&quot; &quot;2572&quot; &quot;2573&quot; &quot;2574&quot; &quot;2575&quot; &quot;2576&quot; &quot;2577&quot; &quot;2578&quot;
+## [1421] &quot;2580&quot; &quot;2581&quot; &quot;2582&quot; &quot;2583&quot; &quot;2584&quot; &quot;2585&quot; &quot;2586&quot; &quot;2587&quot; &quot;2588&quot; &quot;2589&quot;
+## [1431] &quot;2591&quot; &quot;2592&quot; &quot;2593&quot; &quot;2594&quot; &quot;2595&quot; &quot;2596&quot; &quot;2597&quot; &quot;2598&quot; &quot;2599&quot; &quot;2600&quot;
+## [1441] &quot;2601&quot; &quot;2602&quot; &quot;2603&quot; &quot;2604&quot; &quot;2605&quot; &quot;2606&quot; &quot;2607&quot; &quot;2609&quot; &quot;2611&quot; &quot;2612&quot;
+## [1451] &quot;2614&quot; &quot;2615&quot; &quot;2616&quot; &quot;2617&quot; &quot;2618&quot; &quot;2619&quot; &quot;2620&quot; &quot;2621&quot; &quot;2622&quot; &quot;2623&quot;
+## [1461] &quot;2624&quot; &quot;2625&quot; &quot;2626&quot; &quot;2627&quot; &quot;2628&quot; &quot;2629&quot; &quot;2630&quot; &quot;2632&quot; &quot;2633&quot; &quot;2634&quot;
+## [1471] &quot;2635&quot; &quot;2636&quot; &quot;2637&quot; &quot;2638&quot; &quot;2639&quot; &quot;2640&quot; &quot;2641&quot; &quot;2642&quot; &quot;2643&quot; &quot;2644&quot;
+## [1481] &quot;2645&quot; &quot;2646&quot; &quot;2647&quot; &quot;2648&quot; &quot;2649&quot; &quot;2651&quot; &quot;2652&quot; &quot;2653&quot; &quot;2654&quot; &quot;2655&quot;
+## [1491] &quot;2657&quot; &quot;2658&quot; &quot;2659&quot; &quot;2660&quot; &quot;2661&quot; &quot;2662&quot; &quot;2663&quot; &quot;2664&quot; &quot;2666&quot; &quot;2667&quot;
+## [1501] &quot;2668&quot; &quot;2669&quot; &quot;2670&quot; &quot;2671&quot; &quot;2673&quot; &quot;2674&quot; &quot;2675&quot; &quot;2676&quot; &quot;2677&quot; &quot;2678&quot;
+## [1511] &quot;2680&quot; &quot;2681&quot; &quot;2683&quot; &quot;2684&quot; &quot;2685&quot; &quot;2686&quot; &quot;2687&quot; &quot;2688&quot; &quot;2689&quot; &quot;2690&quot;
+## [1521] &quot;2691&quot; &quot;2692&quot; &quot;2693&quot; &quot;2694&quot; &quot;2695&quot; &quot;2696&quot; &quot;2697&quot; &quot;2698&quot; &quot;2699&quot; &quot;2700&quot;
+## [1531] &quot;2701&quot; &quot;2704&quot; &quot;2705&quot; &quot;2706&quot; &quot;2707&quot; &quot;2708&quot; &quot;2709&quot; &quot;2710&quot; &quot;2714&quot; &quot;2715&quot;
+## [1541] &quot;2716&quot; &quot;2717&quot; &quot;2718&quot; &quot;2719&quot; &quot;2720&quot; &quot;2722&quot; &quot;2723&quot; &quot;2724&quot; &quot;2725&quot; &quot;2726&quot;
+## [1551] &quot;2727&quot; &quot;2729&quot; &quot;2730&quot; &quot;2731&quot; &quot;2732&quot; &quot;2733&quot; &quot;2734&quot; &quot;2735&quot; &quot;2736&quot; &quot;2737&quot;
+## [1561] &quot;2738&quot; &quot;2739&quot; &quot;2740&quot; &quot;2745&quot; &quot;2746&quot; &quot;2747&quot; &quot;2748&quot; &quot;2749&quot; &quot;2750&quot; &quot;2751&quot;
+## [1571] &quot;2752&quot; &quot;2753&quot; &quot;2754&quot; &quot;2755&quot; &quot;2756&quot; &quot;2757&quot; &quot;2758&quot; &quot;2759&quot; &quot;2760&quot; &quot;2761&quot;
+## [1581] &quot;2763&quot; &quot;2764&quot; &quot;2765&quot; &quot;2766&quot; &quot;2767&quot; &quot;2768&quot; &quot;2769&quot; &quot;2770&quot; &quot;2771&quot; &quot;2772&quot;
+## [1591] &quot;2773&quot; &quot;2774&quot; &quot;2775&quot; &quot;2776&quot; &quot;2777&quot; &quot;2778&quot; &quot;2779&quot; &quot;2780&quot; &quot;2781&quot; &quot;2782&quot;
+## [1601] &quot;2783&quot; &quot;2785&quot; &quot;2786&quot; &quot;2789&quot; &quot;2790&quot; &quot;2792&quot; &quot;2793&quot; &quot;2794&quot; &quot;2795&quot; &quot;2796&quot;
+## [1611] &quot;2797&quot; &quot;2798&quot; &quot;2799&quot; &quot;2800&quot; &quot;2801&quot; &quot;2802&quot; &quot;2803&quot; &quot;2804&quot; &quot;2805&quot; &quot;2806&quot;
+## [1621] &quot;2807&quot; &quot;2809&quot; &quot;2810&quot; &quot;2811&quot; &quot;2813&quot; &quot;2814&quot; &quot;2815&quot; &quot;2816&quot; &quot;2817&quot; &quot;2818&quot;
+## [1631] &quot;2820&quot; &quot;2821&quot; &quot;2822&quot; &quot;2823&quot; &quot;2824&quot; &quot;2826&quot; &quot;2827&quot; &quot;2829&quot; &quot;2830&quot; &quot;2831&quot;
+## [1641] &quot;2832&quot; &quot;2833&quot; &quot;2834&quot; &quot;2835&quot; &quot;2836&quot; &quot;2837&quot; &quot;2838&quot; &quot;2840&quot; &quot;2841&quot; &quot;2842&quot;
+## [1651] &quot;2843&quot; &quot;2845&quot; &quot;2846&quot; &quot;2847&quot; &quot;2848&quot; &quot;2849&quot; &quot;2850&quot; &quot;2851&quot; &quot;2852&quot; &quot;2853&quot;
+## [1661] &quot;2854&quot; &quot;2856&quot; &quot;2857&quot; &quot;2858&quot; &quot;2859&quot; &quot;2860&quot; &quot;2861&quot; &quot;2862&quot; &quot;2863&quot; &quot;2864&quot;
+## [1671] &quot;2865&quot; &quot;2866&quot; &quot;2867&quot; &quot;2868&quot; &quot;2870&quot; &quot;2871&quot; &quot;2872&quot; &quot;2873&quot; &quot;2875&quot; &quot;2878&quot;
+## [1681] &quot;2879&quot; &quot;2881&quot; &quot;2882&quot; &quot;2883&quot; &quot;2884&quot; &quot;2885&quot; &quot;2886&quot; &quot;2887&quot; &quot;2888&quot; &quot;2892&quot;
+## [1691] &quot;2893&quot; &quot;2894&quot; &quot;2896&quot; &quot;2899&quot; &quot;2900&quot; &quot;2901&quot; &quot;2902&quot; &quot;2903&quot; &quot;2905&quot; &quot;2906&quot;
+## [1701] &quot;2907&quot; &quot;2909&quot; &quot;2910&quot; &quot;2911&quot; &quot;2913&quot; &quot;2914&quot; &quot;2915&quot; &quot;2916&quot; &quot;2917&quot; &quot;2918&quot;
+## [1711] &quot;2920&quot; &quot;2921&quot; &quot;2922&quot; &quot;2923&quot; &quot;2924&quot; &quot;2925&quot; &quot;2926&quot; &quot;2927&quot; &quot;2928&quot; &quot;2929&quot;
+## [1721] &quot;2930&quot; &quot;2931&quot; &quot;2932&quot; &quot;2934&quot; &quot;2935&quot; &quot;2936&quot; &quot;2937&quot; &quot;2938&quot; &quot;2939&quot; &quot;2940&quot;
+## [1731] &quot;2941&quot; &quot;2942&quot; &quot;2943&quot; &quot;2945&quot; &quot;2946&quot; &quot;2947&quot; &quot;2948&quot; &quot;2949&quot; &quot;2950&quot; &quot;2951&quot;
+## [1741] &quot;2953&quot; &quot;2954&quot; &quot;2956&quot; &quot;2958&quot; &quot;2959&quot; &quot;2960&quot; &quot;2961&quot; &quot;2962&quot; &quot;2964&quot; &quot;2965&quot;
+## [1751] &quot;2966&quot; &quot;2967&quot; &quot;2968&quot; &quot;2969&quot; &quot;2970&quot; &quot;2972&quot; &quot;2973&quot; &quot;2974&quot; &quot;2975&quot; &quot;2976&quot;
+## [1761] &quot;2977&quot; &quot;2978&quot; &quot;2982&quot; &quot;2983&quot; &quot;2984&quot; &quot;2986&quot; &quot;2987&quot; &quot;2988&quot; &quot;2989&quot; &quot;2990&quot;
+## [1771] &quot;2991&quot; &quot;2992&quot; &quot;2993&quot; &quot;2995&quot; &quot;2996&quot; &quot;2997&quot; &quot;2998&quot; &quot;2999&quot; &quot;3000&quot; &quot;3001&quot;
+## [1781] &quot;3002&quot; &quot;3003&quot; &quot;3004&quot; &quot;3006&quot; &quot;3007&quot; &quot;3008&quot; &quot;3009&quot; &quot;3010&quot; &quot;3011&quot; &quot;3012&quot;
+## [1791] &quot;3013&quot; &quot;3014&quot; &quot;3015&quot; &quot;3016&quot; &quot;3018&quot; &quot;3019&quot; &quot;3020&quot; &quot;3021&quot; &quot;3023&quot; &quot;3024&quot;
+## [1801] &quot;3028&quot; &quot;3029&quot; &quot;3030&quot; &quot;3032&quot; &quot;3033&quot; &quot;3034&quot; &quot;3035&quot; &quot;3036&quot; &quot;3037&quot; &quot;3038&quot;
+## [1811] &quot;3039&quot; &quot;3040&quot; &quot;3041&quot; &quot;3043&quot; &quot;3044&quot; &quot;3045&quot; &quot;3046&quot; &quot;3047&quot; &quot;3048&quot; &quot;3049&quot;
+## [1821] &quot;3050&quot; &quot;3052&quot; &quot;3054&quot; &quot;3055&quot; &quot;3058&quot; &quot;3059&quot; &quot;3063&quot; &quot;3065&quot; &quot;3066&quot; &quot;3067&quot;
+## [1831] &quot;3068&quot; &quot;3069&quot; &quot;3071&quot; &quot;3072&quot; &quot;3073&quot; &quot;3075&quot; &quot;3076&quot; &quot;3078&quot; &quot;3079&quot; &quot;3080&quot;
+## [1841] &quot;3082&quot; &quot;3083&quot; &quot;3084&quot; &quot;3085&quot; &quot;3086&quot; &quot;3087&quot; &quot;3088&quot; &quot;3089&quot; &quot;3090&quot; &quot;3092&quot;
+## [1851] &quot;3093&quot; &quot;3095&quot; &quot;3098&quot; &quot;3099&quot; &quot;3100&quot; &quot;3102&quot; &quot;3103&quot; &quot;3105&quot; &quot;3106&quot; &quot;3107&quot;
+## [1861] &quot;3108&quot; &quot;3111&quot; &quot;3112&quot; &quot;3113&quot; &quot;3114&quot; &quot;3115&quot; &quot;3117&quot; &quot;3118&quot; &quot;3119&quot; &quot;3121&quot;
+## [1871] &quot;3126&quot; &quot;3128&quot; &quot;3129&quot; &quot;3130&quot; &quot;3132&quot; &quot;3133&quot; &quot;3134&quot; &quot;3135&quot; &quot;3136&quot; &quot;3137&quot;
+## [1881] &quot;3138&quot; &quot;3139&quot; &quot;3140&quot; &quot;3141&quot; &quot;3143&quot; &quot;3144&quot; &quot;3145&quot; &quot;3147&quot; &quot;3149&quot; &quot;3150&quot;
+## [1891] &quot;3152&quot; &quot;3153&quot; &quot;3156&quot; &quot;3158&quot; &quot;3159&quot; &quot;3160&quot; &quot;3161&quot; &quot;3162&quot; &quot;3165&quot; &quot;3166&quot;
+## [1901] &quot;3168&quot; &quot;3169&quot; &quot;3170&quot; &quot;3174&quot; &quot;3176&quot; &quot;3178&quot; &quot;3180&quot; &quot;3181&quot; &quot;3182&quot; &quot;3184&quot;
+## [1911] &quot;3185&quot; &quot;3186&quot; &quot;3188&quot; &quot;3189&quot; &quot;3190&quot; &quot;3193&quot; &quot;3194&quot; &quot;3195&quot; &quot;3196&quot; &quot;3197&quot;
+## [1921] &quot;3198&quot; &quot;3199&quot; &quot;3200&quot; &quot;3201&quot; &quot;3204&quot; &quot;3205&quot; &quot;3206&quot; &quot;3207&quot; &quot;3208&quot; &quot;3209&quot;
+## [1931] &quot;3210&quot; &quot;3212&quot; &quot;3216&quot; &quot;3217&quot; &quot;3218&quot; &quot;3220&quot; &quot;3221&quot; &quot;3222&quot; &quot;3223&quot; &quot;3225&quot;
+## [1941] &quot;3226&quot; &quot;3228&quot; &quot;3229&quot; &quot;3231&quot; &quot;3232&quot; &quot;3233&quot; &quot;3234&quot; &quot;3236&quot; &quot;3237&quot; &quot;3238&quot;
+## [1951] &quot;3239&quot; &quot;3241&quot; &quot;3242&quot; &quot;3243&quot; &quot;3244&quot; &quot;3245&quot; &quot;3246&quot; &quot;3247&quot; &quot;3253&quot; &quot;3254&quot;
+## [1961] &quot;3255&quot; &quot;3256&quot; &quot;3258&quot; &quot;3259&quot; &quot;3260&quot; &quot;3262&quot; &quot;3264&quot; &quot;3266&quot; &quot;3268&quot; &quot;3269&quot;
+## [1971] &quot;3271&quot; &quot;3274&quot; &quot;3275&quot; &quot;3277&quot; &quot;3279&quot; &quot;3280&quot; &quot;3281&quot; &quot;3282&quot; &quot;3283&quot; &quot;3284&quot;
+## [1981] &quot;3285&quot; &quot;3286&quot; &quot;3287&quot; &quot;3288&quot; &quot;3289&quot; &quot;3290&quot; &quot;3291&quot; &quot;3292&quot; &quot;3294&quot; &quot;3295&quot;
+## [1991] &quot;3299&quot; &quot;3302&quot; &quot;3303&quot; &quot;3304&quot; &quot;3305&quot; &quot;3307&quot; &quot;3309&quot; &quot;3310&quot; &quot;3314&quot; &quot;3315&quot;
+## [2001] &quot;3316&quot; &quot;3317&quot; &quot;3319&quot; &quot;3321&quot; &quot;3322&quot; &quot;3323&quot; &quot;3324&quot; &quot;3325&quot; &quot;3326&quot; &quot;3327&quot;
+## [2011] &quot;3329&quot; &quot;3330&quot; &quot;3331&quot; &quot;3334&quot; &quot;3335&quot; &quot;3336&quot; &quot;3337&quot; &quot;3340&quot; &quot;3341&quot; &quot;3342&quot;
+## [2021] &quot;3343&quot; &quot;3345&quot; &quot;3346&quot; &quot;3349&quot; &quot;3351&quot; &quot;3352&quot; &quot;3355&quot; &quot;3356&quot; &quot;3357&quot; &quot;3358&quot;
+## [2031] &quot;3359&quot; &quot;3361&quot; &quot;3364&quot; &quot;3368&quot; &quot;3371&quot; &quot;3374&quot; &quot;3376&quot; &quot;3378&quot; &quot;3379&quot; &quot;3382&quot;
+## [2041] &quot;3384&quot; &quot;3387&quot; &quot;3388&quot; &quot;3390&quot; &quot;3392&quot; &quot;3393&quot; &quot;3394&quot; &quot;3395&quot; &quot;3397&quot; &quot;3398&quot;
+## [2051] &quot;3399&quot; &quot;3402&quot; &quot;3403&quot; &quot;3404&quot; &quot;3405&quot; &quot;3407&quot; &quot;3408&quot; &quot;3411&quot; &quot;3413&quot; &quot;3415&quot;
+## [2061] &quot;3416&quot; &quot;3417&quot; &quot;3418&quot; &quot;3419&quot; &quot;3420&quot; &quot;3421&quot; &quot;3422&quot; &quot;3423&quot; &quot;3424&quot; &quot;3425&quot;
+## [2071] &quot;3426&quot; &quot;3427&quot; &quot;3428&quot; &quot;3429&quot; &quot;3431&quot; &quot;3432&quot; &quot;3434&quot; &quot;3435&quot; &quot;3439&quot; &quot;3443&quot;
+## [2081] &quot;3444&quot; &quot;3445&quot; &quot;3447&quot; &quot;3449&quot; &quot;3450&quot; &quot;3451&quot; &quot;3452&quot; &quot;3454&quot; &quot;3456&quot; &quot;3457&quot;
+## [2091] &quot;3458&quot; &quot;3460&quot; &quot;3462&quot; &quot;3464&quot; &quot;3466&quot; &quot;3470&quot; &quot;3471&quot; &quot;3472&quot; &quot;3479&quot; &quot;3481&quot;
+## [2101] &quot;3482&quot; &quot;3483&quot; &quot;3485&quot; &quot;3491&quot; &quot;3492&quot; &quot;3493&quot; &quot;3494&quot; &quot;3495&quot; &quot;3497&quot; &quot;3503&quot;
+## [2111] &quot;3505&quot; &quot;3507&quot; &quot;3510&quot; &quot;3511&quot; &quot;3513&quot; &quot;3514&quot; &quot;3515&quot; &quot;3517&quot; &quot;3518&quot; &quot;3521&quot;
+## [2121] &quot;3522&quot; &quot;3525&quot; &quot;3527&quot; &quot;3529&quot; &quot;3532&quot; &quot;3533&quot; &quot;3536&quot; &quot;3539&quot; &quot;3540&quot; &quot;3541&quot;
+## [2131] &quot;3543&quot; &quot;3546&quot; &quot;3552&quot; &quot;3553&quot; &quot;3554&quot; &quot;3555&quot; &quot;3556&quot; &quot;3557&quot; &quot;3558&quot; &quot;3559&quot;
+## [2141] &quot;3560&quot; &quot;3562&quot; &quot;3563&quot; &quot;3565&quot; &quot;3567&quot; &quot;3568&quot; &quot;3570&quot; &quot;3573&quot; &quot;3575&quot; &quot;3578&quot;
+## [2151] &quot;3582&quot; &quot;3583&quot; &quot;3584&quot; &quot;3585&quot; &quot;3586&quot; &quot;3588&quot; &quot;3589&quot; &quot;3595&quot; &quot;3596&quot; &quot;3597&quot;
+## [2161] &quot;3599&quot; &quot;3600&quot; &quot;3602&quot; &quot;3604&quot; &quot;3607&quot; &quot;3608&quot; &quot;3610&quot; &quot;3613&quot; &quot;3618&quot; &quot;3619&quot;
+## [2171] &quot;3622&quot; &quot;3624&quot; &quot;3626&quot; &quot;3631&quot; &quot;3632&quot; &quot;3634&quot; &quot;3635&quot; &quot;3636&quot; &quot;3639&quot; &quot;3640&quot;
+## [2181] &quot;3646&quot; &quot;3647&quot; &quot;3648&quot; &quot;3651&quot; &quot;3654&quot; &quot;3655&quot; &quot;3656&quot; &quot;3657&quot; &quot;3660&quot; &quot;3661&quot;
+## [2191] &quot;3662&quot; &quot;3664&quot; &quot;3665&quot; &quot;3672&quot; &quot;3675&quot; &quot;3676&quot; &quot;3679&quot; &quot;3680&quot; &quot;3681&quot; &quot;3685&quot;
+## [2201] &quot;3687&quot; &quot;3690&quot; &quot;3693&quot; &quot;3695&quot; &quot;3699&quot; &quot;3702&quot; &quot;3703&quot; &quot;3705&quot; &quot;3706&quot; &quot;3709&quot;
+## [2211] &quot;3711&quot; &quot;3713&quot; &quot;3714&quot; &quot;3715&quot; &quot;3720&quot; &quot;3724&quot; &quot;3729&quot; &quot;3730&quot; &quot;3731&quot; &quot;3732&quot;
+## [2221] &quot;3733&quot; &quot;3734&quot; &quot;3735&quot; &quot;3738&quot; &quot;3742&quot; &quot;3743&quot; &quot;3746&quot; &quot;3747&quot; &quot;3748&quot; &quot;3751&quot;
+## [2231] &quot;3753&quot; &quot;3754&quot; &quot;3758&quot; &quot;3764&quot; &quot;3765&quot; &quot;3767&quot; &quot;3768&quot; &quot;3769&quot; &quot;3770&quot; &quot;3779&quot;
+## [2241] &quot;3781&quot; &quot;3784&quot; &quot;3787&quot; &quot;3790&quot; &quot;3792&quot; &quot;3793&quot; &quot;3795&quot; &quot;3796&quot; &quot;3799&quot; &quot;3800&quot;
+## [2251] &quot;3801&quot; &quot;3805&quot; &quot;3806&quot; &quot;3807&quot; &quot;3811&quot; &quot;3812&quot; &quot;3814&quot; &quot;3815&quot; &quot;3822&quot; &quot;3824&quot;
+## [2261] &quot;3826&quot; &quot;3827&quot; &quot;3831&quot; &quot;3834&quot; &quot;3835&quot; &quot;3836&quot; &quot;3841&quot; &quot;3843&quot; &quot;3846&quot; &quot;3848&quot;
+## [2271] &quot;3849&quot; &quot;3851&quot; &quot;3853&quot; &quot;3856&quot; &quot;3857&quot; &quot;3858&quot; &quot;3859&quot; &quot;3860&quot; &quot;3861&quot; &quot;3863&quot;
+## [2281] &quot;3864&quot; &quot;3867&quot; &quot;3872&quot; &quot;3874&quot; &quot;3875&quot; &quot;3876&quot; &quot;3878&quot; &quot;3879&quot; &quot;3883&quot; &quot;3884&quot;
+## [2291] &quot;3886&quot; &quot;3891&quot; &quot;3892&quot; &quot;3893&quot; &quot;3897&quot; &quot;3898&quot; &quot;3903&quot; &quot;3904&quot; &quot;3905&quot; &quot;3910&quot;
+## [2301] &quot;3915&quot; &quot;3916&quot; &quot;3917&quot; &quot;3919&quot; &quot;3921&quot; &quot;3923&quot; &quot;3925&quot; &quot;3926&quot; &quot;3930&quot; &quot;3932&quot;
+## [2311] &quot;3936&quot; &quot;3941&quot; &quot;3944&quot; &quot;3945&quot; &quot;3947&quot; &quot;3948&quot; &quot;3951&quot; &quot;3952&quot; &quot;3953&quot; &quot;3954&quot;
+## [2321] &quot;3956&quot; &quot;3957&quot; &quot;3958&quot; &quot;3960&quot; &quot;3961&quot; &quot;3962&quot; &quot;3963&quot; &quot;3964&quot; &quot;3966&quot; &quot;3967&quot;
+## [2331] &quot;3968&quot; &quot;3972&quot; &quot;3974&quot; &quot;3975&quot; &quot;3977&quot; &quot;3978&quot; &quot;3980&quot; &quot;3983&quot; &quot;3984&quot; &quot;3985&quot;
+## [2341] &quot;3986&quot; &quot;3988&quot; &quot;3989&quot; &quot;3990&quot; &quot;3992&quot; &quot;3999&quot; &quot;4002&quot; &quot;4005&quot; &quot;4008&quot; &quot;4012&quot;
+## [2351] &quot;4013&quot; &quot;4015&quot; &quot;4019&quot; &quot;4027&quot; &quot;4028&quot; &quot;4030&quot; &quot;4032&quot; &quot;4033&quot; &quot;4034&quot; &quot;4038&quot;
+## [2361] &quot;4039&quot; &quot;4041&quot; &quot;4043&quot; &quot;4044&quot; &quot;4050&quot; &quot;4059&quot; &quot;4061&quot; &quot;4063&quot; &quot;4064&quot; &quot;4065&quot;
+## [2371] &quot;4070&quot; &quot;4071&quot; &quot;4073&quot; &quot;4078&quot; &quot;4080&quot; &quot;4082&quot; &quot;4083&quot; &quot;4087&quot; &quot;4088&quot; &quot;4089&quot;
+## [2381] &quot;4090&quot; &quot;4093&quot; &quot;4094&quot; &quot;4096&quot; &quot;4098&quot; &quot;4102&quot; &quot;4105&quot; &quot;4106&quot; &quot;4108&quot; &quot;4111&quot;
+## [2391] &quot;4113&quot; &quot;4114&quot; &quot;4116&quot; &quot;4119&quot; &quot;4120&quot; &quot;4122&quot; &quot;4126&quot; &quot;4129&quot; &quot;4134&quot; &quot;4136&quot;
+## [2401] &quot;4144&quot; &quot;4147&quot; &quot;4151&quot; &quot;4153&quot; &quot;4161&quot; &quot;4164&quot; &quot;4165&quot; &quot;4172&quot; &quot;4179&quot; &quot;4182&quot;
+## [2411] &quot;4183&quot; &quot;4185&quot; &quot;4190&quot; &quot;4191&quot; &quot;4192&quot; &quot;4193&quot; &quot;4195&quot; &quot;4197&quot; &quot;4206&quot; &quot;4207&quot;
+## [2421] &quot;4211&quot; &quot;4212&quot; &quot;4213&quot; &quot;4220&quot; &quot;4222&quot; &quot;4224&quot; &quot;4230&quot; &quot;4231&quot; &quot;4235&quot; &quot;4244&quot;
+## [2431] &quot;4246&quot; &quot;4254&quot; &quot;4256&quot; &quot;4258&quot; &quot;4262&quot; &quot;4264&quot; &quot;4268&quot; &quot;4270&quot; &quot;4276&quot; &quot;4278&quot;
+## [2441] &quot;4284&quot; &quot;4286&quot; &quot;4287&quot; &quot;4295&quot; &quot;4296&quot; &quot;4300&quot; &quot;4302&quot; &quot;4303&quot; &quot;4309&quot; &quot;4314&quot;
+## [2451] &quot;4315&quot; &quot;4317&quot; &quot;4319&quot; &quot;4321&quot; &quot;4325&quot; &quot;4326&quot; &quot;4327&quot; &quot;4331&quot; &quot;4332&quot; &quot;4339&quot;
+## [2461] &quot;4340&quot; &quot;4343&quot; &quot;4349&quot; &quot;4355&quot; &quot;4356&quot; &quot;4358&quot; &quot;4361&quot; &quot;4364&quot; &quot;4370&quot; &quot;4372&quot;
+## [2471] &quot;4378&quot; &quot;4379&quot; &quot;4383&quot; &quot;4384&quot; &quot;4388&quot; &quot;4393&quot; &quot;4394&quot; &quot;4396&quot; &quot;4400&quot; &quot;4401&quot;
+## [2481] &quot;4402&quot; &quot;4418&quot; &quot;4420&quot; &quot;4426&quot; &quot;4431&quot; &quot;4432&quot; &quot;4433&quot; &quot;4436&quot; &quot;4438&quot; &quot;4443&quot;
+## [2491] &quot;4452&quot; &quot;4457&quot; &quot;4460&quot; &quot;4465&quot; &quot;4467&quot; &quot;4468&quot; &quot;4472&quot; &quot;4482&quot; &quot;4489&quot; &quot;4490&quot;
+## [2501] &quot;4492&quot; &quot;4504&quot; &quot;4507&quot; &quot;4508&quot; &quot;4509&quot; &quot;4523&quot; &quot;4527&quot; &quot;4529&quot; &quot;4530&quot; &quot;4535&quot;
+## [2511] &quot;4536&quot; &quot;4537&quot; &quot;4538&quot; &quot;4539&quot; &quot;4540&quot; &quot;4544&quot; &quot;4546&quot; &quot;4548&quot; &quot;4549&quot; &quot;4551&quot;
+## [2521] &quot;4557&quot; &quot;4561&quot; &quot;4572&quot; &quot;4575&quot; &quot;4576&quot; &quot;4583&quot; &quot;4586&quot; &quot;4588&quot; &quot;4589&quot; &quot;4590&quot;
+## [2531] &quot;4597&quot; &quot;4603&quot; &quot;4610&quot; &quot;4632&quot; &quot;4636&quot; &quot;4639&quot; &quot;4642&quot; &quot;4645&quot; &quot;4656&quot; &quot;4671&quot;
+## [2541] &quot;4673&quot; &quot;4675&quot; &quot;4677&quot; &quot;4685&quot; &quot;4686&quot; &quot;4697&quot; &quot;4699&quot; &quot;4707&quot; &quot;4709&quot; &quot;4710&quot;
+## [2551] &quot;4712&quot; &quot;4714&quot; &quot;4716&quot; &quot;4728&quot; &quot;4731&quot; &quot;4732&quot; &quot;4735&quot; &quot;4742&quot; &quot;4754&quot; &quot;4756&quot;
+## [2561] &quot;4757&quot; &quot;4758&quot; &quot;4760&quot; &quot;4778&quot; &quot;4779&quot; &quot;4784&quot; &quot;4785&quot; &quot;4786&quot; &quot;4787&quot; &quot;4796&quot;
+## [2571] &quot;4797&quot; &quot;4798&quot; &quot;4806&quot; &quot;4813&quot; &quot;4816&quot; &quot;4818&quot; &quot;4825&quot; &quot;4831&quot; &quot;4832&quot; &quot;4837&quot;
+## [2581] &quot;4839&quot; &quot;4840&quot; &quot;4853&quot; &quot;4859&quot; &quot;4862&quot; &quot;4866&quot; &quot;4868&quot; &quot;4875&quot; &quot;4894&quot; &quot;4897&quot;
+## [2591] &quot;4912&quot; &quot;4914&quot; &quot;4916&quot; &quot;4925&quot; &quot;4927&quot; &quot;4932&quot; &quot;4935&quot; &quot;4938&quot; &quot;4947&quot; &quot;4950&quot;
+## [2601] &quot;4961&quot; &quot;4972&quot; &quot;4976&quot; &quot;4977&quot; &quot;4996&quot; &quot;5023&quot; &quot;5031&quot; &quot;5053&quot; &quot;5055&quot; &quot;5060&quot;
+## [2611] &quot;5067&quot; &quot;5068&quot; &quot;5069&quot; &quot;5070&quot; &quot;5075&quot; &quot;5077&quot; &quot;5084&quot; &quot;5094&quot; &quot;5101&quot; &quot;5109&quot;
+## [2621] &quot;5110&quot; &quot;5112&quot; &quot;5115&quot; &quot;5119&quot; &quot;5167&quot; &quot;5181&quot; &quot;5188&quot; &quot;5189&quot; &quot;5197&quot; &quot;5233&quot;
+## [2631] &quot;5245&quot; &quot;5250&quot; &quot;5257&quot; &quot;5259&quot; &quot;5286&quot; &quot;5287&quot; &quot;5290&quot; &quot;5291&quot; &quot;5294&quot; &quot;5302&quot;
+## [2641] &quot;5323&quot; &quot;5342&quot; &quot;5346&quot; &quot;5353&quot; &quot;5354&quot; &quot;5369&quot; &quot;5370&quot; &quot;5385&quot; &quot;5387&quot; &quot;5429&quot;
+## [2651] &quot;5435&quot; &quot;5443&quot; &quot;5446&quot; &quot;5447&quot; &quot;5463&quot; &quot;5511&quot; &quot;5531&quot; &quot;5540&quot; &quot;5553&quot; &quot;5555&quot;
+## [2661] &quot;5562&quot; &quot;5564&quot; &quot;5568&quot; &quot;5606&quot; &quot;5659&quot; &quot;5680&quot; &quot;5682&quot; &quot;5708&quot; &quot;5709&quot; &quot;5785&quot;
+## [2671] &quot;5809&quot; &quot;5834&quot; &quot;5836&quot; &quot;5847&quot; &quot;5849&quot; &quot;5869&quot; &quot;5873&quot; &quot;5913&quot; &quot;5924&quot; &quot;5936&quot;
+## [2681] &quot;5937&quot; &quot;5980&quot; &quot;6005&quot; &quot;6006&quot; &quot;6011&quot; &quot;6022&quot; &quot;6035&quot; &quot;6069&quot; &quot;6099&quot; &quot;6143&quot;
+## [2691] &quot;6150&quot; &quot;6190&quot; &quot;6273&quot; &quot;6338&quot; &quot;6364&quot; &quot;6416&quot; &quot;6425&quot; &quot;6435&quot; &quot;644&quot;  &quot;645&quot; 
+## [2701] &quot;6459&quot; &quot;6472&quot; &quot;6473&quot; &quot;6504&quot; &quot;662&quot;  &quot;6643&quot; &quot;665&quot;  &quot;6661&quot; &quot;6688&quot; &quot;669&quot; 
+## [2711] &quot;671&quot;  &quot;6717&quot; &quot;672&quot;  &quot;6749&quot; &quot;675&quot;  &quot;677&quot;  &quot;678&quot;  &quot;679&quot;  &quot;680&quot;  &quot;681&quot; 
+## [2721] &quot;682&quot;  &quot;6823&quot; &quot;683&quot;  &quot;684&quot;  &quot;685&quot;  &quot;686&quot;  &quot;687&quot;  &quot;689&quot;  &quot;6892&quot; &quot;690&quot; 
+## [2731] &quot;691&quot;  &quot;692&quot;  &quot;693&quot;  &quot;694&quot;  &quot;695&quot;  &quot;696&quot;  &quot;697&quot;  &quot;6976&quot; &quot;698&quot;  &quot;699&quot; 
+## [2741] &quot;6996&quot; &quot;700&quot;  &quot;701&quot;  &quot;702&quot;  &quot;703&quot;  &quot;704&quot;  &quot;705&quot;  &quot;706&quot;  &quot;707&quot;  &quot;708&quot; 
+## [2751] &quot;709&quot;  &quot;7093&quot; &quot;710&quot;  &quot;711&quot;  &quot;712&quot;  &quot;713&quot;  &quot;714&quot;  &quot;715&quot;  &quot;716&quot;  &quot;717&quot; 
+## [2761] &quot;718&quot;  &quot;719&quot;  &quot;720&quot;  &quot;721&quot;  &quot;722&quot;  &quot;723&quot;  &quot;724&quot;  &quot;725&quot;  &quot;726&quot;  &quot;727&quot; 
+## [2771] &quot;728&quot;  &quot;729&quot;  &quot;730&quot;  &quot;731&quot;  &quot;732&quot;  &quot;733&quot;  &quot;734&quot;  &quot;735&quot;  &quot;736&quot;  &quot;737&quot; 
+## [2781] &quot;738&quot;  &quot;739&quot;  &quot;740&quot;  &quot;741&quot;  &quot;742&quot;  &quot;743&quot;  &quot;744&quot;  &quot;745&quot;  &quot;746&quot;  &quot;747&quot; 
+## [2791] &quot;748&quot;  &quot;749&quot;  &quot;750&quot;  &quot;751&quot;  &quot;752&quot;  &quot;753&quot;  &quot;754&quot;  &quot;755&quot;  &quot;756&quot;  &quot;757&quot; 
+## [2801] &quot;758&quot;  &quot;759&quot;  &quot;760&quot;  &quot;761&quot;  &quot;762&quot;  &quot;763&quot;  &quot;764&quot;  &quot;765&quot;  &quot;766&quot;  &quot;767&quot; 
+## [2811] &quot;768&quot;  &quot;769&quot;  &quot;770&quot;  &quot;771&quot;  &quot;772&quot;  &quot;773&quot;  &quot;774&quot;  &quot;775&quot;  &quot;776&quot;  &quot;777&quot; 
+## [2821] &quot;778&quot;  &quot;779&quot;  &quot;780&quot;  &quot;781&quot;  &quot;782&quot;  &quot;783&quot;  &quot;784&quot;  &quot;785&quot;  &quot;786&quot;  &quot;787&quot; 
+## [2831] &quot;788&quot;  &quot;789&quot;  &quot;790&quot;  &quot;7905&quot; &quot;791&quot;  &quot;792&quot;  &quot;793&quot;  &quot;794&quot;  &quot;795&quot;  &quot;796&quot; 
+## [2841] &quot;797&quot;  &quot;798&quot;  &quot;799&quot;  &quot;800&quot;  &quot;801&quot;  &quot;802&quot;  &quot;803&quot;  &quot;804&quot;  &quot;805&quot;  &quot;806&quot; 
+## [2851] &quot;807&quot;  &quot;808&quot;  &quot;809&quot;  &quot;810&quot;  &quot;811&quot;  &quot;812&quot;  &quot;813&quot;  &quot;814&quot;  &quot;815&quot;  &quot;816&quot; 
+## [2861] &quot;817&quot;  &quot;818&quot;  &quot;819&quot;  &quot;820&quot;  &quot;821&quot;  &quot;822&quot;  &quot;823&quot;  &quot;824&quot;  &quot;825&quot;  &quot;826&quot; 
+## [2871] &quot;827&quot;  &quot;828&quot;  &quot;829&quot;  &quot;830&quot;  &quot;831&quot;  &quot;832&quot;  &quot;833&quot;  &quot;834&quot;  &quot;835&quot;  &quot;836&quot; 
+## [2881] &quot;837&quot;  &quot;838&quot;  &quot;839&quot;  &quot;840&quot;  &quot;841&quot;  &quot;842&quot;  &quot;843&quot;  &quot;844&quot;  &quot;845&quot;  &quot;846&quot; 
+## [2891] &quot;847&quot;  &quot;848&quot;  &quot;849&quot;  &quot;850&quot;  &quot;851&quot;  &quot;852&quot;  &quot;853&quot;  &quot;854&quot;  &quot;855&quot;  &quot;856&quot; 
+## [2901] &quot;857&quot;  &quot;858&quot;  &quot;859&quot;  &quot;860&quot;  &quot;861&quot;  &quot;862&quot;  &quot;863&quot;  &quot;864&quot;  &quot;865&quot;  &quot;866&quot; 
+## [2911] &quot;867&quot;  &quot;868&quot;  &quot;869&quot;  &quot;870&quot;  &quot;871&quot;  &quot;872&quot;  &quot;873&quot;  &quot;874&quot;  &quot;875&quot;  &quot;876&quot; 
+## [2921] &quot;877&quot;  &quot;878&quot;  &quot;879&quot;  &quot;880&quot;  &quot;881&quot;  &quot;882&quot;  &quot;883&quot;  &quot;884&quot;  &quot;885&quot;  &quot;886&quot; 
+## [2931] &quot;887&quot;  &quot;888&quot;  &quot;889&quot;  &quot;890&quot;  &quot;891&quot;  &quot;892&quot;  &quot;893&quot;  &quot;894&quot;  &quot;895&quot;  &quot;896&quot; 
+## [2941] &quot;897&quot;  &quot;898&quot;  &quot;899&quot;  &quot;900&quot;  &quot;901&quot;  &quot;902&quot;  &quot;903&quot;  &quot;904&quot;  &quot;905&quot;  &quot;906&quot; 
+## [2951] &quot;907&quot;  &quot;908&quot;  &quot;909&quot;  &quot;910&quot;  &quot;911&quot;  &quot;912&quot;  &quot;913&quot;  &quot;914&quot;  &quot;915&quot;  &quot;916&quot; 
+## [2961] &quot;917&quot;  &quot;918&quot;  &quot;919&quot;  &quot;920&quot;  &quot;921&quot;  &quot;922&quot;  &quot;923&quot;  &quot;924&quot;  &quot;925&quot;  &quot;926&quot; 
+## [2971] &quot;927&quot;  &quot;928&quot;  &quot;929&quot;  &quot;930&quot;  &quot;931&quot;  &quot;932&quot;  &quot;933&quot;  &quot;934&quot;  &quot;935&quot;  &quot;936&quot; 
+## [2981] &quot;937&quot;  &quot;938&quot;  &quot;939&quot;  &quot;940&quot;  &quot;941&quot;  &quot;942&quot;  &quot;943&quot;  &quot;944&quot;  &quot;945&quot;  &quot;946&quot; 
+## [2991] &quot;947&quot;  &quot;948&quot;  &quot;949&quot;  &quot;950&quot;  &quot;951&quot;  &quot;952&quot;  &quot;953&quot;  &quot;954&quot;  &quot;955&quot;  &quot;956&quot; 
+## [3001] &quot;957&quot;  &quot;958&quot;  &quot;959&quot;  &quot;960&quot;  &quot;961&quot;  &quot;962&quot;  &quot;963&quot;  &quot;964&quot;  &quot;965&quot;  &quot;966&quot; 
+## [3011] &quot;967&quot;  &quot;968&quot;  &quot;969&quot;  &quot;970&quot;  &quot;971&quot;  &quot;972&quot;  &quot;973&quot;  &quot;974&quot;  &quot;975&quot;  &quot;976&quot; 
+## [3021] &quot;977&quot;  &quot;978&quot;  &quot;979&quot;  &quot;980&quot;  &quot;981&quot;  &quot;982&quot;  &quot;983&quot;  &quot;984&quot;  &quot;985&quot;  &quot;986&quot; 
+## [3031] &quot;987&quot;  &quot;988&quot;  &quot;989&quot;  &quot;990&quot;  &quot;991&quot;  &quot;992&quot;  &quot;993&quot;  &quot;994&quot;  &quot;995&quot;  &quot;996&quot; 
+## [3041] &quot;997&quot;  &quot;998&quot;  &quot;999&quot;  &quot;x&quot;
+</code></pre>
+
+<pre><code class="r"># can we handle that with read.table?
+# help(read.table)
+
+rta2 &lt;- read.table(&quot;../data/RTAData.csv&quot;, sep = &quot;,&quot;, head = TRUE, 
+      na.strings = c(&#39;NA&#39;, &#39;x&#39;))
+unlist(lapply(rta2, class))[1:5]
+</code></pre>
+
+<pre><code>##        time      X40010      X40015      X40020      X40025 
+## &quot;character&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;
+</code></pre>
+
+<pre><code class="r"># checking...
+sum(is.na( rta2[ , 2] ))
+</code></pre>
+
+<pre><code>## [1] 24507
+</code></pre>
+
+<pre><code class="r">sum( rta[ , 2] %in% c(&#39;&#39;,&#39;x&#39;))
+</code></pre>
+
+<pre><code>## [1] 24507
+</code></pre>
+
+<p>It&#39;s good to first look at your data in plain text format outside of R and then to check it after you&#39;ve read it into R.</p>
+
+<h1>Other ways to read data into R</h1>
+
+<p>The <em>read.table()</em> family of functions just skims the surface of things&hellip;</p>
+
+<p>1) You can also read in a file as vector of characters, one character string per line of the file with <em>readLines()</em>, and then post-process it. 
+2) You can read fixed width format (constant number of characters per field) with <em>read.fwf()</em>.
+3) <em>read_csv()</em> (and <em>read_lines()</em>, <em>read_fwf()</em>, etc.) in the <em>readr</em> package is a faster, more helpful drop-in replacement for <em>read.csv()</em> that plays well with <em>dplyr</em> (see Module 5).
+4) the <em>data.table</em> package is great for reading and manipulating large datasets (orders of gigabytes or 10s of gigabytes).</p>
+
+<h1>Breakout</h1>
+
+<h3>Basics</h3>
+
+<p>1) Extract the 5th row from the gapminder dataset.</p>
+
+<p>2) Extract the last row from the gapminder dataset.</p>
+
+<p>3) Count the number of gdpPercap values greater than 50000 in the gapminder dataset.</p>
+
+<p>4) Set all of the gdpPercap values greater than 50000 to NA. You should probably first copy the <code>gap</code> object and work on the copy so that the dataset is unchanged (or just read the data into R again afterwards to get a clean copy).</p>
+
+<p>5) Consider the first row of the gapminder dataset, which has Afghanistan for 1952. How do I create a string &ldquo;Afghanistan-1952&rdquo; using <code>gap$country[1]</code> and <code>gap$year[1]</code>? </p>
+
+<h3>Using the ideas</h3>
+
+<p>6) Create a character string using <code>paste()</code> that tells the user how many rows there are in the data frame - do this programmatically such that it would work for any data frame regardless of how many rows it has. The result should look like this: &ldquo;There are 1704 rows in the dataset&rdquo;</p>
+
+<p>7) If you didn&#39;t do it this way already, extract the last row from the gapminder dataset without typing the number &#39;1704&#39;.</p>
+
+<p>8) Create a boolean vector indicating if the life expectancy is greater than 75 and the gdpPercap is less than 10000 and calculate the proportion of all the records these represent.</p>
+
+<p>9) Use that vector to create a new data frame that is a subset of the original data frame.</p>
+
+<p>10) Consider the attributes of the gapminder dataset. What kind of R object is the set of attributes?</p>
+
+<h3>Advanced</h3>
+
+<p>11) Create row names for the data frame based on concatenating the Continent, Country, and Year fields.</p>
+
+</body>
+
+</html>
