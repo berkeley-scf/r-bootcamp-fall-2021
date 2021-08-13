@@ -1,5 +1,6 @@
 # r-bootcamp-fall-2021
-Materials for the August 2021 R bootcamp at UC Berkeley. See below (under the listing of files) for information about the bootcamp, including logistics, how to get the course content, and how to install the software you need for the bootcamp on your laptop.
+
+Materials for the August 2021 R bootcamp at UC Berkeley. See here for information about the bootcamp, including logistics, how to get the course content, and how to install the software you need for the bootcamp on your laptop.
 
 Modules are under construction. Please see [our 2019 site](https://github.com/berkeley-scf/r-bootcamp-fall-2019) for a slightly earlier version of what we will cover.
 
@@ -37,7 +38,7 @@ You will probably want to [make sure you can use the campus WiFi (EduRoam)](http
 
 ## Health information
 
-Vaccination requirements will follow [campus requirements](https://uhs.berkeley.edu/requirements/covid19) that will be in place as of August 4. In particular, those of you arriving from another country should carefully examine these requirements, which will determine if you can attend the bootcamp in person.
+Vaccination requirements will follow [campus requirements](https://uhs.berkeley.edu/requirements/covid19), so essentially everyone should be vaccinated. In particular, those of you arriving from another country should carefully examine these requirements, which will determine if you can attend the bootcamp in person.
 
 Facial coverings are required while inside buildings on campus, per [recent campus masking policy](https://coronavirus.berkeley.edu/return-to-campus/face-coverings/). 
 
