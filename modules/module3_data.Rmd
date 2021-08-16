@@ -491,8 +491,9 @@ dim(rta)
 # Not so fast...
 unlist(lapply(rta, class))[1:5]
 # let's delve more deeply
-unique(rta[ , 2])
-sort(unique(rta[ , 2]))
+# unique(rta[ , 2])  # don't run when creating slides
+head(sort(unique(rta[ , 2])))
+tail(sort(unique(rta[ , 2])))
 # can we handle that with read.table?
 # help(read.table)
 
