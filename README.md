@@ -2,7 +2,7 @@
 
 Materials for the August 2021 R bootcamp at UC Berkeley. See here for information about the bootcamp, including logistics, how to get the course content, and how to install the software you need for the bootcamp on your laptop.
 
-Modules are under construction. Please see [our 2019 site](https://github.com/berkeley-scf/r-bootcamp-fall-2019) for a slightly earlier version of what we will cover.
+All content is available here, though we'll be making edits through the start of the event.
 
 Co-trainers: UC Berkeley Statistics and the D-Lab.
 
@@ -21,7 +21,7 @@ No prior experience with R is expected, but some familiarity with programming co
 
 ## Logistics - when, where, and how
 
-Location: Valley Life Sciences Building (VLSB) Room 2050, Berkeley campus, or virtually on Zoom (see email for link).
+Location: [Valley Life Sciences Building (VLSB)](https://www.berkeley.edu/map) Room 2050 (Chan Shun Auditorium), Berkeley campus, or virtually on Zoom (see email for link). Please enter VLSB from the east entrance. This is the door facing California Hall (which is up the hill) and the opposite side of the building from downtown Berkeley/BART. 
 
 Time: 
   - Saturday, August 21, 8:15 am - 5 pm
