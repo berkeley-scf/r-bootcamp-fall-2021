@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Reminder: Vectorized calculations and comparisons</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Reminder: Vectorized calculations and comparisons</h1>
+
+<p>At the core of R is the idea of doing calculations on entire vectors.</p>
+
+<pre><code class="r">gdpTotal &lt;- gapminder$gdpPercap * gapminder$pop
+
+gdpSubset &lt;- gapminder2007$gdpPercap[1:10]
+
+gdpSubset &gt;= 30000
+</code></pre>
+
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE  TRUE
+</code></pre>
+
+<pre><code class="r">vec1 &lt;- rnorm(5)
+vec2 &lt;- rnorm(5)
+vec1 &gt; vec2
+</code></pre>
+
+<pre><code>## [1]  TRUE FALSE FALSE FALSE  TRUE
+</code></pre>
+
+<pre><code class="r">vec1 == vec2
+</code></pre>
+
+<pre><code>## [1] FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">vec1 != vec2
+</code></pre>
+
+<pre><code>## [1] TRUE TRUE TRUE TRUE TRUE
+</code></pre>
+
+<pre><code class="r">## careful: 
+vec1 = vec2
+identical(vec1, vec2)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<pre><code class="r">## using &#39;or&#39;
+gdpSubset &gt;= 100000 | gdpSubset &lt;= 1000
+</code></pre>
+
+<pre><code>##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<pre><code class="r">## using &#39;and&#39;
+gapminder$gdpPercap[1:10] &gt;= 100000 &amp; gapminder$continent[1:10] == &quot;Asia&quot;
+</code></pre>
+
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+</code></pre>
+
+<h1>Recycling</h1>
+
+<p>An important related concept is that of recycling</p>
+
+<pre><code class="r">vec10 &lt;- sample(1:10, 10, replace = TRUE)
+vec3 &lt;- sample(1:10, 3, replace = TRUE)
+vec5 &lt;- sample(1:10, 5, replace = TRUE)
+vec10
+</code></pre>
+
+<pre><code>##  [1]  2  7  5  1  8 10  1  3 10  5
+</code></pre>
+
+<pre><code class="r">vec3
+</code></pre>
+
+<pre><code>## [1] 7 4 2
+</code></pre>
+
+<pre><code class="r">vec5
+</code></pre>
+
+<pre><code>## [1] 5 2 1 8 5
+</code></pre>
+
+<pre><code class="r">vec10 + vec5
+</code></pre>
+
+<pre><code>##  [1]  7  9  6  9 13 15  3  4 18 10
+</code></pre>
+
+<pre><code class="r">vec10 + vec3
+</code></pre>
+
+<pre><code>## Warning in vec10 + vec3: longer object length is not a multiple of shorter
+## object length
+</code></pre>
+
+<pre><code>##  [1]  9 11  7  8 12 12  8  7 12 12
+</code></pre>
+
+<p><strong>Question</strong>: Tell me what&#39;s going on. What choices were made by the R developers?</p>
+
+<h1>Vectorized calculations: quick quiz</h1>
+
+<p><strong>POLL 4A</strong>: 2<sup>3</sup> is raising 2 to the power 3, so you get 8. </p>
+
+<p>What will this return?</p>
+
+<p><code>(1:4)^(1:4)</code></p>
+
+<p>1) an error
+2) 1, 2, 3, 4
+3) 1, 4, 27, 256
+4) 1, 4, 9, 16
+5) 1, 16, 81, 256</p>
+
+<p><strong>POLL 4B</strong>: What will this return?</p>
+
+<pre><code>vec1 &lt;- c(1,2,3,4)
+vec2 &lt;- c(1,2)
+vec1 + vec2
+</code></pre>
+
+<p>1) 2, 4
+2) 2, 4, 5, 6
+3) 2, 4, 4, 6
+4) an error</p>
+
+<h1>Vectorized calculations</h1>
+
+<p>As we&#39;ve seen, R has many functions that allow you to operate on each element of a vector all at once.</p>
+
+<pre><code class="r">vals &lt;- rnorm(1000)
+chi2vals &lt;- vals^2
+chi2_df1000 &lt;- sum(chi2vals)
+# imagine if the code above were a loop, or three separate loops
+</code></pre>
+
+<p>Advantages:</p>
+
+<ul>
+<li>much faster than looping</li>
+<li>easier to code</li>
+<li>easier to read and understand the code</li>
+</ul>
+
+<p>Sometimes there are surprises in terms of what is fast, as well as tricks for vectorizing things in unexpected ways:</p>
+
+<pre><code class="r">vals &lt;- rnorm(1e6)
+system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.030   0.012   0.041
+</code></pre>
+
+<pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.004   0.000   0.005
+</code></pre>
+
+<p><strong>Question</strong>: What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
+
+<p>If you use a trick like this, having a comment in your code is a good idea.</p>
+
+<h1>Vectorized functions</h1>
+
+<p>Lots of functions in R are vectorized (i.e., they can take a single value or a vector as an input argument), such as some we&#39;ve already used.</p>
+
+<pre><code class="r">tmp &lt;- as.character(gapminder$year)
+gapminder$year2 &lt;- substring(tmp, 3, 4)
+head(gapminder$year2)
+</code></pre>
+
+<pre><code>## [1] &quot;52&quot; &quot;57&quot; &quot;62&quot; &quot;67&quot; &quot;72&quot; &quot;77&quot;
+</code></pre>
+
+<p>Question: Note the code above runs and the syntax is perfectly good R syntax, but in terms of what it does, there is a bug in it. See if you can see what it is.</p>
+
+<h1>Linear algebra</h1>
+
+<p>R can do essentially any linear algebra you need. It uses system-level packages called BLAS (basic linear algebra subroutines) and LAPACK (linear algebra package). Note that these calculations will be essentially as fast as if you wrote C code because R just calls C and Fortran routines to do the calculations.</p>
+
+<p>The BLAS that comes with R is fairly slow. It&#39;s possible to use a faster BLAS, as well as one that uses multiple cores automatically. This can in some cases give you an order of magnitude speedup if your work involves a lot of matrix manipulations/linear algebra. More details in Module 10.</p>
+
+<h1>Vectorized vector/matrix calculations</h1>
+
+<p>Recall that <code>+</code>, <code>-</code>,<code>*</code>, <code>/</code> do vectorized calculations:</p>
+
+<pre><code class="r">A &lt;- matrix(1:9, 3)
+B &lt;- matrix(seq(4,36, by = 4), 3)
+
+A + B
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5   20   35
+## [2,]   10   25   40
+## [3,]   15   30   45
+</code></pre>
+
+<pre><code class="r">A + B[ , 1]
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    5    8   11
+## [2,]   10   13   16
+## [3,]   15   18   21
+</code></pre>
+
+<pre><code class="r">A * B
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    4   64  196
+## [2,]   16  100  256
+## [3,]   36  144  324
+</code></pre>
+
+<pre><code class="r">A * B[ , 1]
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    4   16   28
+## [2,]   16   40   64
+## [3,]   36   72  108
+</code></pre>
+
+<p>Matrix/vector multiplication</p>
+
+<pre><code class="r">A %*% B[ , 1]
+</code></pre>
+
+<pre><code>##      [,1]
+## [1,]  120
+## [2,]  144
+## [3,]  168
+</code></pre>
+
+<pre><code class="r">A %*% B
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3]
+## [1,]  120  264  408
+## [2,]  144  324  504
+## [3,]  168  384  600
+</code></pre>
+
+<pre><code class="r">identical(t(A)%*%A, crossprod(A))
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>Some decompositions</p>
+
+<pre><code class="r">## next 3 lines generate a positive definite matrix
+library(fields)
+times &lt;- seq(0, 1, length = 100)
+R &lt;- exp(-rdist(times) / 0.2) # a correlation matrix
+######################################################
+e &lt;- eigen(R)
+range(e$values)
+</code></pre>
+
+<pre><code>## [1]  0.02525338 32.85537225
+</code></pre>
+
+<pre><code class="r">e$vectors[ , 1]
+</code></pre>
+
+<pre><code>##   [1] 0.05195413 0.05448567 0.05698864 0.05946173 0.06190363 0.06431308
+##   [7] 0.06668879 0.06902954 0.07133409 0.07360123 0.07582978 0.07801856
+##  [13] 0.08016643 0.08227226 0.08433494 0.08635341 0.08832659 0.09025345
+##  [19] 0.09213298 0.09396420 0.09574615 0.09747789 0.09915851 0.10078713
+##  [25] 0.10236291 0.10388500 0.10535262 0.10676499 0.10812137 0.10942106
+##  [31] 0.11066337 0.11184765 0.11297327 0.11403965 0.11504623 0.11599249
+##  [37] 0.11687791 0.11770205 0.11846447 0.11916476 0.11980256 0.12037754
+##  [43] 0.12088940 0.12133786 0.12172270 0.12204370 0.12230071 0.12249358
+##  [49] 0.12262222 0.12268655 0.12268655 0.12262222 0.12249358 0.12230071
+##  [55] 0.12204370 0.12172270 0.12133786 0.12088940 0.12037754 0.11980256
+##  [61] 0.11916476 0.11846447 0.11770205 0.11687791 0.11599249 0.11504623
+##  [67] 0.11403965 0.11297327 0.11184765 0.11066337 0.10942106 0.10812137
+##  [73] 0.10676499 0.10535262 0.10388500 0.10236291 0.10078713 0.09915851
+##  [79] 0.09747789 0.09574615 0.09396420 0.09213298 0.09025345 0.08832659
+##  [85] 0.08635341 0.08433494 0.08227226 0.08016643 0.07801856 0.07582978
+##  [91] 0.07360123 0.07133409 0.06902954 0.06668879 0.06431308 0.06190363
+##  [97] 0.05946173 0.05698864 0.05448567 0.05195413
+</code></pre>
+
+<pre><code class="r">sv &lt;- svd(R)
+U &lt;- chol(R)
+
+devs &lt;- rnorm(100)
+Rinvb &lt;- solve(R, devs)  # R^{-1} b
+Rinv &lt;- solve(R) # R^{-1} -- try to avoid this
+</code></pre>
+
+<h1>Pre-allocation</h1>
+
+<p>This is slow.</p>
+
+<pre><code class="r">vals &lt;- 0
+n &lt;- 50000
+system.time({
+for(i in 1:n)
+      vals &lt;- c(vals, i)
+})
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   3.005   0.025   3.030
+</code></pre>
+
+<p>The same holds for using <code>rbind()</code>, <code>cbind()</code>, or adding to a list, one element at a time.</p>
+
+<p><strong>Question</strong>: Thoughts on why this are so slow? Think about what R might be doing behind the scenes</p>
+
+<h1>The answer is to pre-allocate memory</h1>
+
+<p>This is not so slow. (Please ignore the for-loop hypocrisy and the fact that I could do this as <code>vals &lt;- 1:n</code>.)</p>
+
+<pre><code class="r">n &lt;- 50000
+system.time({
+vals &lt;- rep(0, n)
+# alternatively: vals &lt;- as.numeric(NA); length(vals) &lt;- n
+for(i in 1:n)
+      vals[i] &lt;- i
+})
+</code></pre>
+
+<pre><code>##    user  system elapsed 
+##   0.033   0.000   0.033
+</code></pre>
+
+<p>Here&#39;s how to pre-allocate an empty list: </p>
+
+<pre><code class="r">vals &lt;- list(); length(vals) &lt;- n
+head(vals)
+</code></pre>
+
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## NULL
+## 
+## [[3]]
+## NULL
+## 
+## [[4]]
+## NULL
+## 
+## [[5]]
+## NULL
+## 
+## [[6]]
+## NULL
+</code></pre>
+
+<h1>apply</h1>
+
+<p>Some functions aren&#39;t vectorized, or you may want to use a function on every row or column of a matrix/data frame, every element of a list, etc.</p>
+
+<p>For this we use the <code>apply()</code> family of functions.</p>
+
+<pre><code class="r">mat &lt;- matrix(rnorm(100*1000), nr = 100)
+row_min &lt;- apply(mat, MARGIN = 1, FUN = min)
+col_max &lt;- apply(mat, MARGIN = 2, FUN = max)
+</code></pre>
+
+<p>There are actually some even faster specialized functions:</p>
+
+<pre><code class="r">row_mean &lt;- rowMeans(mat)
+col_sum &lt;- colSums(mat)
+</code></pre>
+
+<h1><code>lapply()</code> and <code>sapply()</code></h1>
+
+<pre><code class="r">myList &lt;- list(rnorm(3), rnorm(3), rnorm(5))
+lapply(myList, min)
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] -1.106239
+## 
+## [[2]]
+## [1] -1.174645
+## 
+## [[3]]
+## [1] -1.238755
+</code></pre>
+
+<pre><code class="r">sapply(myList, min)
+</code></pre>
+
+<pre><code>## [1] -1.106239 -1.174645 -1.238755
+</code></pre>
+
+<p>Note that we don&#39;t generally want to use <code>apply()</code> on a data frame. </p>
+
+<p>Recall that a dataframe is a list:</p>
+
+<pre><code class="r">sapply(gap, class)
+</code></pre>
+
+<pre><code>## Error in lapply(X = X, FUN = FUN, ...): object &#39;gap&#39; not found
+</code></pre>
+
+<h1><code>lapply()</code> and <code>sapply()</code> with vectors</h1>
+
+<p>You can use <code>lapply()</code> and <code>sapply()</code> on regular vectors, such as vectors of indices, which can come in handy. This is a bit silly but it illustrates the idea:</p>
+
+<pre><code class="r">myfun &lt;- function(i) {
+   max(rnorm(100))
+}   
+
+out &lt;- lapply(1:6, myfun)
+out
+</code></pre>
+
+<pre><code>## [[1]]
+## [1] 2.365941
+## 
+## [[2]]
+## [1] 2.415893
+## 
+## [[3]]
+## [1] 2.353915
+## 
+## [[4]]
+## [1] 2.460139
+## 
+## [[5]]
+## [1] 2.99031
+## 
+## [[6]]
+## [1] 1.881597
+</code></pre>
+
+<pre><code class="r">## Or, &#39;in-line&#39; the function:
+</code></pre>
+
+<pre><code class="r">out &lt;- sapply(1:10, function(x) x^2)
+out
+</code></pre>
+
+<pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100
+</code></pre>
+
+<p><strong>POLL 5A</strong></p>
+
+<p>What do you think this will return:</p>
+
+<pre><code>sapply(1:6, function(n) rnorm(n))
+</code></pre>
+
+<p>1) a list, like lapply
+2) a vector of 21 (1+2+3+4+5+6) elements
+3) an error</p>
+
+<h1>And more <code>apply()</code>s</h1>
+
+<p>There are a bunch of <code>apply()</code> variants, as well as parallelized versions of them:</p>
+
+<ul>
+<li><code>tapply()</code>, <code>vapply()</code>, <code>mapply()</code>, <code>rapply()</code>, <code>eapply()</code></li>
+<li>for parallelized versions see Module 10 or <code>?clusterApply</code></li>
+</ul>
+
+<h1>Tabulation</h1>
+
+<ul>
+<li>Sometimes we need to do some basic checking for the number of observations or types of observations in our dataset</li>
+<li>To do this quickly and easily, <code>table()</code> is our friend</li>
+</ul>
+
+<pre><code class="r">tbl &lt;- table(gapminder$country, gapminder$continent)
+head(tbl)
+</code></pre>
+
+<pre><code>##              
+##               Africa Americas Asia Europe Oceania
+##   Afghanistan      0        0   12      0       0
+##   Albania          0        0    0     12       0
+##   Algeria         12        0    0      0       0
+##   Angola          12        0    0      0       0
+##   Argentina        0       12    0      0       0
+##   Australia        0        0    0      0      12
+</code></pre>
+
+<pre><code class="r">rowSums(tbl)[1:20]
+</code></pre>
+
+<pre><code>##            Afghanistan                Albania                Algeria 
+##                     12                     12                     12 
+##                 Angola              Argentina              Australia 
+##                     12                     12                     12 
+##                Austria                Bahrain             Bangladesh 
+##                     12                     12                     12 
+##                Belgium                  Benin                Bolivia 
+##                     12                     12                     12 
+## Bosnia and Herzegovina               Botswana                 Brazil 
+##                     12                     12                     12 
+##               Bulgaria           Burkina Faso                Burundi 
+##                     12                     12                     12 
+##               Cambodia               Cameroon 
+##                     12                     12
+</code></pre>
+
+<pre><code class="r">all(rowSums(tbl) == 12)
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<h1>Discretization</h1>
+
+<p>You may need to discretize a continuous variable [or a discrete variable with many levels], e.g., by life expectancy:</p>
+
+<pre><code class="r">gapminder2007$lifeExpBin &lt;- cut(gapminder2007$lifeExp, breaks = c(0, 40, 50, 60, 70, 75, 80, Inf))
+tbl &lt;- table(gapminder2007$continent, gapminder2007$lifeExpBin)
+round( prop.table(tbl, margin = 1), 2 )
+</code></pre>
+
+<pre><code>##           
+##            (0,40] (40,50] (50,60] (60,70] (70,75] (75,80] (80,Inf]
+##   Africa     0.02    0.33    0.42    0.10    0.12    0.02     0.00
+##   Americas   0.00    0.00    0.00    0.12    0.48    0.36     0.04
+##   Asia       0.00    0.03    0.06    0.24    0.39    0.18     0.09
+##   Europe     0.00    0.00    0.00    0.00    0.27    0.50     0.23
+##   Oceania    0.00    0.00    0.00    0.00    0.00    0.00     1.00
+</code></pre>
+
+<h1>Stratified analyses I</h1>
+
+<p>Often we want to do individual analyses within subsets or clusters of our data.</p>
+
+<p>As a first step, we might want to just split our dataset by a stratifying variable.  </p>
+
+<pre><code class="r">subsets &lt;- split(gapminder,  gapminder$year)
+length(subsets)
+</code></pre>
+
+<pre><code>## [1] 12
+</code></pre>
+
+<pre><code class="r">dim(subsets[[&#39;2007&#39;]])
+</code></pre>
+
+<pre><code>## [1] 142   7
+</code></pre>
+
+<pre><code class="r">par(mfrow = c(1,2))
+plot(lifeExp ~ gdpPercap, data = subsets[[&#39;1952&#39;]], main = &#39;1952&#39;)
+abline(h = 0, col = &#39;grey&#39;)
+plot(lifeExp ~ gdpPercap, data = subsets[[&#39;2007&#39;]], main = &#39;2007&#39;)
+abline(h = 0, col = &#39;grey&#39;)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt=""/></p>
+
+<p>Obviously, we&#39;d want to iterate to improve that plot given the outlier.</p>
+
+<p><strong>POLL 4C</strong>: What kind of object is produced by</p>
+
+<pre><code>split, e.g., subsets &lt;- split(gap,  gap$year)
+</code></pre>
+
+<p>1) a dataframe
+2) a list
+3) a list of lists
+4) a list of dataframes
+5) some new kind of object we haven&#39;t encountered yet</p>
+
+<h1>Stratified analyses II</h1>
+
+<p>Often we want to do individual analyses within subsets or clusters of our data. R has a variety of tools for this; for now we&#39;ll look at <code>aggregate()</code> and <code>by()</code>. These are wrappers of <code>tapply()</code>. </p>
+
+<pre><code class="r">gmSmall &lt;- gapminder[ , c(&#39;lifeExp&#39;, &#39;gdpPercap&#39;)]  # reduce to only numeric columns
+aggregate(gmSmall, by = list(year = gapminder$year), FUN = median, na.rm = TRUE) # na.rm not needed here but illustrates use of additional arguments to FUN
+</code></pre>
+
+<pre><code>##    year lifeExp gdpPercap
+## 1  1952 45.1355  1968.528
+## 2  1957 48.3605  2173.220
+## 3  1962 50.8810  2335.440
+## 4  1967 53.8250  2678.335
+## 5  1972 56.5300  3339.129
+## 6  1977 59.6720  3798.609
+## 7  1982 62.4415  4216.228
+## 8  1987 65.8340  4280.300
+## 9  1992 67.7030  4386.086
+## 10 1997 69.3940  4781.825
+## 11 2002 70.8255  5319.805
+## 12 2007 71.9355  6124.371
+</code></pre>
+
+<pre><code class="r">aggregate(lifeExp ~ year + continent, data = gapminder, FUN = median)
+</code></pre>
+
+<pre><code>##    year continent lifeExp
+## 1  1952    Africa 38.8330
+## 2  1957    Africa 40.5925
+## 3  1962    Africa 42.6305
+## 4  1967    Africa 44.6985
+## 5  1972    Africa 47.0315
+## 6  1977    Africa 49.2725
+## 7  1982    Africa 50.7560
+## 8  1987    Africa 51.6395
+## 9  1992    Africa 52.4290
+## 10 1997    Africa 52.7590
+## 11 2002    Africa 51.2355
+## 12 2007    Africa 52.9265
+## 13 1952  Americas 54.7450
+## 14 1957  Americas 56.0740
+## 15 1962  Americas 58.2990
+## 16 1967  Americas 60.5230
+## 17 1972  Americas 63.4410
+## 18 1977  Americas 66.3530
+## 19 1982  Americas 67.4050
+## 20 1987  Americas 69.4980
+## 21 1992  Americas 69.8620
+## 22 1997  Americas 72.1460
+## 23 2002  Americas 72.0470
+## 24 2007  Americas 72.8990
+## 25 1952      Asia 44.8690
+## 26 1957      Asia 48.2840
+## 27 1962      Asia 49.3250
+## 28 1967      Asia 53.6550
+## 29 1972      Asia 56.9500
+## 30 1977      Asia 60.7650
+## 31 1982      Asia 63.7390
+## 32 1987      Asia 66.2950
+## 33 1992      Asia 68.6900
+## 34 1997      Asia 70.2650
+## 35 2002      Asia 71.0280
+## 36 2007      Asia 72.3960
+## 37 1952    Europe 65.9000
+## 38 1957    Europe 67.6500
+## 39 1962    Europe 69.5250
+## 40 1967    Europe 70.6100
+## 41 1972    Europe 70.8850
+## 42 1977    Europe 72.3350
+## 43 1982    Europe 73.4900
+## 44 1987    Europe 74.8150
+## 45 1992    Europe 75.4510
+## 46 1997    Europe 76.1160
+## 47 2002    Europe 77.5365
+## 48 2007    Europe 78.6085
+## 49 1952   Oceania 69.2550
+## 50 1957   Oceania 70.2950
+## 51 1962   Oceania 71.0850
+## 52 1967   Oceania 71.3100
+## 53 1972   Oceania 71.9100
+## 54 1977   Oceania 72.8550
+## 55 1982   Oceania 74.2900
+## 56 1987   Oceania 75.3200
+## 57 1992   Oceania 76.9450
+## 58 1997   Oceania 78.1900
+## 59 2002   Oceania 79.7400
+## 60 2007   Oceania 80.7195
+</code></pre>
+
+<pre><code class="r">agg &lt;- aggregate(lifeExp ~ year + continent , data = gapminder, FUN = median)
+xtabs(lifeExp ~ ., data = agg)
+</code></pre>
+
+<pre><code>##       continent
+## year    Africa Americas    Asia  Europe Oceania
+##   1952 38.8330  54.7450 44.8690 65.9000 69.2550
+##   1957 40.5925  56.0740 48.2840 67.6500 70.2950
+##   1962 42.6305  58.2990 49.3250 69.5250 71.0850
+##   1967 44.6985  60.5230 53.6550 70.6100 71.3100
+##   1972 47.0315  63.4410 56.9500 70.8850 71.9100
+##   1977 49.2725  66.3530 60.7650 72.3350 72.8550
+##   1982 50.7560  67.4050 63.7390 73.4900 74.2900
+##   1987 51.6395  69.4980 66.2950 74.8150 75.3200
+##   1992 52.4290  69.8620 68.6900 75.4510 76.9450
+##   1997 52.7590  72.1460 70.2650 76.1160 78.1900
+##   2002 51.2355  72.0470 71.0280 77.5365 79.7400
+##   2007 52.9265  72.8990 72.3960 78.6085 80.7195
+</code></pre>
+
+<p>Notice the &#39;long&#39; vs. &#39;wide&#39; formats. You&#39;ll see more about that sort of thing in Module 6.</p>
+
+<h1>Stratified analyses III</h1>
+
+<p><code>aggregate()</code> works fine when the output is univariate, but what about more complicated analyses than computing the median, such as fitting a set of regressions?</p>
+
+<pre><code class="r">out &lt;- by(gapminder, gapminder$year, 
+    function(sub) {
+      lm(lifeExp ~ log(gdpPercap), data = sub)
+    }          
+)
+length(out)
+</code></pre>
+
+<pre><code>## [1] 12
+</code></pre>
+
+<pre><code class="r">summary(out[[&#39;2007&#39;]])
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ log(gdpPercap), data = sub)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -25.947  -2.661   1.215   4.469  13.115 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)      4.9496     3.8577   1.283    0.202    
+## log(gdpPercap)   7.2028     0.4423  16.283   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 7.122 on 140 degrees of freedom
+## Multiple R-squared:  0.6544, Adjusted R-squared:  0.652 
+## F-statistic: 265.2 on 1 and 140 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+
+<pre><code class="r">summary(out[[&#39;1952&#39;]])
+</code></pre>
+
+<pre><code>## 
+## Call:
+## lm(formula = lifeExp ~ log(gdpPercap), data = sub)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -28.9571  -5.7319   0.7517   6.5770  13.7361 
+## 
+## Coefficients:
+##                Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)    -17.8457     5.0668  -3.522 0.000578 ***
+## log(gdpPercap)   8.8298     0.6626  13.326  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 8.146 on 140 degrees of freedom
+## Multiple R-squared:  0.5592, Adjusted R-squared:  0.556 
+## F-statistic: 177.6 on 1 and 140 DF,  p-value: &lt; 2.2e-16
+</code></pre>
+
+<h1>Sorting</h1>
+
+<p><code>sort()</code> applied to a vector does what you expect.</p>
+
+<p>Sorting a matrix or dataframe based on one or more columns is a somewhat manual process, but once you get the hang of it, it&#39;s not bad.</p>
+
+<pre><code class="r">ord &lt;- order(gapminder$year, gapminder$lifeExp, decreasing = TRUE)
+ord[1:5]
+</code></pre>
+
+<pre><code>## [1]  804  672  696 1488   72
+</code></pre>
+
+<pre><code class="r">gm_ord &lt;- gapminder[ord, ]
+head(gm_ord)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 7
+##   country          continent  year lifeExp       pop gdpPercap year2
+##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;
+## 1 Japan            Asia       2007    82.6 127467972    31656. 07   
+## 2 Hong Kong, China Asia       2007    82.2   6980412    39725. 07   
+## 3 Iceland          Europe     2007    81.8    301931    36181. 07   
+## 4 Switzerland      Europe     2007    81.7   7554661    37506. 07   
+## 5 Australia        Oceania    2007    81.2  20434176    34435. 07   
+## 6 Spain            Europe     2007    80.9  40448191    28821. 07
+</code></pre>
+
+<p>You could of course write your own <em>sort</em> function that uses <code>order()</code>. More in Module 5.</p>
+
+<h1>Merging Data</h1>
+
+<p>We often need to combine data across multiple data frames, merging on common fields (i.e., <em>keys</em>). In database terminology, this is a <em>join</em> operation.</p>
+
+<p>Suppose that our dataset did not have &#39;continent&#39; in it, but that we had a separate data frame that matches country to continent.</p>
+
+<pre><code class="r"># ignore the &#39;wizard&#39; behind the curtain...
+c2c &lt;- unique(gapminder[ , c(&#39;country&#39;, &#39;continent&#39;)])
+gapminderSave &lt;- gapminder
+gapminder &lt;- gapminder[ , -which(names(gapminder) == &quot;continent&quot;)]
+</code></pre>
+
+<p>Now let&#39;s add the continent info in:</p>
+
+<pre><code class="r">head(c2c)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 2
+##   country     continent
+##   &lt;fct&gt;       &lt;fct&gt;    
+## 1 Afghanistan Asia     
+## 2 Albania     Europe   
+## 3 Algeria     Africa   
+## 4 Angola      Africa   
+## 5 Argentina   Americas 
+## 6 Australia   Oceania
+</code></pre>
+
+<pre><code class="r">head(gapminder)
+</code></pre>
+
+<pre><code>## # A tibble: 6 x 6
+##   country      year lifeExp      pop gdpPercap year2
+##   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;
+## 1 Afghanistan  1952    28.8  8425333      779. 52   
+## 2 Afghanistan  1957    30.3  9240934      821. 57   
+## 3 Afghanistan  1962    32.0 10267083      853. 62   
+## 4 Afghanistan  1967    34.0 11537966      836. 67   
+## 5 Afghanistan  1972    36.1 13079460      740. 72   
+## 6 Afghanistan  1977    38.4 14880372      786. 77
+</code></pre>
+
+<pre><code class="r">gapminder &lt;- merge(gapminder, c2c, by.x = &#39;country&#39;, by.y = &#39;country&#39;,
+                   all.x = TRUE, all.y = FALSE)
+
+dim(gapminderSave)
+</code></pre>
+
+<pre><code>## [1] 1704    7
+</code></pre>
+
+<pre><code class="r">dim(gapminder)
+</code></pre>
+
+<pre><code>## [1] 1704    7
+</code></pre>
+
+<pre><code class="r">identical(gapminderSave, gapminder)
+</code></pre>
+
+<pre><code>## [1] FALSE
+</code></pre>
+
+<pre><code class="r">identical(as.data.frame(gapminderSave), gapminder[ , names(gapminderSave)])
+</code></pre>
+
+<pre><code>## [1] TRUE
+</code></pre>
+
+<p>What&#39;s the deal with the <code>all.x</code> and <code>all.y</code> ?  We can tell R whether we want to keep all of the <code>x</code> observations, all the <code>y</code> observations, or neither, or both, when there may be rows in either of the datasets that don&#39;t match the other dataset.</p>
+
+<h1>Breakout</h1>
+
+<h3>Basics</h3>
+
+<p>1) Create a vector that concatenates the country and year to create a &#39;country-year&#39; variable in a vectorized way using the string processing functions.</p>
+
+<p>2) Use <code>table()</code> to figure out the number of countries available for each continent.</p>
+
+<h3>Using the ideas</h3>
+
+<p>3) Explain the steps of what this code is doing: <code>tmp &lt;- gapminder[ , -which(names(gapminder) == &quot;continent&quot;)]</code>.</p>
+
+<p>4) Compute the number of NAs in each column of the gapminder dataset using <code>sapply()</code> and making use of the <code>is.na()</code> function. It&#39;s possible to do this without writing a function (which is a topic we&#39;ll cover in Module 5).</p>
+
+<p>5) Discretize gdpPercap into some bins and create a gdpPercap_binned variable. Count the number of values in each bin.</p>
+
+<p>6) Create a boxplot of life expectancy by binned gdpPercap.</p>
+
+<p>7) Create a dataframe that has the total population across all the countries for each year.</p>
+
+<p>8) Merge the info from problem 8 back into the original gapminder dataset. Now plot life expectancy as a function of world population. </p>
+
+<p>9)  Suppose we have two categorical variables and we conduct a hypothesis test of independence. The chi-square statistic is: </p>
+
+<p>\[
+\chi^2 = \sum_{i=1}^{n}\sum_{j=1}^{m} \frac{(y_{ij} - e_{ij})^2}{e_{ij}}, 
+\] </p>
+
+<p>where \(e_{ij} = \frac{y_{i\cdot} y_{\cdot j}}{y_{\cdot \cdot}}\), with \(y_{i\cdot}\) the sum of the values in the i&#39;th row, \(y_{\cdot j}\) the sum of values in the j&#39;th column, and \(y_{\cdot\cdot}\) the sum of all the values. Suppose I give you a matrix in R with the \(y_{ij}\) values. </p>
+
+<p>You can generate a test matrix as: </p>
+
+<pre><code class="r">y &lt;- matrix(sample(1:10, 12, replace = TRUE), 
+nrow = 3, ncol = 4)
+</code></pre>
+
+<p>Compute the statistic without <em>any</em> loops as follows:</p>
+
+<p>a. First, assume you have the <em>e</em> matrix. How do you compute the statistic without loops as a function of <code>y</code> and <code>e</code>?
+b. How can you construct the <em>e</em> matrix? Hint: the numerator of <em>e</em> is just an <em>outer product</em> for which the <code>outer()</code> function can be used.</p>
+
+<h3>Advanced</h3>
+
+<p>10) For each combination of year and continent, find the 95th percentile of life expectancy. </p>
+
+<p>11) Here&#39;s a cool trick to pull off a particular element of a list of lists:</p>
+
+<pre><code class="r">params &lt;- list(a = list(mn = 7, sd = 3), b = list(mn = 6,sd = 1), 
+  c = list(mn = 2, sd = 1))
+sapply(params, &quot;[[&quot;, 1)
+</code></pre>
+
+<pre><code>## a b c 
+## 7 6 2
+</code></pre>
+
+<p>Explain what that does and why it works.</p>
+
+<p>Hint:</p>
+
+<pre><code class="r">test &lt;- list(5, 7, 3)
+test[[2]]
+</code></pre>
+
+<pre><code>## [1] 7
+</code></pre>
+
+<pre><code class="r"># `[[`(test, 2)  # need it commented or R Markdown processing messes it up...
+
+# `+`(3, 7)
+</code></pre>
+
+</body>
+
+</html>

@@ -377,7 +377,7 @@ implicit.</p>
 val
 </code></pre>
 
-<pre><code>## [1] -1.862468
+<pre><code>## [1] 0.2004918
 </code></pre>
 
 <pre><code class="r">if (val &lt; 0) {
@@ -387,7 +387,7 @@ val
 }
 </code></pre>
 
-<pre><code>## [1] &quot;val is negative&quot;
+<pre><code>## [1] &quot;val is positive&quot;
 </code></pre>
 
 <p>We can chain together <code>if</code> statements as follows.</p>
@@ -396,7 +396,7 @@ val
 val
 </code></pre>
 
-<pre><code>## [1] -0.5011156
+<pre><code>## [1] 1.920592
 </code></pre>
 
 <pre><code class="r">if (val &lt; -1) {
@@ -408,7 +408,7 @@ val
 }
 </code></pre>
 
-<pre><code>## [1] &quot;val is within one standard deviation of the mean.&quot;
+<pre><code>## [1] &quot;val is more than one standard deviation above the mean.&quot;
 </code></pre>
 
 <p>In general, the <code>{</code> brackets are only needed if you have multiple R expressions,
@@ -418,7 +418,7 @@ but R will complain when an <code>else</code> starts a line of code, so generall
 <pre><code class="r">if (val &lt; 0) print(&quot;val is negative&quot;) else print(&quot;val is positive&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;val is negative&quot;
+<pre><code>## [1] &quot;val is positive&quot;
 </code></pre>
 
 <h1>The condition in an if statement</h1>
@@ -577,7 +577,7 @@ repeatable operations as an individual function call.</p>
 
 <pre><code>## function (x, na.rm = FALSE, ...) 
 ## UseMethod(&quot;median&quot;)
-## &lt;bytecode: 0x55a4752b3a38&gt;
+## &lt;bytecode: 0x564d7f028a38&gt;
 ## &lt;environment: namespace:stats&gt;
 </code></pre>
 
@@ -895,15 +895,15 @@ talk</a></p></li>
 x[ , 2]
 </code></pre>
 
-<pre><code>##  [1] 0.37679819 0.82487810 0.05209805 0.28606066 0.37254851 0.61324214
-##  [7] 0.81201421 0.87940648 0.32643680 0.46590710
+<pre><code>##  [1] 0.9756474 0.2555988 0.9099134 0.4888063 0.3772122 0.6078185 0.2259225
+##  [8] 0.1172311 0.7270505 0.9103679
 </code></pre>
 
 <pre><code class="r">&#39;[&#39;(x , , 2)
 </code></pre>
 
-<pre><code>##  [1] 0.37679819 0.82487810 0.05209805 0.28606066 0.37254851 0.61324214
-##  [7] 0.81201421 0.87940648 0.32643680 0.46590710
+<pre><code>##  [1] 0.9756474 0.2555988 0.9099134 0.4888063 0.3772122 0.6078185 0.2259225
+##  [8] 0.1172311 0.7270505 0.9103679
 </code></pre>
 
 <p>Also yes!</p>
