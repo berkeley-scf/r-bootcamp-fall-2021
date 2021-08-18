@@ -21,7 +21,9 @@ No prior experience with R is expected, but some familiarity with programming co
 
 ## Logistics - when, where, and how
 
-Location: [Valley Life Sciences Building (VLSB)](https://www.berkeley.edu/map) Room 2050 (Chan Shun Auditorium), Berkeley campus, or virtually on Zoom (see email for link). Please enter VLSB from the east entrance. This is the door facing California Hall (which is up the hill) and the opposite side of the building from downtown Berkeley/BART. 
+Physical location: [Valley Life Sciences Building (VLSB)](https://www.berkeley.edu/map) Room 2050 (Chan Shun Auditorium), Berkeley campus. Please enter VLSB from the east entrance. This is the door facing California Hall (which is up the hill) and the opposite side of the building from downtown Berkeley/BART. 
+
+Virtual location: See email or Piazza for the links. Note that track 2 will be entirely virtual.
 
 Time: 
   - Saturday, August 21, 8:15 am - 5 pm
@@ -35,6 +37,11 @@ In the past, we've generally provided snacks during breaks. Because of various c
 
 You will probably want to [make sure you can use the campus WiFi (EduRoam)](https://berkeley.service-now.com/kb_view.do?sysparm_article=KB0013807) in advance of the event. But if you need wireless access as a guest (i.e., you don't have a CalNet ID), connect to 'CalVisitor'.
 
+## Track 2 information
+
+Some of you on Saturday afternoon and Sunday afternoon will opt to join the second track to revisit and reinforce material from the morning sessions at a more relaxed pace. **The second track will only be offered virtually.**
+
+You can certainly participate in-person either morning and then join virtually in the afternoon. If so, you may want to head home or somewhere else quiet during the lunch break. You can also bring headphones and simply use the hallway in VLSB, though I'm not sure how easy it will be to find a comfortable spot.
 
 ## Health information
 
