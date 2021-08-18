@@ -56,14 +56,14 @@ for (yr in years) {
 
 **POLL 5A**
 
-Which of these give exactly this result: pi, 2*pi, 3*pi, ...?
+Which of these give exactly this result: `pi`, `2*pi`, `3*pi`, ...?
 
 1) (1:n)*pi
 2) out <- rep(0, n); for(x in 1:n) out <- x*pi
 3) sapply(1:n, function(x) x*pi)
 4) out <- rep(0, n); for(x in 1:n) out[i] <- x*pi
 5) lapply(1:n, function(x) x*pi)
-6) sapply(1:n, `*`, pi)
+6) sapply(1:n, "*", pi)
 7) 1:n*pi
 
 **POLL 5B**
@@ -298,13 +298,16 @@ sortByCol <- function(data, col1, col2) {
     #     in the first column. Any ties should be broken by values
     #     in the second column. The row pairs should be maintained
     #     in this result
-
+    
+    data <- as.data.frame(data)  # to avoid issues with order on a tibble column
     ord <- order(data[, col1], data[, col2], decreasing=TRUE)
     sorted <- data[ord, ]
     return(sorted)
 }
 
-identical(gm_ord, sortByCol(gapminder, "year", "lifeExp"))
+gm_ord2 <- sortByCol(gapminder, "year", "lifeExp")
+head(gm_ord)
+head(gm_ord2)
 ```
 
 Of course this is somewhat limited in that it is specific to sorting based on
@@ -330,6 +333,7 @@ And in our running example:
 
 ```{r, fun-args}
 sortByCol <- function(data, col1 = 1, col2 = 2) {
+    data <- as.data.frame(data)  # to avoid issues with order on a tibble column
     ord <- order(data[, col1], data[, col2], decreasing=TRUE)
     sorted <- data[ord, ]
     return(sorted)

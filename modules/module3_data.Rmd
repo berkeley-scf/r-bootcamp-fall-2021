@@ -71,6 +71,8 @@ attributes(gapminder)$row.names[1:10]
 
 Now let's do a bit of manipulation and see if you can infer how R represents matrices internally.
 
+# Attributes: quick quiz
+
 **POLL 3B**: Consider our matrix 'mat':
 
 ```

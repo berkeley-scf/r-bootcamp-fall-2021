@@ -37,13 +37,15 @@ is.data.frame(myList)
 
 **Question**: What have you learned? Does it make sense?
 
-**POLL 2A**: Which of these is true?
+# Managing objects: quick quiz
 
-1) `gap` is a data frame
-2) `gap` is a matrix
-3) `gap` is a vector
-4) `gap` is a list
-5) `gap` is a function
+**POLL 2A**: Which of these is true abot the gapminder object in R?
+
+1) `gapminder` is a data frame
+2) `gapminder` is a matrix
+3) `gapminder` is a vector
+4) `gapminder` is a list
+5) `gapminder` is a function
 
 
 # Managing and saving the workspace
@@ -233,8 +235,13 @@ Users
 ----Documents
 ```
 
-and suppose my current working directory is /Users/paciorek/Desktop/r-bootcamp-fall-2020/modules.
-(Windows users, just think of this as being C:\Users\paciorek\Desktop\r-bootcamp-fall-2020\modules.)
+and suppose my current working directory is:
+
+`/Users/paciorek/Desktop/r-bootcamp-fall-2020/modules`.
+
+Windows users, just think of this as being:
+`C:\Users\paciorek\Desktop\r-bootcamp-fall-2020\modules`.
+
 Which of the following will allow me to change to the 'data' subdirectory?
 
 1) setwd('Users/paciorek/Desktop/r-bootcamp-fall-2020/data')
@@ -254,6 +261,7 @@ The workhorse for reading into a data frame is `read.table()`, which allows any 
 Here's a simple example where R is able to read the data in using the default arguments to `read.csv()`.
 
 ```{r, cache=TRUE}
+getwd()
 cpds <- read.csv(file.path('..', 'data', 'cpds.csv'))
 head(cpds)
 ```
@@ -358,9 +366,9 @@ The changes are then available to anyone to *pull* from the remote repository, a
 
 There are several mailing lists that have lots of useful postings. In general if you have an error, others have already posted about it.
 
-- R help: [R mailing lists archive](https://tolstoy.newcastle.edu.au/R/)
+- Google searches that include "R" in the search work surprisingly well despite R being a letter.
 - [Stack Overflow](https://stackoverflow.com) (R stuff will be tagged with [R])
-- R help special interest groups (SIG) such as *r-sig-hpc* (high performance computing), *r-sig-mac* (R on Macs), etc. (not easily searchable)
+- R help special interest groups (SIG) such as *r-sig-hpc* (high performance computing), *r-sig-mac* (R on Macs), etc.
 - Simple Google searches 
     - You may want to include "in R", with the quotes in the search
     - To search a SIG you might include the name of the SIG in the search string

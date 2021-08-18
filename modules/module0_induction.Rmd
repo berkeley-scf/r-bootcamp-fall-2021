@@ -25,9 +25,9 @@ The bootcamp will be organized in modules, each of which will be a combination o
 
 Many of the modules will use a common dataset as an example on which to carry out various operations. We'll focus on dataset of demographic/economic information (population, GDP per capita, life expectancy) for many of the countries in the world every five years, provided by the [Gapminder project](https://www.gapminder.org). (Note that this is almost the full population of countries -- I'll fit some statistical models but the interpretation is tricky as we are not working with a sample from a well-defined population.)
 
-Counselors will be available to help answer any questions you have (just wave to one of them), or feel free to just ask the presenter during the presentation. The counselors will also be monitoring the [Google group Q&A area](https://groups.google.com/a/lists.berkeley.edu/d/forum/r-bootcamp-fall-2021), so feel free to type in a question there (or send email to r-bootcamp-fall-2021@lists.berkeley.edu) and one of the counselors will answer the question. Or if you know the answer, help us out by answering it yourself or adding your thoughts. 
+Counselors will be available to help answer any questions you have (just wave to one of them if you're in person), or feel free to just ask the presenter during the presentation. The counselors will also be monitoring the Piazza site and the D-Lab virtual fontdesk, so feel free to type in a question there (or send email to r-bootcamp-fall-2021@lists.berkeley.edu) and one of the counselors will answer the question. Or if you know the answer, help us out by answering it yourself or adding your thoughts. Please don't use the Zoom chat except for pointing out any quick logistical issues.
 
-Your counseloRs are: Your counseloRs are: Andrew Do (Statistics), Corrine Elliott (Statistics), Hikari Murayama (D-Lab), Avery Richards (D-Lab), Alex Stephenson (D-Lab), and ...
+Your counseloRs are: Your counseloRs are: Alice Cima (Statistics), Aaron Culich (D-Lab), Andrew Do (Statistics), Corrine Elliott (Statistics), Hikari Murayama (D-Lab), Avery Richards (D-Lab), Alex Stephenson (D-Lab), and Sean Wu (SPH PhD alum).
 
 # Suggestions on how to get the most out of the bootcamp
 
@@ -52,7 +52,7 @@ A few additional thoughts on my pedagogical philosophy here:
 
 We'll present most of the material from within RStudio, using R Markdown documents with embedded R code. R Markdown is an extension to the Markdown markup language that makes it easy to write HTML in a simple plain text format.  This allows us to both run the R code directly as well as compile on-the-fly to an HTML file that can be used for presentation. All files will be available on [GitHub](https://github.com/berkeley-scf/r-bootcamp-fall-2021).  
 
-Note: The files named *moduleX_blah.html* have individual slides, while the files named *moduleX_onepage.html* have the same content but all on one page.
+Note: The files named *moduleX_blah.html* have individual slides, while the files named *moduleX_blah_onepage.html* have the same content but all on one page.
 
 Warning: in some cases the processing of the R code in the R Markdown is screwy and the slides have error messages that do not occur if you just run the code directly in R or RStudio. 
 

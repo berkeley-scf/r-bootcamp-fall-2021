@@ -313,14 +313,14 @@ out[[&#39;2007&#39;]]
 
 <p><strong>POLL 5A</strong></p>
 
-<p>Which of these give exactly this result: pi, 2*pi, 3*pi, &hellip;?</p>
+<p>Which of these give exactly this result: <code>pi</code>, <code>2*pi</code>, <code>3*pi</code>, &hellip;?</p>
 
-<p>1) (1:n)*pi
+<p>1) (1:n)<em>pi
 2) out &lt;- rep(0, n); for(x in 1:n) out &lt;- x*pi
 3) sapply(1:n, function(x) x*pi)
 4) out &lt;- rep(0, n); for(x in 1:n) out[i] &lt;- x*pi
 5) lapply(1:n, function(x) x*pi)
-6) sapply(1:n, <code>*</code>, pi)
+6) sapply(1:n, &ldquo;</em>&rdquo;, pi)
 7) 1:n*pi</p>
 
 <p><strong>POLL 5B</strong></p>
@@ -377,7 +377,7 @@ implicit.</p>
 val
 </code></pre>
 
-<pre><code>## [1] -1.142115
+<pre><code>## [1] -1.862468
 </code></pre>
 
 <pre><code class="r">if (val &lt; 0) {
@@ -396,7 +396,7 @@ val
 val
 </code></pre>
 
-<pre><code>## [1] 0.6519028
+<pre><code>## [1] -0.5011156
 </code></pre>
 
 <pre><code class="r">if (val &lt; -1) {
@@ -418,7 +418,7 @@ but R will complain when an <code>else</code> starts a line of code, so generall
 <pre><code class="r">if (val &lt; 0) print(&quot;val is negative&quot;) else print(&quot;val is positive&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;val is positive&quot;
+<pre><code>## [1] &quot;val is negative&quot;
 </code></pre>
 
 <h1>The condition in an if statement</h1>
@@ -577,7 +577,7 @@ repeatable operations as an individual function call.</p>
 
 <pre><code>## function (x, na.rm = FALSE, ...) 
 ## UseMethod(&quot;median&quot;)
-## &lt;bytecode: 0x562c11b11668&gt;
+## &lt;bytecode: 0x55a4752b3a38&gt;
 ## &lt;environment: namespace:stats&gt;
 </code></pre>
 
@@ -651,20 +651,37 @@ we can apply it to other <code>data.frame</code>s (or matrices)?</p>
     #     in the second column. The row pairs should be maintained
     #     in this result
 
+    data &lt;- as.data.frame(data)  # to avoid issues with order on a tibble column
     ord &lt;- order(data[, col1], data[, col2], decreasing=TRUE)
     sorted &lt;- data[ord, ]
     return(sorted)
 }
 
-identical(gm_ord, sortByCol(gapminder, &quot;year&quot;, &quot;lifeExp&quot;))
+gm_ord2 &lt;- sortByCol(gapminder, &quot;year&quot;, &quot;lifeExp&quot;)
+head(gm_ord)
 </code></pre>
 
-<pre><code>## Warning in xtfrm.data.frame(x): cannot xtfrm data frames
-
-## Warning in xtfrm.data.frame(x): cannot xtfrm data frames
+<pre><code>## # A tibble: 6 x 6
+##   country          continent  year lifeExp       pop gdpPercap
+##   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+## 1 Japan            Asia       2007    82.6 127467972    31656.
+## 2 Hong Kong, China Asia       2007    82.2   6980412    39725.
+## 3 Iceland          Europe     2007    81.8    301931    36181.
+## 4 Switzerland      Europe     2007    81.7   7554661    37506.
+## 5 Australia        Oceania    2007    81.2  20434176    34435.
+## 6 Spain            Europe     2007    80.9  40448191    28821.
 </code></pre>
 
-<pre><code>## [1] TRUE
+<pre><code class="r">head(gm_ord2)
+</code></pre>
+
+<pre><code>##               country continent year lifeExp       pop gdpPercap
+## 804             Japan      Asia 2007  82.603 127467972  31656.07
+## 672  Hong Kong, China      Asia 2007  82.208   6980412  39724.98
+## 696           Iceland    Europe 2007  81.757    301931  36180.79
+## 1488      Switzerland    Europe 2007  81.701   7554661  37506.42
+## 72          Australia   Oceania 2007  81.235  20434176  34435.37
+## 1428            Spain    Europe 2007  80.941  40448191  28821.06
 </code></pre>
 
 <p>Of course this is somewhat limited in that it is specific to sorting based on
@@ -711,6 +728,7 @@ explicitly provide all the arguments.</p>
 <p>And in our running example:</p>
 
 <pre><code class="r">sortByCol &lt;- function(data, col1 = 1, col2 = 2) {
+    data &lt;- as.data.frame(data)  # to avoid issues with order on a tibble column
     ord &lt;- order(data[, col1], data[, col2], decreasing=TRUE)
     sorted &lt;- data[ord, ]
     return(sorted)
@@ -718,24 +736,13 @@ explicitly provide all the arguments.</p>
 identical(sortByCol(gapminder, 1, 2), sortByCol(gapminder))
 </code></pre>
 
-<pre><code>## Warning in xtfrm.data.frame(x): cannot xtfrm data frames
-</code></pre>
-
-<pre><code>## Warning in Ops.factor(xi, xj): &#39;&gt;&#39; not meaningful for factors
-</code></pre>
-
-<pre><code>## Error in if (xi &gt; xj) 1L else -1L: missing value where TRUE/FALSE needed
+<pre><code>## [1] TRUE
 </code></pre>
 
 <pre><code class="r">identical(sortByCol(col2 = 2, data = gapminder, col1 = 1), sortByCol(gapminder, 1, 2))
 </code></pre>
 
-<pre><code>## Warning in xtfrm.data.frame(x): cannot xtfrm data frames
-
-## Warning in xtfrm.data.frame(x): &#39;&gt;&#39; not meaningful for factors
-</code></pre>
-
-<pre><code>## Error in if (xi &gt; xj) 1L else -1L: missing value where TRUE/FALSE needed
+<pre><code>## [1] TRUE
 </code></pre>
 
 <h1>What is the &ldquo;&hellip;&rdquo; argument for?</h1>
@@ -888,15 +895,15 @@ talk</a></p></li>
 x[ , 2]
 </code></pre>
 
-<pre><code>##  [1] 0.46517899 0.24963966 0.47136173 0.05603522 0.47045723 0.26759642
-##  [7] 0.80300621 0.60766682 0.32833985 0.15869576
+<pre><code>##  [1] 0.37679819 0.82487810 0.05209805 0.28606066 0.37254851 0.61324214
+##  [7] 0.81201421 0.87940648 0.32643680 0.46590710
 </code></pre>
 
 <pre><code class="r">&#39;[&#39;(x , , 2)
 </code></pre>
 
-<pre><code>##  [1] 0.46517899 0.24963966 0.47136173 0.05603522 0.47045723 0.26759642
-##  [7] 0.80300621 0.60766682 0.32833985 0.15869576
+<pre><code>##  [1] 0.37679819 0.82487810 0.05209805 0.28606066 0.37254851 0.61324214
+##  [7] 0.81201421 0.87940648 0.32643680 0.46590710
 </code></pre>
 
 <p>Also yes!</p>

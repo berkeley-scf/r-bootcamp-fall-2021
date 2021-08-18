@@ -179,6 +179,8 @@ wealthy <- gdp[gdp > 100000]
 gdp[1:10]
 ```
 
+# Working with indices and subsets: quick quiz
+
 **POLL 1B**: Which of these will work to extract a subset of a vector?
 Assume the vector is created like this:
 
@@ -296,6 +298,8 @@ names(myList)
 
 Lists can be used as vectors of complicated objects. E.g., suppose you have a linear regression for each value of a stratifying variable. You could have a list of regression fits. Each regression fit will itself be a list, so you'll have a list of lists.
 
+# Lists: quick quiz
+
 **POLL 1C**: How would you extract "china" from this list?
 
 ```
@@ -330,6 +334,7 @@ indices <- c(1.7, 2.3)
 ints[indices]
 ints[0.999999999]
 ```
+# Converting between different types: quick quiz
 
 **POLL 1D**:
 
