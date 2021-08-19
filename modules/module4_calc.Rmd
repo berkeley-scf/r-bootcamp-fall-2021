@@ -57,7 +57,9 @@ vec10 + vec3
 
 # Vectorized calculations: quick quiz
 
-**POLL 4A**: 2^3 is raising 2 to the power 3, so you get 8. 
+**POLL 4A**
+
+Question 1: 2^3 is raising 2 to the power 3, so you get 8. 
 
 What will this return?
 
@@ -69,7 +71,7 @@ What will this return?
 4) 1, 4, 9, 16
 5) 1, 16, 81, 256
 
-**POLL 4B**: What will this return?
+Question 2: What will this return?
 
 ```
 vec1 <- c(1,2,3,4)
@@ -267,7 +269,7 @@ out <- sapply(1:10, function(x) x^2)
 out
 ```
 
-**POLL 5A**
+**POLL 4B**
 
 What do you think this will return:
 

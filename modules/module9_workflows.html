@@ -349,17 +349,17 @@ August 2021, UC Berkeley
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e8</span>)</a>
 <a class="sourceLine" id="cb37-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells    543788  29.1    1214544   64.9    977558  52.3
-## Vcells 101042507 770.9  156068256 1190.8 111597721 851.5</code></pre>
+## Ncells    543788  29.1    1214544   64.9    977557  52.3
+## Vcells 101042507 770.9  156068256 1190.8 111597717 851.5</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">rm</span>(x)</a>
 <a class="sourceLine" id="cb39-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
 <pre><code>##           used (Mb) gc trigger  (Mb)  max used  (Mb)
-## Ncells  543707 29.1    1214544  64.9    977558  52.3
-## Vcells 1042384  8.0  124854605 952.6 111597721 851.5</code></pre>
+## Ncells  543707 29.1    1214544  64.9    977557  52.3
+## Vcells 1042384  8.0  124854605 952.6 111597717 851.5</code></pre>
 </div>
 <div id="memory-use-quick-quiz" class="slide section level1">
 <h1>Memory use: quick quiz</h1>
-<p><strong>POLL 8A</strong>: Suppose you have a CSV file with one million rows and one thousand columns, filled with numbers. How much memory will this take up if you read the data into R?</p>
+<p><strong>POLL 9A</strong>: Suppose you have a CSV file with one million rows and one thousand columns, filled with numbers. How much memory will this take up if you read the data into R?</p>
 <ol style="list-style-type: decimal">
 <li>800 MB</li>
 <li>8 GB</li>

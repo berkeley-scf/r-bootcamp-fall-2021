@@ -45,7 +45,7 @@ arr
 **POLL 3A**: Recall the gap dataframe has columns that are numeric and columns that are character strings. What do you think will happen if we do this:
 
 ```
-as.matrix(gap)
+as.matrix(gapminder)
 ```
 
 1) it will convert to a matrix with no changes

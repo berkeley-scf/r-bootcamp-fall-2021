@@ -125,7 +125,7 @@ August 2021, UC Berkeley
 </div>
 <div id="managing-objects-quick-quiz" class="slide section level1">
 <h1>Managing objects: quick quiz</h1>
-<p><strong>POLL 2A</strong>: Which of these is true abot the gapminder object in R?</p>
+<p><strong>POLL 2A</strong>: Which of these is true about the gapminder object in R?</p>
 <ol style="list-style-type: decimal">
 <li><code>gapminder</code> is a data frame</li>
 <li><code>gapminder</code> is a matrix</li>
@@ -242,7 +242,7 @@ August 2021, UC Berkeley
 <pre><code>## [1] 7</code></pre>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">lm</span>(gapminder<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>gapminder<span class="op">$</span>gdpPercap)</a></code></pre></div>
 <pre><code>## gapminder$lifeExp ~ gapminder$gdpPercap
-## &lt;environment: 0x55d2404222a0&gt;</code></pre>
+## &lt;environment: 0x563a93106158&gt;</code></pre>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">stats<span class="op">::</span><span class="kw">lm</span>(gapminder<span class="op">$</span>lifeExp <span class="op">~</span><span class="st"> </span>gapminder<span class="op">$</span>gdpPercap)</a></code></pre></div>
 <pre><code>## 
 ## Call:
@@ -376,7 +376,7 @@ August 2021, UC Berkeley
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">library</span>(xtable)</a>
 <a class="sourceLine" id="cb65-2" title="2"><span class="kw">print</span>(<span class="kw">xtable</span>(<span class="kw">table</span>(gapminder<span class="op">$</span>year, gapminder<span class="op">$</span>continent)), <span class="dt">type =</span> <span class="st">&quot;html&quot;</span>)</a></code></pre></div>
 <pre><code>## &lt;!-- html table generated in R 4.1.0 by xtable 1.8-4 package --&gt;
-## &lt;!-- Wed Aug 18 15:03:16 2021 --&gt;
+## &lt;!-- Thu Aug 19 16:19:23 2021 --&gt;
 ## &lt;table border=1&gt;
 ## &lt;tr&gt; &lt;th&gt;  &lt;/th&gt; &lt;th&gt; Africa &lt;/th&gt; &lt;th&gt; Americas &lt;/th&gt; &lt;th&gt; Asia &lt;/th&gt; &lt;th&gt; Europe &lt;/th&gt; &lt;th&gt; Oceania &lt;/th&gt;  &lt;/tr&gt;
 ##   &lt;tr&gt; &lt;td align=&quot;right&quot;&gt; 1952 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  52 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  25 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  33 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;  30 &lt;/td&gt; &lt;td align=&quot;right&quot;&gt;   2 &lt;/td&gt; &lt;/tr&gt;

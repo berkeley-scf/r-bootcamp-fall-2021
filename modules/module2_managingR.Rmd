@@ -39,7 +39,7 @@ is.data.frame(myList)
 
 # Managing objects: quick quiz
 
-**POLL 2A**: Which of these is true abot the gapminder object in R?
+**POLL 2A**: Which of these is true about the gapminder object in R?
 
 1) `gapminder` is a data frame
 2) `gapminder` is a matrix

@@ -236,7 +236,7 @@ gc()
 
 # Memory use: quick quiz
 
-**POLL 8A**: Suppose you have a CSV file with one million rows and one thousand columns, filled with numbers. How much memory will this take up if you read the data into R?
+**POLL 9A**: Suppose you have a CSV file with one million rows and one thousand columns, filled with numbers. How much memory will this take up if you read the data into R?
 
 1) 800 MB
 2) 8 GB

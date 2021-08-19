@@ -305,7 +305,9 @@ vec10
 
 <h1>Vectorized calculations: quick quiz</h1>
 
-<p><strong>POLL 4A</strong>: 2<sup>3</sup> is raising 2 to the power 3, so you get 8. </p>
+<p><strong>POLL 4A</strong></p>
+
+<p>Question 1: 2<sup>3</sup> is raising 2 to the power 3, so you get 8. </p>
 
 <p>What will this return?</p>
 
@@ -317,7 +319,7 @@ vec10
 4) 1, 4, 9, 16
 5) 1, 16, 81, 256</p>
 
-<p><strong>POLL 4B</strong>: What will this return?</p>
+<p>Question 2: What will this return?</p>
 
 <pre><code>vec1 &lt;- c(1,2,3,4)
 vec2 &lt;- c(1,2)
@@ -354,14 +356,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.030   0.012   0.041
+##   0.032   0.008   0.040
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.004   0.000   0.005
+##   0.005   0.000   0.004
 </code></pre>
 
 <p><strong>Question</strong>: What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
@@ -653,7 +655,7 @@ out
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100
 </code></pre>
 
-<p><strong>POLL 5A</strong></p>
+<p><strong>POLL 4B</strong></p>
 
 <p>What do you think this will return:</p>
 

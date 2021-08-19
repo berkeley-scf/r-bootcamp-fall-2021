@@ -313,7 +313,7 @@ out[[&#39;2007&#39;]]
 
 <p><strong>POLL 5A</strong></p>
 
-<p>Which of these give exactly this result: <code>pi</code>, <code>2*pi</code>, <code>3*pi</code>, &hellip;?</p>
+<p>Question 1: Which of these give exactly this result: <code>pi</code>, <code>2*pi</code>, <code>3*pi</code>, &hellip;?</p>
 
 <p>1) (1:n)<em>pi
 2) out &lt;- rep(0, n); for(x in 1:n) out &lt;- x*pi
@@ -323,9 +323,7 @@ out[[&#39;2007&#39;]]
 6) sapply(1:n, &ldquo;</em>&rdquo;, pi)
 7) 1:n*pi</p>
 
-<p><strong>POLL 5B</strong></p>
-
-<p>Which of these do you think will be fastest for a long vector, x?</p>
+<p>Question 2: Which of these do you think will be fastest for a long vector, x?</p>
 
 <p>1) x &lt;- exp(x)
 2) x &lt;- sapply(x, exp)
@@ -377,7 +375,7 @@ implicit.</p>
 val
 </code></pre>
 
-<pre><code>## [1] 0.2004918
+<pre><code>## [1] -0.5366697
 </code></pre>
 
 <pre><code class="r">if (val &lt; 0) {
@@ -387,7 +385,7 @@ val
 }
 </code></pre>
 
-<pre><code>## [1] &quot;val is positive&quot;
+<pre><code>## [1] &quot;val is negative&quot;
 </code></pre>
 
 <p>We can chain together <code>if</code> statements as follows.</p>
@@ -396,7 +394,7 @@ val
 val
 </code></pre>
 
-<pre><code>## [1] 1.920592
+<pre><code>## [1] -1.533217
 </code></pre>
 
 <pre><code class="r">if (val &lt; -1) {
@@ -408,7 +406,7 @@ val
 }
 </code></pre>
 
-<pre><code>## [1] &quot;val is more than one standard deviation above the mean.&quot;
+<pre><code>## [1] &quot;val is more than one standard deviation below the mean.&quot;
 </code></pre>
 
 <p>In general, the <code>{</code> brackets are only needed if you have multiple R expressions,
@@ -418,7 +416,7 @@ but R will complain when an <code>else</code> starts a line of code, so generall
 <pre><code class="r">if (val &lt; 0) print(&quot;val is negative&quot;) else print(&quot;val is positive&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;val is positive&quot;
+<pre><code>## [1] &quot;val is negative&quot;
 </code></pre>
 
 <h1>The condition in an if statement</h1>
@@ -486,7 +484,7 @@ for (i in seq_along(continents)) {
 <pre><code>## [1] &quot;Africa&quot;
 </code></pre>
 
-<p><strong>POLL 5C</strong>:</p>
+<p><strong>POLL 5B</strong>:</p>
 
 <p>What will this return?</p>
 
@@ -577,7 +575,7 @@ repeatable operations as an individual function call.</p>
 
 <pre><code>## function (x, na.rm = FALSE, ...) 
 ## UseMethod(&quot;median&quot;)
-## &lt;bytecode: 0x564d7f028a38&gt;
+## &lt;bytecode: 0x5649c0a6da38&gt;
 ## &lt;environment: namespace:stats&gt;
 </code></pre>
 
@@ -895,15 +893,15 @@ talk</a></p></li>
 x[ , 2]
 </code></pre>
 
-<pre><code>##  [1] 0.9756474 0.2555988 0.9099134 0.4888063 0.3772122 0.6078185 0.2259225
-##  [8] 0.1172311 0.7270505 0.9103679
+<pre><code>##  [1] 0.86554521 0.75992198 0.32760287 0.46474659 0.47148042 0.55240521
+##  [7] 0.21259133 0.04462478 0.14878614 0.07025813
 </code></pre>
 
 <pre><code class="r">&#39;[&#39;(x , , 2)
 </code></pre>
 
-<pre><code>##  [1] 0.9756474 0.2555988 0.9099134 0.4888063 0.3772122 0.6078185 0.2259225
-##  [8] 0.1172311 0.7270505 0.9103679
+<pre><code>##  [1] 0.86554521 0.75992198 0.32760287 0.46474659 0.47148042 0.55240521
+##  [7] 0.21259133 0.04462478 0.14878614 0.07025813
 </code></pre>
 
 <p>Also yes!</p>

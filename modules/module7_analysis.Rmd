@@ -68,8 +68,8 @@ reg <- lm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year,
 *Question 2*: 'year' should be:
 
 1) numeric
-2) factor
-3) character
+2) character
+3) factor
 4) none of the above
 
 

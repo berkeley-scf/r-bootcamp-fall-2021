@@ -56,7 +56,7 @@ for (yr in years) {
 
 **POLL 5A**
 
-Which of these give exactly this result: `pi`, `2*pi`, `3*pi`, ...?
+Question 1: Which of these give exactly this result: `pi`, `2*pi`, `3*pi`, ...?
 
 1) (1:n)*pi
 2) out <- rep(0, n); for(x in 1:n) out <- x*pi
@@ -66,9 +66,7 @@ Which of these give exactly this result: `pi`, `2*pi`, `3*pi`, ...?
 6) sapply(1:n, "*", pi)
 7) 1:n*pi
 
-**POLL 5B**
-
-Which of these do you think will be fastest for a long vector, x?
+Question 2: Which of these do you think will be fastest for a long vector, x?
 
 1) x <- exp(x)
 2) x <- sapply(x, exp)
@@ -172,7 +170,7 @@ for (i in seq_along(continents)) {
 }
 ```
 
-**POLL 5C**:
+**POLL 5B**:
 
 What will this return?
 

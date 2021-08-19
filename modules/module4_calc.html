@@ -137,7 +137,8 @@ August 2021, UC Berkeley
 </div>
 <div id="vectorized-calculations-quick-quiz" class="slide section level1">
 <h1>Vectorized calculations: quick quiz</h1>
-<p><strong>POLL 4A</strong>: 2^3 is raising 2 to the power 3, so you get 8.</p>
+<p><strong>POLL 4A</strong></p>
+<p>Question 1: 2^3 is raising 2 to the power 3, so you get 8.</p>
 <p>What will this return?</p>
 <p><code>(1:4)^(1:4)</code></p>
 <ol style="list-style-type: decimal">
@@ -147,7 +148,7 @@ August 2021, UC Berkeley
 <li>1, 4, 9, 16</li>
 <li>1, 16, 81, 256</li>
 </ol>
-<p><strong>POLL 4B</strong>: What will this return?</p>
+<p>Question 2: What will this return?</p>
 <pre><code>vec1 &lt;- c(1,2,3,4)
 vec2 &lt;- c(1,2)
 vec1 + vec2</code></pre>
@@ -175,10 +176,10 @@ vec1 + vec2</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">vals &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)</a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="kw">system.time</span>(trunc &lt;-<span class="st"> </span><span class="kw">ifelse</span>(vals <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, vals, <span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.030   0.012   0.041</code></pre>
+##   0.032   0.008   0.040</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">system.time</span>(vals &lt;-<span class="st"> </span>vals <span class="op">*</span><span class="st"> </span>(vals <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.004   0.000   0.005</code></pre>
+##   0.005   0.000   0.004</code></pre>
 <p><strong>Question</strong>: What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
 <p>If you use a trick like this, having a comment in your code is a good idea.</p>
 </div>
@@ -376,7 +377,7 @@ vec1 + vec2</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1">out &lt;-<span class="st"> </span><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="cf">function</span>(x) x<span class="op">^</span><span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb70-2" title="2">out</a></code></pre></div>
 <pre><code>##  [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
-<p><strong>POLL 5A</strong></p>
+<p><strong>POLL 4B</strong></p>
 <p>What do you think this will return:</p>
 <pre><code>sapply(1:6, function(n) rnorm(n))</code></pre>
 <ol style="list-style-type: decimal">

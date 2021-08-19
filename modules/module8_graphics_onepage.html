@@ -693,13 +693,13 @@ ggplot(data = gapminder2007, aes(x = gdpPercap, y = lifeExp)) +
 
 <p><strong>POLL 8A</strong>: Which of these ggplot2 calls will work (in the sense of not giving an error, not in the sense of being a useful plot)?</p>
 
-<p>1) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) %&gt;% geom_point()
-2) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp))
-3) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point()
-4) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp, shape = &#39;a&#39;)) + geom_point()
-5) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point(aes(shape = country), show.legend = FALSE)
-6) gap %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point(shape = &#39;a&#39;, show.legend = FALSE)
-7) gap %&gt;% ggplot() + geom_point(aes(x = gdpPercap, y = lifeExp, shape = country), show.legend = FALSE)</p>
+<p>1) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) %&gt;% geom_point()
+2) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp))
+3) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point()
+4) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp, shape = &#39;a&#39;)) + geom_point()
+5) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point(aes(shape = country), show.legend = FALSE)
+6) gapminder %&gt;% ggplot(aes(x = gdpPercap, y = lifeExp)) + geom_point(shape = &#39;a&#39;, show.legend = FALSE)
+7) gapminder %&gt;% ggplot() + geom_point(aes(x = gdpPercap, y = lifeExp, shape = country), show.legend = FALSE)</p>
 
 <h1>Scaling Aesthetics</h1>
 
