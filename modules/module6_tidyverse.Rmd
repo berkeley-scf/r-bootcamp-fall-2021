@@ -31,9 +31,9 @@ For instance, we can use base R functions to calculate summary statistics across
 e.g., the mean GDP per capita within each region:
 
 ```{r}
-mean(gap[gap$continent == "Africa", "gdpPercap"])
-mean(gap[gap$continent == "Americas", "gdpPercap"])
-mean(gap[gap$continent == "Asia", "gdpPercap"])
+mean(gapminder$gdpPercap[gapminder$continent == "Africa"])
+mean(gapminder$gdpPercap[gapminder$continent == "Americas"])
+mean(gapminder$gdpPercap[gapminder$continent == "Asia"])
 ```
 
 But this isn't ideal because it involves a fair bit of repetition. 
@@ -72,7 +72,7 @@ library(dplyr)
 Imagine that we just received the gapminder dataset, but are only interested in a few variables in it. The `select()` function can help us to keep only the columns corresponding to variables we select.
 
 ```{r}
-year_country_gdp_dplyr <- select(gap, year, country, gdpPercap)
+year_country_gdp_dplyr <- select(gapminder, year, country, gdpPercap)
 head(year_country_gdp_dplyr)
 ```
 
@@ -81,7 +81,7 @@ head(year_country_gdp_dplyr)
 If we open up `year_country_gdp`, we'll see that it only contains the year, country and gdpPercap. This is equivalent to the base R subsetting function:
 
 ```{r}
-year_country_gdp_base <- gap[,c("year", "country", "gdpPercap")]
+year_country_gdp_base <- gapminder[,c("year", "country", "gdpPercap")]
 head(year_country_gdp_base)
 ```
 
@@ -153,7 +153,7 @@ Since the pipe grammar is unlike anything we've seen in R before, let's repeat w
 we did above with the gapminder dataset using pipes:
 
 ```{r}
-year_country_gdp <- gap %>% select(year, country, gdpPercap)
+year_country_gdp <- gapminder %>% select(year, country, gdpPercap)
 ```
 
 First, we summon the gapminder data frame and pass it on to the next step using the pipe symbol `%>%`.
@@ -166,14 +166,14 @@ In this case we don't specify which data object we use in the call to `select()`
 
 **POLL 6A**: Which of these will produce an error? (Assume 'continent' is a column in the data frame but not a stand-alone variable.)
 
-1) gap[ , 'continent']
-2) gap[ , continent]
-3) gap %>% select(gap, continent)
-4) gap %>% select(gap, 'continent')
-5) gap$continent
-6) gap$"continent"
-7) gap[[continent]]
-8) gap[['continent']]
+1) gapminder[ , 'continent']
+2) gapminder[ , continent]
+3) gapminder %>% select(gapminder, continent)
+4) gapminder %>% select(gapminder, 'continent')
+5) gapminder$continent
+6) gapminder$"continent"
+7) gapminder[[continent]]
+8) gapminder[['continent']]
 
 
 
@@ -182,7 +182,7 @@ In this case we don't specify which data object we use in the call to `select()`
 Now let's say we're only interested in African countries. We can combine `select` and `filter` to select only the observations where `continent` is `Africa`.
 
 ```{r}
-year_country_gdp_africa <- gap %>%
+year_country_gdp_africa <- gapminder %>%
     filter(continent == "Africa") %>%
     select(year,country,gdpPercap)
 ```
@@ -200,27 +200,27 @@ A common task you'll encounter when working with data is running calculations on
 In base R, you would have to run the `mean()` function for each subset of data:
 
 ```{r}
-mean(gap$gdpPercap[gap$continent == "Africa"])
-mean(gap$gdpPercap[gap$continent == "Americas"])
-mean(gap$gdpPercap[gap$continent == "Asia"])
-mean(gap$gdpPercap[gap$continent == "Europe"])
-mean(gap$gdpPercap[gap$continent == "Oceania"])
+mean(gapminder$gdpPercap[gapminder$continent == "Africa"])
+mean(gapminder$gdpPercap[gapminder$continent == "Americas"])
+mean(gapminder$gdpPercap[gapminder$continent == "Asia"])
+mean(gapminder$gdpPercap[gapminder$continent == "Europe"])
+mean(gapminder$gdpPercap[gapminder$continent == "Oceania"])
 ```
 
 That's a lot of repetition! To make matters worse, what if we wanted to add these values to our original data frame as a new column? We would have to write something like this:
 
 ```{r}
-gap$mean.continent.GDP <- NA
+gapminder$mean.continent.GDP <- NA
 
-gap$mean.continent.GDP[gap$continent == "Africa"] <- mean(gap$gdpPercap[gap$continent == "Africa"])
+gapminder$mean.continent.GDP[gapminder$continent == "Africa"] <- mean(gapminder$gdpPercap[gapminder$continent == "Africa"])
 
-gap$mean.continent.GDP[gap$continent == "Americas"] <- mean(gap$gdpPercap[gap$continent == "Americas"])
+gapminder$mean.continent.GDP[gapminder$continent == "Americas"] <- mean(gapminder$gdpPercap[gapminder$continent == "Americas"])
 
-gap$mean.continent.GDP[gap$continent == "Asia"] <- mean(gap$gdpPercap[gap$continent == "Asia"])
+gapminder$mean.continent.GDP[gapminder$continent == "Asia"] <- mean(gapminder$gdpPercap[gapminder$continent == "Asia"])
 
-gap$mean.continent.GDP[gap$continent == "Europe"] <- mean(gap$gdpPercap[gap$continent == "Europe"])
+gapminder$mean.continent.GDP[gapminder$continent == "Europe"] <- mean(gapminder$gdpPercap[gapminder$continent == "Europe"])
 
-gap$mean.continent.GDP[gap$continent == "Oceania"] <- mean(gap$gdpPercap[gap$continent == "Oceania"])
+gapminder$mean.continent.GDP[gapminder$continent == "Oceania"] <- mean(gapminder$gdpPercap[gapminder$continent == "Oceania"])
 ```
 
 You can see how this can get pretty tedious, especially if we want to calculate more complicated or refined statistics. We could use loops or apply functions, but these can be difficult, slow, or error-prone.
@@ -237,9 +237,9 @@ Module 4 gave some ways to do split-apply-combine type operations using the `app
 
 ```{r}
 # Want to remove the column we just made? -- there are two easy ways!
-gap <- gap %>% select(-mean.continent.GDP) # drop a column with - 
+gapminder <- gapminder %>% select(-mean.continent.GDP) # drop a column with - 
 # OR
-gap$mean.continent.GDP <- NULL
+gapminder$mean.continent.GDP <- NULL
 ```
 
 # `dplyr::group_by`
@@ -259,7 +259,7 @@ In other words, using the `group_by()` function, we split our original data fram
 The output is a new data frame reduced in size, with one row per group.
 
 ```{r}
-gdp_bycontinents <- gap %>%
+gdp_bycontinents <- gapminder %>%
     group_by(continent) %>%
     summarize(mean_gdpPercap = mean(gdpPercap))
 head(gdp_bycontinents)
@@ -270,7 +270,7 @@ head(gdp_bycontinents)
 That allowed us to calculate the mean gdpPercap for each continent. But it gets even better -- the function `group_by()` allows us to group by multiple variables. Let's group by `year` and `continent`.
 
 ```{r}
-gdp_bycontinents_byyear <- gap %>%
+gdp_bycontinents_byyear <- gapminder %>%
     group_by(continent, year) %>%
     summarize(mean_gdpPercap = mean(gdpPercap))
 head(gdp_bycontinents_byyear)
@@ -279,7 +279,7 @@ head(gdp_bycontinents_byyear)
 That is already quite powerful, but it gets even better! You're not limited to defining 1 new variable in `summarize()`.
 
 ```{r}
-gdp_pop_bycontinents_byyear <- gap %>%
+gdp_pop_bycontinents_byyear <- gapminder %>%
     group_by(continent, year) %>%
     summarize(mean_gdpPercap = mean(gdpPercap),
               sd_gdpPercap = sd(gdpPercap),
@@ -293,7 +293,7 @@ head(gdp_pop_bycontinents_byyear)
 What if we wanted to add these values to our original data frame instead of creating a new object? For this, we can use the `mutate()` function, which is similar to `summarize()` except it creates new variables in the same data frame that you pass into it.
 
 ```{r}
-gap_with_extra_vars <- gap %>%
+gap_with_extra_vars <- gapminder %>%
     group_by(continent, year) %>%
     mutate(mean_gdpPercap = mean(gdpPercap),
               sd_gdpPercap = sd(gdpPercap),
@@ -305,7 +305,7 @@ head(gap_with_extra_vars)
 We can use also use `mutate()` to create new variables prior to (or even after) summarizing information. Note that `mutate()` does not need to operate on grouped data and it can do element-wise transformations.
 
 ```{r}
-gdp_pop_bycontinents_byyear <- gap %>%
+gdp_pop_bycontinents_byyear <- gapminder %>%
     mutate(gdp_billion = gdpPercap*pop/10^9) %>%
     group_by(continent, year) %>%
     summarize(mean_gdpPercap = mean(gdpPercap),
@@ -330,11 +330,11 @@ And if you use an aggregation function such as `mean()` within `summarize()` wit
 
 # `mutate` vs. `summarize`: quick quiz
 
-**POLL 6B**: Which of these has the same number of rows as the original gap dataframe?
+**POLL 6B**: Which of these has the same number of rows as the original gapminder dataframe?
 
-1) gap %>% group_by(continent) %>% mutate(mean_gdp = mean(gdpPercap))
-2) gap %>% group_by(continent) %>% summarize(mean_gdp = mean(gdpPercap))
-3) gap %>% group_by(continent) %>% summarize(mean_gdp = mean(gdpPercap)) %>% mutate(mean_gdpBillion = mean_gdp / 1e9)
+1) gapminder %>% group_by(continent) %>% mutate(mean_gdp = mean(gdpPercap))
+2) gapminder %>% group_by(continent) %>% summarize(mean_gdp = mean(gdpPercap))
+3) gapminder %>% group_by(continent) %>% summarize(mean_gdp = mean(gdpPercap)) %>% mutate(mean_gdpBillion = mean_gdp / 1e9)
 
 
 # `dplyr::arrange`
@@ -342,7 +342,7 @@ And if you use an aggregation function such as `mean()` within `summarize()` wit
 As a last step, let's say we want to sort the rows in our data frame according to values in a certain column. We can use the `arrange()` function to do this. For instance, let's organize our rows by `year` (recent first), and then by `continent`.
 
 ```{r}
-gap_with_extra_vars <- gap %>%
+gap_with_extra_vars <- gapminder %>%
     group_by(continent, year) %>%
     mutate(mean_gdpPercap = mean(gdpPercap),
               sd_gdpPercap = sd(gdpPercap),
@@ -361,7 +361,7 @@ head(gap_with_extra_vars)
 # without pipes:
 gap_with_extra_vars <- arrange(
     mutate(
-      group_by(gap, continent, year),
+      group_by(gapminder, continent, year),
       mean_gdpPercap = mean(gdpPercap)
       ),
     desc(year), continent)
@@ -376,14 +376,14 @@ The use of data frame variables without quotes around them is an example of this
 Why is this strange?
 
 ```{r, eval = FALSE}
-gap %>% select(continent, year) %>% tail()
+gapminder %>% select(continent, year) %>% tail()
 ```
 
 Compare it to:
 
 ```{r, eval = F}
-gap[ , c('continent', 'year')]
-gap[ , continent]
+gapminder[ , c('continent', 'year')]
+gapminder[ , continent]
 ```
 
 Because `continent` and `year` are not variables our current environment! dplyr does some fancy stuff behind the scenes to save us from typing the quotes.
@@ -397,15 +397,15 @@ grouped_mean <- function(data, group_var, summary_var) {
     group_by(group_var) %>%
     summarise(mean = mean(summary_var))
 }
-gap %>% grouped_mean(continent, lifeExp)
-gap %>% grouped_mean('continent', 'lifeExp')
+gapminder %>% grouped_mean(continent, lifeExp)
+gapminder %>% grouped_mean('continent', 'lifeExp')
 ```
 
 See the `rlang` or `seplyr` packages for how one can deal with this problem in this context of using functions. 
 
 # Tidying Data
 
-Even before we conduct analysis or calculations, we need to put our data into the correct format. The goal here is to rearrange a messy dataset into one that is **tidy**
+Even before we conduct analysis or calculations, we need to put our data into the correct format. The goal here is to rearrange a messy dataset into one that is **tidy**.
 
 The two most important properties of tidy data are:
 
@@ -416,7 +416,7 @@ Tidy data is easier to work with, because you have a consistent way of referring
 
 For more on the concept of *tidy* data, read Hadley Wickham's paper [here](http://vita.had.co.nz/papers/tidy-data.html)
 
-## Wide vs. Long Formats
+# Wide vs. Long Formats
 
 > "Tidy datasets are all alike but every messy dataset is messy in its own way." – Hadley Wickham
 
@@ -463,7 +463,7 @@ You may find data input may be simpler and some programs/functions may prefer th
 Lets look at the structure of our original gapminder data frame:
 
 ```{r}
-head(gap)
+head(gapminder)
 ```
 
 **Question**: Is this data frame **wide** or **long**?
@@ -491,7 +491,7 @@ library(tidyr)
 Until now, we've been using the nicely formatted original gapminder data set. This data set is not quite wide and not quite long -- it's something in the middle, but "real" data (i.e., our own research data) will never be so well organized. Here let's start with the wide format version of the gapminder data set.
 
 ```{r}
-gap_wide <- read.csv("../data/gapminder_wide.csv", stringsAsFactors = FALSE)
+gap_wide <- read.csv("../data/gapminder_wide.csv")
 head(gap_wide)
 ```
 
@@ -539,13 +539,13 @@ However you choose to do it, notice that the output collapses all of the measure
 
 # `tidyr::separate`
 
-You'll notice that in our long dataset, `obstype_year` actually contains 2 pieces of information, the observation type (`pop`, `lifeExp`, or `gdpPercap`) and the `year`.
+You'll notice that in our long dataset, `name` actually contains 2 pieces of information, the observation type (`pop`, `lifeExp`, or `gdpPercap`) and the `year`.
 
 We can use the `separate()` function to split the character strings into multiple variables:
 
 ```{r}
 gap_long_sep <- gap_long %>%
-  separate(obstype_year, into = c('obs_type','year'), sep = "_") %>%
+  separate(name, into = c('obs_type','year'), sep = "_") %>%
   mutate(year = as.integer(year))
 head(gap_long_sep)
 ```
@@ -566,15 +566,13 @@ head(gap_medium)
 Formerly one used the function `spread` to do this, but many people found it not to be intuitive to use.
 
 
-All we need is some quick fixes to make this dataset identical to the original `gap` dataset:
+All we need is some quick fixes to make this dataset identical to the original `gapminder` dataset:
 
 ```{r}
-gap <- read.csv("../data/gapminder-FiveYearData.csv")
-head(gap_medium)
-head(gap)
+head(gapminder)
 
 # rearrange columns
-gap_medium <- gap_medium[,names(gap)]
+gap_medium <- gap_medium[,names(gapminder)]
 head(gap_medium)
 
 # arrange by country, continent, and year
@@ -591,7 +589,7 @@ your data. See the  [Data Wrangling Cheat Sheet](https://www.rstudio.com/wp-cont
 
 There are some other useful packages in the [tidyverse](http://www.tidyverse.org):
 
-* `ggplot2` for plotting (I'll cover this in module 8)
+* `ggplot2` for plotting (We'll cover this in module 8)
 * `readr` and `haven` for reading in data
 * `purrr` for working with lists and operations similar to the `apply` family introduced in Module 4. 
 * `stringr`, `lubridate`, `forcats` for manipulating strings, dates, and factors, respectively

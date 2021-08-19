@@ -55,7 +55,7 @@ Consider this regression model:
 
 ```
 reg <- lm(formula = lifeExp ~ log(gdpPercap) + log(pop) + continent + year, 
-                data = gap)
+                data = gapminder)
 ```
 
 *Question 1*: 'continent' could be:

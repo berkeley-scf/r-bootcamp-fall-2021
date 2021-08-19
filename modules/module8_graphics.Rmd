@@ -282,13 +282,6 @@ ggplot(data = gapminder, aes(x = factor(year), y = lifeExp)) +
             geom_boxplot() 
 ```
 
-"Trellis" plots: `facet_grid()` or `facet_wrap()`
- 
-```{r, fig.cap=" ", warning=FALSE, fig.show = "hold"}
-ggplot(data = gapminder, aes(x = lifeExp)) + geom_histogram(binwidth = 5) +
-            facet_wrap(~year)
-```
-
 Contour plots: `geom_contour()`
 
 ```{r, fig.cap=" ", warning=FALSE, fig.show = "hold"}
@@ -308,6 +301,17 @@ tile/image/level plots, heatmaps: `geom_tile()`, `geom_rect()`, `geom_raster()`
 ggplot(data = volcano3d, aes(x = xvar, y = yvar, z = zvar)) +
             geom_tile(aes(fill = zvar)) 
 ```
+
+# "Trellis" plots
+
+Trellis plots allow you to stratify by a variable, with one panel per categorical value. One uses either `facet_grid()` or `facet_wrap()`:
+ 
+```{r, fig.cap=" ", warning=FALSE, fig.show = "hold"}
+ggplot(data = gapminder, aes(x = lifeExp)) + geom_histogram(binwidth = 5) +
+            facet_wrap(~year)
+```
+
+This can be quite powerful. It gives you the ability to take account of an additional variable.
 
 # Fitted lines and curves with `ggplot2`
 
@@ -361,12 +365,11 @@ ggplot(data = gapminder, aes(x = year, y = lifeExp)) +
 ggplot(data = gapminder, aes(x = year, y = lifeExp)) +
             geom_line(color = "country")
 ## this works but only makes sense if we restrict to one country
-ggplot(data = gapminderChina, aes(x = year, y = lifeExp)) +
+ggplot(data = gapChina, aes(x = year, y = lifeExp)) +
             geom_line(color = "red")
 ```
 
-**Note:** Aesthetics automatically show up in your legend, parameters (those not mapped to a 
-variable in your data frame) do not!
+**Note:** Aesthetics automatically show up in your legend. Parameters (those not mapped to a  variable in your data frame) do not!
 
 # Using aesthetics to highlight features
 
@@ -406,6 +409,8 @@ Multiple non-coordinate aesthetics (differences in kind using color, degree usin
 ggplot(data = gapminder2007, aes(x = gdpPercap, y = lifeExp)) +
             geom_point(aes(size = pop, color = continent)) + scale_x_log10()
 ```
+
+How many variables have we represented? If we used a trellis plot we could represent yet another variable. 
 
 # Using aesthetics: quick quiz
 
@@ -452,7 +457,7 @@ Or perhaps we want to set your palettes and breaks or labels manually:
 ggplot(gapminder, aes(x = gdpPercap, y = lifeExp)) +
             geom_point(aes(color = continent)) +
   scale_x_log10(labels = scales::dollar) +
-  scale_color_manual("Continent", 
+  scale_color_manual("The continents", 
                      values = c("red", "blue", "green", "yellow", "#800080")) # hex codes work!
 ```
 
@@ -521,7 +526,7 @@ ggplot(data = gapChina, aes(x = year, y = lifeExp)) +
             geom_line(linetype = 5, size = 2) 
 ```
 
-### Themes with `ggplot2`
+# Themes with `ggplot2`
 
 Elements of the plot *not associated with geometries* can be adjusted using ggplot
 *themes*. 
@@ -586,16 +591,24 @@ library(patchwork)
 # use the patchwork operators
 # stack plots horizontally
 plot1 + plot2 + plot3
+```
 
+```{r, warning=FALSE, fig.cap=" ", fig.width=12}
 # stack plots vertically
 plot1 / plot2 / plot3
+```
 
+```{r, warning=FALSE, fig.cap=" ", fig.width=12}
 # side-by-side plots with third plot below
 (plot1 | plot2) / plot3
+```
 
+```{r, warning=FALSE, fig.cap=" ", fig.width=12}
 # side-by-side plots with a space in between, and a third plot below
 (plot1 | plot_spacer() | plot2) / plot3
+```
 
+```{r, warning=FALSE, fig.cap=" ", fig.width=12}
 # stack plots vertically and alter with a single "gg_theme"
 (plot1 / plot2 / plot3) & theme_bw()
 ```
@@ -610,7 +623,7 @@ Two basic image types:
 
 ### **Raster/Bitmap** (.png, .jpeg)
 
-Every pixel of a plot contains its own separate coding; not so great if you want to resize the image
+Every pixel of a plot contains its own separate coding; **bad if you want to resize the image**.
 
 ```{r, eval=FALSE}
 jpeg(filename = "example.jpg", width=, height=)
@@ -620,7 +633,7 @@ dev.off()
 
 ### **Vector** (.pdf, .ps)
 
-Every element of a plot is encoded with a function that gives its coding conditional on several factors; great for resizing
+Every element of a plot is encoded with a function that gives its coding conditional on several factors; **great for resizing**
 
 ```{r, eval=FALSE}
 # NOT run
@@ -634,7 +647,7 @@ dev.off()
 ```{r, eval=FALSE}
 # NOT run
 
-# Assume we saved our plot is an object called `plot1`.
+# Assume we saved our plot as an object called `plot1`.
 
 ggsave(filename = "example.pdf", plot = plot1, scale = , width = ,
        height = )
