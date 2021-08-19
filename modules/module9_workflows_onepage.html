@@ -289,7 +289,7 @@ dim(mat); print(mat)
 <pre><code class="r">colSums(mat)
 </code></pre>
 
-<pre><code>## Error in base::colSums(x, na.rm = na.rm, dims = dims, ...): &#39;x&#39; must be an array of at least two dimensions
+<pre><code>## Error in colSums(mat): &#39;x&#39; must be an array of at least two dimensions
 </code></pre>
 
 <pre><code class="r">mat &lt;- matrix(1:4, 2, 2)[1, , drop = FALSE]
@@ -315,20 +315,23 @@ will give you an idea of the power of these tools.</p>
    return(sums)
 }
 
-buggyFun(gap)
+buggyFun(gapminder)
 </code></pre>
 
-<pre><code>## Error in h(simpleError(msg, call)): error in evaluating the argument &#39;x&#39; in selecting a method for function &#39;print&#39;: object &#39;gap&#39; not found
+<pre><code>## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;
+</code></pre>
+
+<pre><code>## Error in rowSums(myDF): &#39;x&#39; must be numeric
 </code></pre>
 
 <pre><code class="r">if(FALSE) {
   traceback()
   debug(buggyFun)
-  buggyFun(gap)
+  buggyFun(gapminder)
 
   undebug(buggyFun)
   options(error = recover)
-  buggyFun(gap)
+  buggyFun(gapminder)
 }
 </code></pre>
 
@@ -594,17 +597,17 @@ gc()
 </code></pre>
 
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   2002019 107.0    3968555  212.0   2642108 141.2
-## Vcells 103456126 789.4  159412539 1216.3 113978075 869.6
+## Ncells    543788  29.1    1214544   64.9    977558  52.3
+## Vcells 101042507 770.9  156068256 1190.8 111597721 851.5
 </code></pre>
 
 <pre><code class="r">rm(x)
 gc()
 </code></pre>
 
-<pre><code>##           used  (Mb) gc trigger (Mb)  max used  (Mb)
-## Ncells 2001938 107.0    3968555  212   2642108 141.2
-## Vcells 3456003  26.4  127530032  973 113978075 869.6
+<pre><code>##           used (Mb) gc trigger  (Mb)  max used  (Mb)
+## Ncells  543707 29.1    1214544  64.9    977558  52.3
+## Vcells 1042384  8.0  124854605 952.6 111597721 851.5
 </code></pre>
 
 <h1>Memory use: quick quiz</h1>

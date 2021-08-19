@@ -94,16 +94,16 @@ buggyFun <- function(myDF) {
    return(sums)
 }
 
-buggyFun(gap)
+buggyFun(gapminder)
 
 if(FALSE) {
   traceback()
   debug(buggyFun)
-  buggyFun(gap)
+  buggyFun(gapminder)
 
   undebug(buggyFun)
   options(error = recover)
-  buggyFun(gap)
+  buggyFun(gapminder)
 }
 ```    
 

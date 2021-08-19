@@ -455,7 +455,7 @@ popularR <- dbGetQuery(db, "select * from questions join questions_tags
 dbDisconnect(db)
 ```
 
-**POLL 9A**:
+**POLL 10A**:
 
 What kind of R object do you think is returned when you query a database using dbGetQuery?
 
@@ -547,7 +547,7 @@ Some things that are not EP (at least not in a basic formulation):
 1. Markov chain Monte Carlo for fitting Bayesian models
 2. optimization
 
-**POLL 9B**: Have you used R's parallel processing capabilities?
+**POLL 10B**: Have you used R's parallel processing capabilities?
 
 1) No
 2) Yes, I've used foreach

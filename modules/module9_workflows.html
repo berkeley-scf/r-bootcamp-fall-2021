@@ -133,7 +133,7 @@ August 2021, UC Berkeley
 <pre><code>## NULL</code></pre>
 <pre><code>## [1] 1 3</code></pre>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">colSums</span>(mat)</a></code></pre></div>
-<pre><code>## Error in base::colSums(x, na.rm = na.rm, dims = dims, ...): &#39;x&#39; must be an array of at least two dimensions</code></pre>
+<pre><code>## Error in colSums(mat): &#39;x&#39; must be an array of at least two dimensions</code></pre>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">2</span>)[<span class="dv">1</span>, , drop =<span class="st"> </span><span class="ot">FALSE</span>]</a>
 <a class="sourceLine" id="cb8-2" title="2"><span class="kw">colSums</span>(mat)</a></code></pre></div>
 <pre><code>## [1] 1 3</code></pre>
@@ -149,17 +149,18 @@ August 2021, UC Berkeley
 <a class="sourceLine" id="cb10-5" title="5">   <span class="kw">return</span>(sums)</a>
 <a class="sourceLine" id="cb10-6" title="6">}</a>
 <a class="sourceLine" id="cb10-7" title="7"></a>
-<a class="sourceLine" id="cb10-8" title="8"><span class="kw">buggyFun</span>(gap)</a></code></pre></div>
-<pre><code>## Error in h(simpleError(msg, call)): error in evaluating the argument &#39;x&#39; in selecting a method for function &#39;print&#39;: object &#39;gap&#39; not found</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="cf">if</span>(<span class="ot">FALSE</span>) {</a>
-<a class="sourceLine" id="cb12-2" title="2">  <span class="kw">traceback</span>()</a>
-<a class="sourceLine" id="cb12-3" title="3">  <span class="kw">debug</span>(buggyFun)</a>
-<a class="sourceLine" id="cb12-4" title="4">  <span class="kw">buggyFun</span>(gap)</a>
-<a class="sourceLine" id="cb12-5" title="5"></a>
-<a class="sourceLine" id="cb12-6" title="6">  <span class="kw">undebug</span>(buggyFun)</a>
-<a class="sourceLine" id="cb12-7" title="7">  <span class="kw">options</span>(<span class="dt">error =</span> recover)</a>
-<a class="sourceLine" id="cb12-8" title="8">  <span class="kw">buggyFun</span>(gap)</a>
-<a class="sourceLine" id="cb12-9" title="9">}</a></code></pre></div>
+<a class="sourceLine" id="cb10-8" title="8"><span class="kw">buggyFun</span>(gapminder)</a></code></pre></div>
+<pre><code>## [1] &quot;country&quot;   &quot;continent&quot; &quot;year&quot;      &quot;lifeExp&quot;   &quot;pop&quot;       &quot;gdpPercap&quot;</code></pre>
+<pre><code>## Error in rowSums(myDF): &#39;x&#39; must be numeric</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="cf">if</span>(<span class="ot">FALSE</span>) {</a>
+<a class="sourceLine" id="cb13-2" title="2">  <span class="kw">traceback</span>()</a>
+<a class="sourceLine" id="cb13-3" title="3">  <span class="kw">debug</span>(buggyFun)</a>
+<a class="sourceLine" id="cb13-4" title="4">  <span class="kw">buggyFun</span>(gapminder)</a>
+<a class="sourceLine" id="cb13-5" title="5"></a>
+<a class="sourceLine" id="cb13-6" title="6">  <span class="kw">undebug</span>(buggyFun)</a>
+<a class="sourceLine" id="cb13-7" title="7">  <span class="kw">options</span>(<span class="dt">error =</span> recover)</a>
+<a class="sourceLine" id="cb13-8" title="8">  <span class="kw">buggyFun</span>(gapminder)</a>
+<a class="sourceLine" id="cb13-9" title="9">}</a></code></pre></div>
 <ol style="list-style-type: decimal">
 <li><p>We can use <code>debug()</code> to step through a function line by line</p></li>
 <li><p>After an error occurs, we can use <code>traceback()</code> to look at the <em>call stack</em></p></li>
@@ -181,14 +182,14 @@ August 2021, UC Berkeley
 <p>— Donald Knuth, 1974</p>
 </blockquote>
 <p>There are a few tools in R for timing your code.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="fl">1e7</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">system.time</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="fl">1e7</span>)))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
 ##   0.780   0.028   0.808</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">library</span>(rbenchmark)</a>
-<a class="sourceLine" id="cb15-2" title="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)</a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="kw">benchmark</span>(<span class="kw">ifelse</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, x, <span class="dv">0</span>),</a>
-<a class="sourceLine" id="cb15-4" title="4">                   x[x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span>, <span class="dt">replications =</span> <span class="dv">5</span>,</a>
-<a class="sourceLine" id="cb15-5" title="5">                   <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&#39;replications&#39;</span>, <span class="st">&#39;elapsed&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">library</span>(rbenchmark)</a>
+<a class="sourceLine" id="cb16-2" title="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)</a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="kw">benchmark</span>(<span class="kw">ifelse</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>, x, <span class="dv">0</span>),</a>
+<a class="sourceLine" id="cb16-4" title="4">                   x[x <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span>] &lt;-<span class="st"> </span><span class="dv">0</span>, <span class="dt">replications =</span> <span class="dv">5</span>,</a>
+<a class="sourceLine" id="cb16-5" title="5">                   <span class="dt">columns =</span> <span class="kw">c</span>(<span class="st">&#39;replications&#39;</span>, <span class="st">&#39;elapsed&#39;</span>))</a></code></pre></div>
 <pre><code>##   replications elapsed
 ## 1            5   1.690
 ## 2            5   0.192</code></pre>
@@ -197,36 +198,36 @@ August 2021, UC Berkeley
 <h1>Profiling your code</h1>
 <p>For more advanced assessment of bottlenecks in your code, consider <code>Rprof()</code>. Actually, the output from <em>Rprof</em> can be hard to decipher, so you may want to use the <em>proftools</em> package functions, which make use of <em>Rprof</em> under the hood.</p>
 <p>Here’s a function that does the linear algebra to implement a linear regression, assuming <code>x</code> is the matrix of predictors, including a column for the intercept.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">lr_slow &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
-<a class="sourceLine" id="cb17-2" title="2">  xtx &lt;-<span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>x</a>
-<a class="sourceLine" id="cb17-3" title="3">  xty &lt;-<span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb17-4" title="4">  inv &lt;-<span class="st"> </span><span class="kw">solve</span>(xtx)   <span class="co">## explicit matrix inverse is slow and generally a bad idea numerically</span></a>
-<a class="sourceLine" id="cb17-5" title="5">  <span class="kw">return</span>(inv <span class="op">%*%</span><span class="st"> </span>xty)</a>
-<a class="sourceLine" id="cb17-6" title="6">}                   </a>
-<a class="sourceLine" id="cb17-7" title="7"></a>
-<a class="sourceLine" id="cb17-8" title="8">lr_medium &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
-<a class="sourceLine" id="cb17-9" title="9">  xtx &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x)</a>
-<a class="sourceLine" id="cb17-10" title="10">  xty &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x, y)</a>
-<a class="sourceLine" id="cb17-11" title="11">  inv &lt;-<span class="st"> </span><span class="kw">solve</span>(xtx)   <span class="co">## explicit matrix inverse is slow and generally a bad idea numerically</span></a>
-<a class="sourceLine" id="cb17-12" title="12">  <span class="kw">return</span>(inv <span class="op">%*%</span><span class="st"> </span>xty)</a>
-<a class="sourceLine" id="cb17-13" title="13">}                   </a>
-<a class="sourceLine" id="cb17-14" title="14"></a>
-<a class="sourceLine" id="cb17-15" title="15">lr_fast &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
-<a class="sourceLine" id="cb17-16" title="16">  xtx &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x)</a>
-<a class="sourceLine" id="cb17-17" title="17">  xty &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x, y)</a>
-<a class="sourceLine" id="cb17-18" title="18">  U &lt;-<span class="st"> </span><span class="kw">chol</span>(xtx)</a>
-<a class="sourceLine" id="cb17-19" title="19">  tmp &lt;-<span class="st"> </span><span class="kw">backsolve</span>(U, xty, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb17-20" title="20">  <span class="kw">return</span>(<span class="kw">backsolve</span>(U, tmp))</a>
-<a class="sourceLine" id="cb17-21" title="21">}                   </a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">lr_slow &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
+<a class="sourceLine" id="cb18-2" title="2">  xtx &lt;-<span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb18-3" title="3">  xty &lt;-<span class="st"> </span><span class="kw">t</span>(x) <span class="op">%*%</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb18-4" title="4">  inv &lt;-<span class="st"> </span><span class="kw">solve</span>(xtx)   <span class="co">## explicit matrix inverse is slow and generally a bad idea numerically</span></a>
+<a class="sourceLine" id="cb18-5" title="5">  <span class="kw">return</span>(inv <span class="op">%*%</span><span class="st"> </span>xty)</a>
+<a class="sourceLine" id="cb18-6" title="6">}                   </a>
+<a class="sourceLine" id="cb18-7" title="7"></a>
+<a class="sourceLine" id="cb18-8" title="8">lr_medium &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
+<a class="sourceLine" id="cb18-9" title="9">  xtx &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x)</a>
+<a class="sourceLine" id="cb18-10" title="10">  xty &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x, y)</a>
+<a class="sourceLine" id="cb18-11" title="11">  inv &lt;-<span class="st"> </span><span class="kw">solve</span>(xtx)   <span class="co">## explicit matrix inverse is slow and generally a bad idea numerically</span></a>
+<a class="sourceLine" id="cb18-12" title="12">  <span class="kw">return</span>(inv <span class="op">%*%</span><span class="st"> </span>xty)</a>
+<a class="sourceLine" id="cb18-13" title="13">}                   </a>
+<a class="sourceLine" id="cb18-14" title="14"></a>
+<a class="sourceLine" id="cb18-15" title="15">lr_fast &lt;-<span class="st"> </span><span class="cf">function</span>(y, x) {</a>
+<a class="sourceLine" id="cb18-16" title="16">  xtx &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x)</a>
+<a class="sourceLine" id="cb18-17" title="17">  xty &lt;-<span class="st"> </span><span class="kw">crossprod</span>(x, y)</a>
+<a class="sourceLine" id="cb18-18" title="18">  U &lt;-<span class="st"> </span><span class="kw">chol</span>(xtx)</a>
+<a class="sourceLine" id="cb18-19" title="19">  tmp &lt;-<span class="st"> </span><span class="kw">backsolve</span>(U, xty, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb18-20" title="20">  <span class="kw">return</span>(<span class="kw">backsolve</span>(U, tmp))</a>
+<a class="sourceLine" id="cb18-21" title="21">}                   </a></code></pre></div>
 <p>Now let’s try these two functions with profiling turned on.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co">## generate random observations and random matrix of predictors</span></a>
-<a class="sourceLine" id="cb18-2" title="2">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5000</span>)</a>
-<a class="sourceLine" id="cb18-3" title="3">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">5000</span><span class="op">*</span><span class="dv">1000</span>), <span class="dt">nrow =</span> <span class="dv">5000</span>)</a>
-<a class="sourceLine" id="cb18-4" title="4"></a>
-<a class="sourceLine" id="cb18-5" title="5"><span class="kw">library</span>(proftools)</a>
-<a class="sourceLine" id="cb18-6" title="6"></a>
-<a class="sourceLine" id="cb18-7" title="7">pd1 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_slow</span>(y, x))</a>
-<a class="sourceLine" id="cb18-8" title="8"><span class="kw">hotPaths</span>(pd1)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="co">## generate random observations and random matrix of predictors</span></a>
+<a class="sourceLine" id="cb19-2" title="2">y &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb19-3" title="3">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dv">5000</span><span class="op">*</span><span class="dv">1000</span>), <span class="dt">nrow =</span> <span class="dv">5000</span>)</a>
+<a class="sourceLine" id="cb19-4" title="4"></a>
+<a class="sourceLine" id="cb19-5" title="5"><span class="kw">library</span>(proftools)</a>
+<a class="sourceLine" id="cb19-6" title="6"></a>
+<a class="sourceLine" id="cb19-7" title="7">pd1 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_slow</span>(y, x))</a>
+<a class="sourceLine" id="cb19-8" title="8"><span class="kw">hotPaths</span>(pd1)</a></code></pre></div>
 <pre><code>##  path                  total.pct self.pct
 ##  lr_slow               100.00     0.00   
 ##  . %*% (&lt;text&gt;:2)       58.65    58.65   
@@ -243,7 +244,7 @@ August 2021, UC Berkeley
 ##  . . standardGeneric    19.23     0.00   
 ##  . . . t                19.23     0.00   
 ##  . . . . t.default      19.23    19.23</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">hotPaths</span>(pd1, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">hotPaths</span>(pd1, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
 <pre><code>##  path                  total.time self.time
 ##  lr_slow               2.08       0.00     
 ##  . %*% (&lt;text&gt;:2)      1.22       1.22     
@@ -260,8 +261,8 @@ August 2021, UC Berkeley
 ##  . . standardGeneric   0.40       0.00     
 ##  . . . t               0.40       0.00     
 ##  . . . . t.default     0.40       0.40</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">pd1 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_medium</span>(y, x))</a>
-<a class="sourceLine" id="cb22-2" title="2"><span class="kw">hotPaths</span>(pd1)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">pd1 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_medium</span>(y, x))</a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="kw">hotPaths</span>(pd1)</a></code></pre></div>
 <pre><code>##  path                    total.pct self.pct
 ##  lr_medium               100.00     0.00   
 ##  . crossprod (&lt;text&gt;:10)   4.76     0.00   
@@ -275,7 +276,7 @@ August 2021, UC Berkeley
 ##  . . . solve              50.00     0.00   
 ##  . . . . solve.default    50.00    47.62   
 ##  . . . . . diag            2.38     2.38</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">hotPaths</span>(pd1, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">hotPaths</span>(pd1, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
 <pre><code>##  path                    total.time self.time
 ##  lr_medium               0.84       0.00     
 ##  . crossprod (&lt;text&gt;:10) 0.04       0.00     
@@ -289,8 +290,8 @@ August 2021, UC Berkeley
 ##  . . . solve             0.42       0.00     
 ##  . . . . solve.default   0.42       0.40     
 ##  . . . . . diag          0.02       0.02</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">pd3 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_fast</span>(y, x))</a>
-<a class="sourceLine" id="cb26-2" title="2"><span class="kw">hotPaths</span>(pd3)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">pd3 &lt;-<span class="st"> </span><span class="kw">profileExpr</span>(<span class="kw">lr_fast</span>(y, x))</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">hotPaths</span>(pd3)</a></code></pre></div>
 <pre><code>##  path                        total.pct self.pct
 ##  lr_fast                     100        0      
 ##  . backsolve (&lt;text&gt;:19)       4        0      
@@ -310,7 +311,7 @@ August 2021, UC Berkeley
 ##  . crossprod (&lt;text&gt;:17)       8        0      
 ##  . . crossprod                 8        0      
 ##  . . . base::crossprod         8        8</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">hotPaths</span>(pd3, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">hotPaths</span>(pd3, <span class="dt">value =</span> <span class="st">&#39;time&#39;</span>)</a></code></pre></div>
 <pre><code>##  path                        total.time self.time
 ##  lr_fast                     0.50       0.00     
 ##  . backsolve (&lt;text&gt;:19)     0.02       0.00     
@@ -338,23 +339,23 @@ August 2021, UC Berkeley
 <p>If in total, the jobs on a machine approach the physical RAM, the machine will start to use the hard disk as ‘virtual memory’. This is called paging or swapping, and once this happens you’re often toast (i.e., your code may take essentially forever to finish).</p>
 <p>You can assess memory use with <code>top</code> or <code>ps</code> in Linux/Mac or the Task Manager in Windows.</p>
 <p>Often it’s a good idea to roughly estimate how much memory an object will take up even before creating it in R. You can do this with some simple arithmetic. Every real number takes 8 bytes (integers and logicals take less; character strings are complicated), so an object with, say, 1 million rows and 10 columns, all numbers, would take roughly 8 * 1000000 * 10 bytes or 800 Mb.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)</a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="kw">object.size</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e7</span>)</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw">object.size</span>(x)</a></code></pre></div>
 <pre><code>## 80000048 bytes</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="fl">1e7</span><span class="op">*</span><span class="dv">8</span><span class="op">/</span><span class="fl">1e6</span>  <span class="co"># direct calculation of Mb</span></a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="fl">1e7</span><span class="op">*</span><span class="dv">8</span><span class="op">/</span><span class="fl">1e6</span>  <span class="co"># direct calculation of Mb</span></a></code></pre></div>
 <pre><code>## [1] 80</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">print</span>(<span class="kw">object.size</span>(x), <span class="dt">units =</span> <span class="st">&#39;auto&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">print</span>(<span class="kw">object.size</span>(x), <span class="dt">units =</span> <span class="st">&#39;auto&#39;</span>)</a></code></pre></div>
 <pre><code>## 76.3 Mb</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e8</span>)</a>
-<a class="sourceLine" id="cb36-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e8</span>)</a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used  (Mb)
-## Ncells   2002019 107.0    3968555  212.0   2642108 141.2
-## Vcells 103456126 789.4  159412539 1216.3 113978075 869.6</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">rm</span>(x)</a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
-<pre><code>##           used  (Mb) gc trigger (Mb)  max used  (Mb)
-## Ncells 2001938 107.0    3968555  212   2642108 141.2
-## Vcells 3456003  26.4  127530032  973 113978075 869.6</code></pre>
+## Ncells    543788  29.1    1214544   64.9    977558  52.3
+## Vcells 101042507 770.9  156068256 1190.8 111597721 851.5</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">rm</span>(x)</a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="kw">gc</span>()</a></code></pre></div>
+<pre><code>##           used (Mb) gc trigger  (Mb)  max used  (Mb)
+## Ncells  543707 29.1    1214544  64.9    977558  52.3
+## Vcells 1042384  8.0  124854605 952.6 111597721 851.5</code></pre>
 </div>
 <div id="memory-use-quick-quiz" class="slide section level1">
 <h1>Memory use: quick quiz</h1>
@@ -383,7 +384,7 @@ August 2021, UC Berkeley
 <div id="batch-jobs-background-execution" class="slide section level1">
 <h1>Batch jobs / background execution</h1>
 <p>To run code as a background job in a Linux/Mac context:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">R CMD BATCH <span class="op">--</span>no<span class="op">-</span>save myCodeFile.R myOutput.Rout <span class="op">&amp;</span></a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">R CMD BATCH <span class="op">--</span>no<span class="op">-</span>save myCodeFile.R myOutput.Rout <span class="op">&amp;</span></a></code></pre></div>
 <p>Then you don’t need to leave RStudio or R or a terminal window open. Your job will run by itself. If you are logged into a remote machine, you can log out and come back later.</p>
 <p>IMPORTANT: make sure to write any needed output to a file (e.g. .Rda files, CSV files, text output from print() or cat()).</p>
 </div>
@@ -426,13 +427,13 @@ August 2021, UC Berkeley
 <li>Try to have the names be informative without being overly long.</li>
 <li>Try to avoid using the names of standard R functions for your objects, but R will generally be fairly smart about things.</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">c &lt;-<span class="st"> </span><span class="dv">7</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">c &lt;-<span class="st"> </span><span class="dv">7</span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] 3 5</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1">c</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">c</a></code></pre></div>
 <pre><code>## [1] 7</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">rm</span>(c)</a>
-<a class="sourceLine" id="cb45-2" title="2">c</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">rm</span>(c)</a>
+<a class="sourceLine" id="cb46-2" title="2">c</a></code></pre></div>
 <pre><code>## function (...)  .Primitive(&quot;c&quot;)</code></pre>
 <ul>
 <li>Use active names for functions (e.g., <em>calc_loglik</em>, <em>calcLogLik</em>)</li>

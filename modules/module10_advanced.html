@@ -196,35 +196,34 @@ August 2021, UC Berkeley
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">methods</span>(predict)</a></code></pre></div>
 <pre><code>##  [1] predict.ar*                predict.Arima*            
-##  [3] predict.arima0*            predict.bam               
-##  [5] predict.bs*                predict.bSpline*          
-##  [7] predict.fastTps            predict.gam               
-##  [9] predict.glm                predict.glmmPQL*          
-## [11] predict.gls*               predict.gnls*             
-## [13] predict.HoltWinters*       predict.interp.surface    
-## [15] predict.jam*               predict.Krig              
-## [17] predict.lda*               predict.lm                
-## [19] predict.lme*               predict.lmList*           
-## [21] predict.lmList4*           predict.loess*            
-## [23] predict.lqs*               predict.mca*              
-## [25] predict.merMod*            predict.mKrig             
-## [27] predict.mlm*               predict.nbSpline*         
-## [29] predict.nlme*              predict.nls*              
-## [31] predict.npolySpline*       predict.ns*               
-## [33] predict.pbSpline*          predict.polr*             
-## [35] predict.poly*              predict.polySpline*       
-## [37] predict.ppolySpline*       predict.ppr*              
-## [39] predict.prcomp*            predict.princomp*         
-## [41] predict.qda*               predict.qsreg             
-## [43] predict.rlm*               predict.smooth.spline*    
-## [45] predict.smooth.spline.fit* predict.sreg              
-## [47] predict.StructTS*          predict.surface           
-## [49] predict.surface.default    predict.Tps               
+##  [3] predict.arima0*            predict.bs*               
+##  [5] predict.bSpline*           predict.fastTps           
+##  [7] predict.glm                predict.glmmPQL*          
+##  [9] predict.gls*               predict.gnls*             
+## [11] predict.HoltWinters*       predict.interp.surface    
+## [13] predict.Krig               predict.lda*              
+## [15] predict.lm                 predict.lme*              
+## [17] predict.lmList*            predict.lmList4*          
+## [19] predict.loess*             predict.lqs*              
+## [21] predict.mca*               predict.merMod*           
+## [23] predict.mKrig              predict.mlm*              
+## [25] predict.nbSpline*          predict.nlme*             
+## [27] predict.nls*               predict.npolySpline*      
+## [29] predict.ns*                predict.pbSpline*         
+## [31] predict.polr*              predict.poly*             
+## [33] predict.polySpline*        predict.ppolySpline*      
+## [35] predict.ppr*               predict.prcomp*           
+## [37] predict.princomp*          predict.qda*              
+## [39] predict.qsreg              predict.rlm*              
+## [41] predict.smooth.spline*     predict.smooth.spline.fit*
+## [43] predict.sreg               predict.StructTS*         
+## [45] predict.surface            predict.surface.default   
+## [47] predict.Tps               
 ## see &#39;?methods&#39; for accessing help and source code</code></pre>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">predict</a></code></pre></div>
 <pre><code>## function (object, ...) 
 ## UseMethod(&quot;predict&quot;)
-## &lt;bytecode: 0x560157926120&gt;
+## &lt;bytecode: 0x55ff8c563120&gt;
 ## &lt;environment: namespace:stats&gt;</code></pre>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="co"># predict.glm</span></a></code></pre></div>
 <p>When <code>predict()</code> is called on a GLM object, it first calls the generic <code>predict()</code>, which then recognizes that the first argument is of the class <em>glm</em> and immediately calls the right class-specific method, <code>predict.glm()</code> in this case.</p>
@@ -610,21 +609,22 @@ August 2021, UC Berkeley
 <a class="sourceLine" id="cb118-4" title="4"></a>
 <a class="sourceLine" id="cb118-5" title="5"><span class="co">## metadata</span></a>
 <a class="sourceLine" id="cb118-6" title="6"><span class="kw">dbListTables</span>(db)</a></code></pre></div>
-<pre><code>## character(0)</code></pre>
+<pre><code>## [1] &quot;answers&quot;          &quot;maxRepByQuestion&quot; &quot;questions&quot;        &quot;questionsAugment&quot;
+## [5] &quot;questions_tags&quot;   &quot;users&quot;</code></pre>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">dbListFields</span>(db, <span class="st">&quot;questions&quot;</span>)</a></code></pre></div>
-<pre><code>## Error: no such table: questions</code></pre>
+<pre><code>## [1] &quot;questionid&quot;   &quot;creationdate&quot; &quot;score&quot;        &quot;viewcount&quot;    &quot;title&quot;       
+## [6] &quot;ownerid&quot;</code></pre>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" title="1"><span class="co">## simple filter operation</span></a>
 <a class="sourceLine" id="cb122-2" title="2">popular &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(db, <span class="st">&quot;select * from questions </span></a>
-<a class="sourceLine" id="cb122-3" title="3"><span class="st">   where viewcount &gt; 10000&quot;</span>)</a></code></pre></div>
-<pre><code>## Error: no such table: questions</code></pre>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1"><span class="co">## a join followed by a filter operation</span></a>
-<a class="sourceLine" id="cb124-2" title="2">popularR &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(db, <span class="st">&quot;select * from questions join questions_tags</span></a>
-<a class="sourceLine" id="cb124-3" title="3"><span class="st">   on questions.questionid = questions_tags.questionid</span></a>
-<a class="sourceLine" id="cb124-4" title="4"><span class="st">   where viewcount &gt; 10000 and</span></a>
-<a class="sourceLine" id="cb124-5" title="5"><span class="st">   tag = &#39;r&#39;&quot;</span>)</a></code></pre></div>
-<pre><code>## Error: no such table: questions</code></pre>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1"><span class="kw">dbDisconnect</span>(db)</a></code></pre></div>
-<p><strong>POLL 9A</strong>:</p>
+<a class="sourceLine" id="cb122-3" title="3"><span class="st">   where viewcount &gt; 10000&quot;</span>)</a>
+<a class="sourceLine" id="cb122-4" title="4"><span class="co">## a join followed by a filter operation</span></a>
+<a class="sourceLine" id="cb122-5" title="5">popularR &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(db, <span class="st">&quot;select * from questions join questions_tags</span></a>
+<a class="sourceLine" id="cb122-6" title="6"><span class="st">   on questions.questionid = questions_tags.questionid</span></a>
+<a class="sourceLine" id="cb122-7" title="7"><span class="st">   where viewcount &gt; 10000 and</span></a>
+<a class="sourceLine" id="cb122-8" title="8"><span class="st">   tag = &#39;r&#39;&quot;</span>)</a>
+<a class="sourceLine" id="cb122-9" title="9"></a>
+<a class="sourceLine" id="cb122-10" title="10"><span class="kw">dbDisconnect</span>(db)</a></code></pre></div>
+<p><strong>POLL 10A</strong>:</p>
 <p>What kind of R object do you think is returned when you query a database using dbGetQuery?</p>
 <ol style="list-style-type: decimal">
 <li>a list of dataframes</li>
@@ -680,10 +680,10 @@ August 2021, UC Berkeley
 <li>For Windows, you’re probably out of luck.</li>
 </ul>
 <p>We’ll show by demonstration that my desktop in my office is using multiple cores for linear algebra operations.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1"><span class="co"># note to CJP: don&#39;t run on laptop with slow BLAS</span></a>
-<a class="sourceLine" id="cb127-2" title="2">n &lt;-<span class="st"> </span><span class="dv">5000</span></a>
-<a class="sourceLine" id="cb127-3" title="3">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n<span class="op">^</span><span class="dv">2</span>), n)</a>
-<a class="sourceLine" id="cb127-4" title="4">U &lt;-<span class="st"> </span><span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="co"># note to CJP: don&#39;t run on laptop with slow BLAS</span></a>
+<a class="sourceLine" id="cb123-2" title="2">n &lt;-<span class="st"> </span><span class="dv">5000</span></a>
+<a class="sourceLine" id="cb123-3" title="3">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(n<span class="op">^</span><span class="dv">2</span>), n)</a>
+<a class="sourceLine" id="cb123-4" title="4">U &lt;-<span class="st"> </span><span class="kw">chol</span>(<span class="kw">crossprod</span>(x))</a></code></pre></div>
 <p>You should see that your R process is using more than 100% of CPU. Inconceivable!</p>
 </div>
 <div id="more-details-on-the-blas" class="slide section level1">
@@ -710,7 +710,7 @@ August 2021, UC Berkeley
 <li>Markov chain Monte Carlo for fitting Bayesian models</li>
 <li>optimization</li>
 </ol>
-<p><strong>POLL 9B</strong>: Have you used R’s parallel processing capabilities?</p>
+<p><strong>POLL 10B</strong>: Have you used R’s parallel processing capabilities?</p>
 <ol style="list-style-type: decimal">
 <li>No</li>
 <li>Yes, I’ve used foreach</li>
@@ -724,34 +724,59 @@ August 2021, UC Berkeley
 <h1>Using multiple cores for EP problems: parallel <em>apply</em> using <code>future</code></h1>
 <p>The <code>future</code> package provides a lot of nice features for parallelization. We’ll just scratch the surface here to parallelize operations over the elements of a list (note that this is essentially equivalent to <code>parLapply</code> and <code>mclapply</code>).</p>
 <p>First, make sure your computations on the elements are independent of each other and don’t involve sequential calculations!</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1">fitFun &lt;-<span class="st"> </span><span class="cf">function</span>(curDest) {</a>
-<a class="sourceLine" id="cb128-2" title="2">            <span class="kw">library</span>(mgcv)</a>
-<a class="sourceLine" id="cb128-3" title="3">            tmp &lt;-<span class="st"> </span><span class="kw">subset</span>(air, Dest <span class="op">==</span><span class="st"> </span>curDest)</a>
-<a class="sourceLine" id="cb128-4" title="4">            tmp<span class="op">$</span>Hour &lt;-<span class="st"> </span>tmp<span class="op">$</span>CRSDepTime <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb128-5" title="5">            curMod &lt;-<span class="st"> </span><span class="kw">try</span>(<span class="kw">gam</span>(DepDelay <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Month) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Hour) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb128-6" title="6"><span class="st">                 </span><span class="kw">as.factor</span>(DayOfWeek), <span class="dt">data =</span> tmp))</a>
-<a class="sourceLine" id="cb128-7" title="7">            <span class="cf">if</span>(<span class="kw">is</span>(tmp, <span class="st">&quot;try-error&quot;</span>)) curMod &lt;-<span class="st"> </span><span class="ot">NA</span> </a>
-<a class="sourceLine" id="cb128-8" title="8">            <span class="kw">return</span>(curMod)</a>
-<a class="sourceLine" id="cb128-9" title="9">}</a>
-<a class="sourceLine" id="cb128-10" title="10"></a>
-<a class="sourceLine" id="cb128-11" title="11"></a>
-<a class="sourceLine" id="cb128-12" title="12"><span class="kw">library</span>(future.apply)</a>
-<a class="sourceLine" id="cb128-13" title="13">nCores &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb128-14" title="14"><span class="kw">plan</span>(multisession, <span class="dt">workers =</span> nCores)  </a>
-<a class="sourceLine" id="cb128-15" title="15">out &lt;-<span class="st"> </span><span class="kw">future_lapply</span>(<span class="kw">unique</span>(air<span class="op">$</span>Dest), fitFun)</a>
-<a class="sourceLine" id="cb128-16" title="16">out[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">fitFun &lt;-<span class="st"> </span><span class="cf">function</span>(curDest) {</a>
+<a class="sourceLine" id="cb124-2" title="2">            <span class="kw">library</span>(mgcv)</a>
+<a class="sourceLine" id="cb124-3" title="3">            tmp &lt;-<span class="st"> </span><span class="kw">subset</span>(air, Dest <span class="op">==</span><span class="st"> </span>curDest)</a>
+<a class="sourceLine" id="cb124-4" title="4">            tmp<span class="op">$</span>Hour &lt;-<span class="st"> </span>tmp<span class="op">$</span>CRSDepTime <span class="op">%/%</span><span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb124-5" title="5">            curMod &lt;-<span class="st"> </span><span class="kw">try</span>(<span class="kw">gam</span>(DepDelay <span class="op">~</span><span class="st"> </span>Year <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Month) <span class="op">+</span><span class="st"> </span><span class="kw">s</span>(Hour) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb124-6" title="6"><span class="st">                 </span><span class="kw">as.factor</span>(DayOfWeek), <span class="dt">data =</span> tmp))</a>
+<a class="sourceLine" id="cb124-7" title="7">            <span class="cf">if</span>(<span class="kw">is</span>(tmp, <span class="st">&quot;try-error&quot;</span>)) curMod &lt;-<span class="st"> </span><span class="ot">NA</span> </a>
+<a class="sourceLine" id="cb124-8" title="8">            <span class="kw">return</span>(curMod)</a>
+<a class="sourceLine" id="cb124-9" title="9">}</a>
+<a class="sourceLine" id="cb124-10" title="10"></a>
+<a class="sourceLine" id="cb124-11" title="11"></a>
+<a class="sourceLine" id="cb124-12" title="12"><span class="kw">library</span>(future.apply)</a>
+<a class="sourceLine" id="cb124-13" title="13">nCores &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb124-14" title="14"><span class="kw">plan</span>(multisession, <span class="dt">workers =</span> nCores)  </a>
+<a class="sourceLine" id="cb124-15" title="15">out &lt;-<span class="st"> </span><span class="kw">future_lapply</span>(<span class="kw">unique</span>(air<span class="op">$</span>Dest), fitFun)</a></code></pre></div>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-35. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-35. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-35. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-35. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">out[[<span class="dv">1</span>]]</a></code></pre></div>
 <pre><code>## 
-## Family: gaussian 
-## Link function: identity 
+## Call:  gam(formula = DepDelay ~ Year + s(Month) + s(Hour) + as.factor(DayOfWeek), 
+##     data = tmp)
 ## 
-## Formula:
-## DepDelay ~ Year + s(Month) + s(Hour) + as.factor(DayOfWeek)
+## Coefficients:
+##           (Intercept)                   Year  as.factor(DayOfWeek)2  
+##            -3497.3038                 1.7490                -2.1810  
+## as.factor(DayOfWeek)3  as.factor(DayOfWeek)4  as.factor(DayOfWeek)5  
+##               -3.6045                -1.6800                 2.9982  
+## as.factor(DayOfWeek)6  as.factor(DayOfWeek)7             s(Month).1  
+##               -2.4173                 0.7169                -8.6549  
+##            s(Month).2             s(Month).3             s(Month).4  
+##               32.1570               -12.0160                10.7049  
+##            s(Month).5             s(Month).6             s(Month).7  
+##                8.2426               -13.9618                -4.9777  
+##            s(Month).8             s(Month).9              s(Hour).1  
+##              -46.2121                14.8763                 6.7659  
+##             s(Hour).2              s(Hour).3              s(Hour).4  
+##                4.4530                 6.9343                 8.5259  
+##             s(Hour).5              s(Hour).6              s(Hour).7  
+##               -0.2337                 6.1335                 1.8340  
+##             s(Hour).8              s(Hour).9  
+##               -6.9439                 2.2963  
 ## 
-## Estimated degrees of freedom:
-## 7.51 7.49  total = 23 
-## 
-## GCV score: 1051.858</code></pre>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">out[[<span class="dv">81</span>]]</a></code></pre></div>
+## Degrees of Freedom: 15782 Total (i.e. Null);  15760 Residual
+##   (142 observations deleted due to missingness)
+## Null Deviance:       17480000 
+## Residual Deviance: 16550000  AIC: 154600</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">out[[<span class="dv">81</span>]]</a></code></pre></div>
 <pre><code>## [1] &quot;Error in smooth.construct.tp.smooth.spec(object, dk$data, dk$knots) : \n  A term has fewer unique covariate combinations than specified maximum degrees of freedom\n&quot;
 ## attr(,&quot;class&quot;)
 ## [1] &quot;try-error&quot;
@@ -766,21 +791,21 @@ August 2021, UC Berkeley
 <p>The <em>foreach</em> package provides a way to do a for loop using multiple cores. It can use a variety of ‘back-ends’ that handle the nitty-gritty of the parallelization. Happily it integrates with the <code>future</code> package nicely.</p>
 <p>To use multiple cores on a single machine, use the <em>parallel</em> back-end from the <em>doParallel</em> package.</p>
 <p>We’ll use a new dataset here, which is a dataset of airline departure times (in particular delays) for all flights from SFO over a period of several years. We’ll do a stratified analysis, fitting a GAM (see Unit 7) for each of the destination airports.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1"><span class="kw">library</span>(parallel)</a>
-<a class="sourceLine" id="cb132-2" title="2"><span class="kw">library</span>(doFuture)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1"><span class="kw">library</span>(parallel)</a>
+<a class="sourceLine" id="cb137-2" title="2"><span class="kw">library</span>(doFuture)</a></code></pre></div>
 <pre><code>## Loading required package: foreach</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1"><span class="kw">library</span>(foreach)</a>
-<a class="sourceLine" id="cb134-2" title="2"></a>
-<a class="sourceLine" id="cb134-3" title="3">nCores &lt;-<span class="st"> </span><span class="dv">4</span>  <span class="co"># actually only 2 on my laptop, but appears hyperthreaded</span></a>
-<a class="sourceLine" id="cb134-4" title="4"><span class="kw">registerDoFuture</span>()</a>
-<a class="sourceLine" id="cb134-5" title="5"><span class="kw">plan</span>(multisession, <span class="dt">workers =</span> nCores)  </a>
-<a class="sourceLine" id="cb134-6" title="6"></a>
-<a class="sourceLine" id="cb134-7" title="7">out &lt;-<span class="st"> </span><span class="kw">foreach</span>(<span class="dt">dest =</span> <span class="kw">unique</span>(air<span class="op">$</span>Dest)) <span class="op">%dopar%</span><span class="st"> </span>{</a>
-<a class="sourceLine" id="cb134-8" title="8">    <span class="kw">cat</span>(<span class="st">&quot;Starting job for &quot;</span>, dest, <span class="st">&quot;.</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb134-9" title="9">    outSub &lt;-<span class="st"> </span><span class="kw">fitFun</span>(dest)</a>
-<a class="sourceLine" id="cb134-10" title="10">    <span class="kw">cat</span>(<span class="st">&quot;Finishing job for &quot;</span>, dest, <span class="st">&quot;.</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb134-11" title="11">    outSub <span class="co"># this will become part of the out objec</span></a>
-<a class="sourceLine" id="cb134-12" title="12">}</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1"><span class="kw">library</span>(foreach)</a>
+<a class="sourceLine" id="cb139-2" title="2"></a>
+<a class="sourceLine" id="cb139-3" title="3">nCores &lt;-<span class="st"> </span><span class="dv">4</span>  <span class="co"># actually only 2 on my laptop, but appears hyperthreaded</span></a>
+<a class="sourceLine" id="cb139-4" title="4"><span class="kw">registerDoFuture</span>()</a>
+<a class="sourceLine" id="cb139-5" title="5"><span class="kw">plan</span>(multisession, <span class="dt">workers =</span> nCores)  </a>
+<a class="sourceLine" id="cb139-6" title="6"></a>
+<a class="sourceLine" id="cb139-7" title="7">out &lt;-<span class="st"> </span><span class="kw">foreach</span>(<span class="dt">dest =</span> <span class="kw">unique</span>(air<span class="op">$</span>Dest)) <span class="op">%dopar%</span><span class="st"> </span>{</a>
+<a class="sourceLine" id="cb139-8" title="8">    <span class="kw">cat</span>(<span class="st">&quot;Starting job for &quot;</span>, dest, <span class="st">&quot;.</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb139-9" title="9">    outSub &lt;-<span class="st"> </span><span class="kw">fitFun</span>(dest)</a>
+<a class="sourceLine" id="cb139-10" title="10">    <span class="kw">cat</span>(<span class="st">&quot;Finishing job for &quot;</span>, dest, <span class="st">&quot;.</span><span class="ch">\n</span><span class="st">&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)</a>
+<a class="sourceLine" id="cb139-11" title="11">    outSub <span class="co"># this will become part of the out objec</span></a>
+<a class="sourceLine" id="cb139-12" title="12">}</a></code></pre></div>
 <pre><code>## Starting job for SLC.
 ## Finishing job for SLC.
 ## Starting job for PDX.
@@ -945,7 +970,7 @@ August 2021, UC Berkeley
 ## Finishing job for OTH.
 ## Starting job for LGB.
 ## Finishing job for LGB.</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">out[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">out[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [[1]]
 ## 
 ## Family: gaussian 
@@ -1020,11 +1045,11 @@ August 2021, UC Berkeley
 <ul>
 <li>The ugly: Make sure you do not use the same seed for each task</li>
 </ul>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb138-2" title="2"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb143-2" title="2"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb140-2" title="2"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="kw">rnorm</span>(<span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## [1] -0.6264538  0.1836433 -0.8356286  1.5952808  0.3295078</code></pre>
 <ul>
 <li><p>The (not so) bad: Use a different seed for each task or each process. It’s possible the subsequences will overlap but quite unlikely.</p></li>
