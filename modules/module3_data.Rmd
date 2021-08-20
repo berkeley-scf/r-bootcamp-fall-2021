@@ -95,7 +95,7 @@ What do you think will be returned?
 5) an error
 
 
-```{r what_is_a_matrix}
+```{r what_is_a_matrix, eval = FALSE}
 mat[4]
 attributes(mat) <- NULL
 mat

@@ -220,33 +220,28 @@ August 2021, UC Berkeley
 <li>4, 8, 12, 16</li>
 <li>an error</li>
 </ol>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">mat[<span class="dv">4</span>]</a></code></pre></div>
-<pre><code>## [1] 0.705823</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw">attributes</span>(mat) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb29-2" title="2">mat</a></code></pre></div>
-<pre><code>##  [1]  0.9948209 -0.5835771  0.4590023  0.7058230  0.8459420  0.1092885
-##  [7]  1.3158020  0.3794194 -0.7100490 -0.5373201 -0.3287034  0.5967392
-## [13]  1.0000000  2.0000000  3.0000000</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw">is.matrix</span>(mat)</a></code></pre></div>
-<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">mat[<span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="kw">attributes</span>(mat) &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb27-3" title="3">mat</a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="kw">is.matrix</span>(mat)</a></code></pre></div>
 <p><strong>Question</strong>: What can you infer about what a matrix is in R?</p>
 <p><strong>Question</strong>: What kind of object are the attributes themselves? How do I check?</p>
 </div>
 <div id="matrices-are-stored-column-major" class="slide section level1">
 <h1>Matrices are stored column-major</h1>
 <p>This is like Fortran, MATLAB and Julia but not like C or Python(numpy).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb33-2" title="2">mat</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb28-2" title="2">mat</a></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4]
 ## [1,]    1    4    7   10
 ## [2,]    2    5    8   11
 ## [3,]    3    6    9   12</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw">c</span>(mat)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">c</span>(mat)</a></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10 11 12</code></pre>
 <p>You can go smoothly back and forth between a matrix (or an array) and a vector:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">identical</span>(mat, <span class="kw">matrix</span>(<span class="kw">c</span>(mat), <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="kw">identical</span>(mat, <span class="kw">matrix</span>(<span class="kw">c</span>(mat), <span class="dv">3</span>, <span class="dv">4</span>))</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">identical</span>(mat, <span class="kw">matrix</span>(<span class="kw">c</span>(mat), <span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="kw">identical</span>(mat, <span class="kw">matrix</span>(<span class="kw">c</span>(mat), <span class="dv">3</span>, <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>))</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>This is a common cause of bugs!</p>
 </div>
@@ -256,59 +251,59 @@ August 2021, UC Berkeley
 <ul>
 <li><code>NA</code> is a missing value</li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb41-2" title="2">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb41-3" title="3">vec</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">12</span>)</a>
+<a class="sourceLine" id="cb36-2" title="2">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb36-3" title="3">vec</a></code></pre></div>
 <pre><code>##  [1]  0.5807482 -1.7497374         NA -0.1718897         NA -1.7039804
 ##  [7] -1.6073076 -0.6788869 -0.3500681  1.7486895 -0.5028989 -0.5669518</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">length</span>(vec)</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">length</span>(vec)</a></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">sum</span>(vec)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">sum</span>(vec)</a></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">sum</span>(vec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1"><span class="kw">sum</span>(vec, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] -5.002283</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">hist</span>(vec)</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1"><span class="kw">hist</span>(vec)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" /></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">is.na</span>(vec)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw">is.na</span>(vec)</a></code></pre></div>
 <pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>Be careful because many R functions won’t warn you that they are ignoring the missing values.</p>
 <ul>
 <li>To infinity and beyond</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">big &lt;-<span class="st"> </span><span class="fl">1e500</span> </a>
-<a class="sourceLine" id="cb52-2" title="2">big</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">big &lt;-<span class="st"> </span><span class="fl">1e500</span> </a>
+<a class="sourceLine" id="cb47-2" title="2">big</a></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">big <span class="op">+</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1">big <span class="op">+</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
 <ul>
 <li><code>NaN</code> stands for Not a Number</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1"><span class="kw">sqrt</span>(<span class="op">-</span><span class="dv">5</span>)</a></code></pre></div>
 <pre><code>## Warning in sqrt(-5): NaNs produced</code></pre>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">big <span class="op">-</span><span class="st"> </span>big</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">big <span class="op">-</span><span class="st"> </span>big</a></code></pre></div>
 <pre><code>## [1] NaN</code></pre>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="dv">1</span><span class="op">/</span><span class="dv">0</span></a></code></pre></div>
 <pre><code>## [1] Inf</code></pre>
 <ul>
 <li><code>NULL</code></li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">c</span>(vec, <span class="ot">NULL</span>) </a>
-<a class="sourceLine" id="cb63-2" title="2">vec</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">c</span>(vec, <span class="ot">NULL</span>) </a>
+<a class="sourceLine" id="cb58-2" title="2">vec</a></code></pre></div>
 <pre><code>##  [1]  0.5807482 -1.7497374         NA -0.1718897         NA -1.7039804
 ##  [7] -1.6073076 -0.6788869 -0.3500681  1.7486895 -0.5028989 -0.5669518</code></pre>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">length</span>(vec)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1"><span class="kw">length</span>(vec)</a></code></pre></div>
 <pre><code>## [1] 12</code></pre>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" title="1">a &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb67-2" title="2">a <span class="op">+</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">a &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb62-2" title="2">a <span class="op">+</span><span class="st"> </span><span class="dv">7</span></a></code></pre></div>
 <pre><code>## numeric(0)</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">a[<span class="dv">3</span>, <span class="dv">4</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">a[<span class="dv">3</span>, <span class="dv">4</span>]</a></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">is.null</span>(a)</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1"><span class="kw">is.null</span>(a)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">myList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">7</span>, <span class="dt">b =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb73-2" title="2">myList<span class="op">$</span>a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># works for data frames too</span></a>
-<a class="sourceLine" id="cb73-3" title="3">myList</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">myList &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">a =</span> <span class="dv">7</span>, <span class="dt">b =</span> <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb68-2" title="2">myList<span class="op">$</span>a &lt;-<span class="st"> </span><span class="ot">NULL</span>  <span class="co"># works for data frames too</span></a>
+<a class="sourceLine" id="cb68-3" title="3">myList</a></code></pre></div>
 <pre><code>## $b
 ## [1] 5</code></pre>
 <p><code>NA</code> can hold a place but <code>NULL</code> cannot. <code>NULL</code> is useful for having a function argument default to ‘nothing’. See <code>help(crossprod)</code>, which can compute either <img style="vertical-align:middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAQBAMAAAB9zpudAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEInvq1R2Irsy3ZlEZs19rnf+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAxElEQVQYGWNggAIhJQ8ldRgHmT6DzEGwUYUZlb8IsH52ZGAACwvZOzLEmwgAFbN9Z2BsANIQ1fkFDBJgExg/MTCBGBBheQUGBbAwgzOEARFmMQCrAcrMDwOZBVXN+TURopiByxzMmAPhLi6ACnN/hzLA1H6Y8NHfSMI88RsgPM4AZyThqSwGEF4tw/wLcHH2C5x/wRxGBQa+B3BhIQaGd2BOCQMD70+YMLsDA8P9CUDejM8TGOb9SoCIc/ZbMnC+X8bAAAAIDiihjZmPpAAAAABJRU5ErkJggg==" alt="X^{\top}X" title="X^{\top}X" /> or <img style="vertical-align:middle" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAQBAMAAAB5O0ugAAAAMFBMVEX///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAv3aB7AAAAD3RSTlMAEInvq1R2Irsy3ZlEZs19rnf+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAwUlEQVQYGWNggAIhJQ8ldRgHiT6DxEYwUUQZlb8IsH52ZGAAirLvt2Zg4P5xAKiU7TsDYwOQBqll+cDAwHsByGBg/MTABKJBojxfGRimgjgMDM4MCiAKbK4FA2MCiMPAMD9MAESBRfUFwPqAXC5zkCDDHBAx/4IiiAIC7u8QGkRyvS2Aco7+Rogy/YGyOQOckUQXQNm1QMPgwnwbIExGBQa+B3BR/gAIswTom59w0fMCYOaMzxMY5v1KgAoLrdcEsQDIKSfbrES7rgAAAABJRU5ErkJggg==" alt="X^{\top}Y" title="X^{\top}Y" />.</p>
@@ -353,19 +348,19 @@ mylist[[2]] &lt;- NULL</code></pre>
 </div>
 <div id="logical-vectors" class="slide section level1">
 <h1>Logical vectors</h1>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1">gapminder2007 &lt;-<span class="st"> </span>gapminder[gapminder<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, ]</a>
-<a class="sourceLine" id="cb79-2" title="2"></a>
-<a class="sourceLine" id="cb79-3" title="3">wealthy &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">35000</span></a>
-<a class="sourceLine" id="cb79-4" title="4">healthy &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>lifeExp <span class="op">&gt;</span><span class="st"> </span><span class="dv">75</span></a>
-<a class="sourceLine" id="cb79-5" title="5"></a>
-<a class="sourceLine" id="cb79-6" title="6"><span class="kw">head</span>(wealthy)</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">gapminder2007 &lt;-<span class="st"> </span>gapminder[gapminder<span class="op">$</span>year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>, ]</a>
+<a class="sourceLine" id="cb74-2" title="2"></a>
+<a class="sourceLine" id="cb74-3" title="3">wealthy &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">35000</span></a>
+<a class="sourceLine" id="cb74-4" title="4">healthy &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>lifeExp <span class="op">&gt;</span><span class="st"> </span><span class="dv">75</span></a>
+<a class="sourceLine" id="cb74-5" title="5"></a>
+<a class="sourceLine" id="cb74-6" title="6"><span class="kw">head</span>(wealthy)</a></code></pre></div>
 <pre><code>## [1] FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1"><span class="kw">table</span>(wealthy)</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw">table</span>(wealthy)</a></code></pre></div>
 <pre><code>## wealthy
 ## FALSE  TRUE 
 ##   130    12</code></pre>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1"><span class="co"># note the vectorized boolean arithmetic</span></a>
-<a class="sourceLine" id="cb83-2" title="2">gapminder2007[wealthy <span class="op">&amp;</span><span class="st"> </span>healthy, ]</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1"><span class="co"># note the vectorized boolean arithmetic</span></a>
+<a class="sourceLine" id="cb78-2" title="2">gapminder2007[wealthy <span class="op">&amp;</span><span class="st"> </span>healthy, ]</a></code></pre></div>
 <pre><code>## # A tibble: 12 x 6
 ##    country          continent  year lifeExp       pop gdpPercap
 ##    &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
@@ -381,7 +376,7 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## 10 Singapore        Asia       2007    80.0   4553009    47143.
 ## 11 Switzerland      Europe     2007    81.7   7554661    37506.
 ## 12 United States    Americas   2007    78.2 301139947    42952.</code></pre>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">gapminder2007[wealthy <span class="op">|</span><span class="st"> </span>healthy, ]</a></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">gapminder2007[wealthy <span class="op">|</span><span class="st"> </span>healthy, ]</a></code></pre></div>
 <pre><code>## # A tibble: 44 x 6
 ##    country    continent  year lifeExp      pop gdpPercap
 ##    &lt;fct&gt;      &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
@@ -396,14 +391,14 @@ mylist[[2]] &lt;- NULL</code></pre>
 ##  9 Costa Rica Americas   2007    78.8  4133884     9645.
 ## 10 Croatia    Europe     2007    75.7  4493312    14619.
 ## # … with 34 more rows</code></pre>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">gapminder2007[wealthy <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>healthy, ]</a></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">gapminder2007[wealthy <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span>healthy, ]</a></code></pre></div>
 <pre><code>## # A tibble: 0 x 6
 ## # … with 6 variables: country &lt;fct&gt;, continent &lt;fct&gt;, year &lt;int&gt;,
 ## #   lifeExp &lt;dbl&gt;, pop &lt;int&gt;, gdpPercap &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="co"># what am I doing here?</span></a>
-<a class="sourceLine" id="cb89-2" title="2"><span class="kw">sum</span>(healthy)</a></code></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="co"># what am I doing here?</span></a>
+<a class="sourceLine" id="cb84-2" title="2"><span class="kw">sum</span>(healthy)</a></code></pre></div>
 <pre><code>## [1] 44</code></pre>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="kw">mean</span>(healthy)</a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1"><span class="kw">mean</span>(healthy)</a></code></pre></div>
 <pre><code>## [1] 0.3098592</code></pre>
 <p><strong>Question</strong>: What do you think R is doing to do arithmetic on logical vectors?</p>
 </div>
@@ -415,9 +410,9 @@ mylist[[2]] &lt;- NULL</code></pre>
 <li>Data frames are what is used for standard rectangular (record by field) datasets, similar to a spreadsheet</li>
 <li>Data frames are a functionality that both sets R aside from some languages (e.g., Matlab) and provides functionality similar to some statistical packages (e.g., Stata, SAS)</li>
 </ul>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">class</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">class</span>(gapminder)</a></code></pre></div>
 <pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" title="1"><span class="kw">head</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="kw">head</span>(gapminder)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##   country     continent  year lifeExp      pop gdpPercap
 ##   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
@@ -427,7 +422,7 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## 4 Afghanistan Asia       1967    34.0 11537966      836.
 ## 5 Afghanistan Asia       1972    36.1 13079460      740.
 ## 6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">str</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="kw">str</span>(gapminder)</a></code></pre></div>
 <pre><code>## tibble [1,704 × 6] (S3: tbl_df/tbl/data.frame)
 ##  $ country  : Factor w/ 142 levels &quot;Afghanistan&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ continent: Factor w/ 5 levels &quot;Africa&quot;,&quot;Americas&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
@@ -438,13 +433,13 @@ mylist[[2]] &lt;- NULL</code></pre>
 </div>
 <div id="data-frames-are-special-lists" class="slide section level1">
 <h1>Data frames are (special) lists!</h1>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="kw">is.list</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">is.list</span>(gapminder)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="kw">length</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="kw">length</span>(gapminder)</a></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1">gapminder[[<span class="dv">3</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" title="1">gapminder[[<span class="dv">3</span>]][<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] 1952 1957 1962 1967 1972</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">lapply</span>(gapminder, class) </a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" title="1"><span class="kw">lapply</span>(gapminder, class) </a></code></pre></div>
 <pre><code>## $country
 ## [1] &quot;factor&quot;
 ## 
@@ -466,10 +461,10 @@ mylist[[2]] &lt;- NULL</code></pre>
 </div>
 <div id="but-lists-are-also-vectors" class="slide section level1">
 <h1>But lists are also vectors!</h1>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">length</span>(gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1"><span class="kw">length</span>(gapminder)</a></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1">someFields &lt;-<span class="st"> </span>gapminder[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]</a>
-<a class="sourceLine" id="cb109-2" title="2"><span class="kw">head</span>(someFields)</a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" title="1">someFields &lt;-<span class="st"> </span>gapminder[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]</a>
+<a class="sourceLine" id="cb104-2" title="2"><span class="kw">head</span>(someFields)</a></code></pre></div>
 <pre><code>## # A tibble: 6 x 2
 ##    year      pop
 ##   &lt;int&gt;    &lt;int&gt;
@@ -479,7 +474,7 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## 4  1967 11537966
 ## 5  1972 13079460
 ## 6  1977 14880372</code></pre>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" title="1"><span class="kw">identical</span>(gapminder[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)], gapminder[ , <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)])</a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" title="1"><span class="kw">identical</span>(gapminder[<span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)], gapminder[ , <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)])</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>In general the placement of commas in R is crucial, but here, two different operations give the same result because of the underlying structure of data frames.</p>
 </div>
@@ -488,17 +483,17 @@ mylist[[2]] &lt;- NULL</code></pre>
 <ul>
 <li>A factor is a special data type in R used for categorical data. In some cases it works like magic and in others it is incredibly frustrating.</li>
 </ul>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1"><span class="co">## let&#39;s read the Gapminder data from a file with a special argument:</span></a>
-<a class="sourceLine" id="cb113-2" title="2">gapminder &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;data&#39;</span>, <span class="st">&#39;gapminder-FiveYearData.csv&#39;</span>),</a>
-<a class="sourceLine" id="cb113-3" title="3">          <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>) <span class="co"># This was the default before R 4.0</span></a>
-<a class="sourceLine" id="cb113-4" title="4"><span class="kw">class</span>(gapminder<span class="op">$</span>continent)</a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" title="1"><span class="co">## let&#39;s read the Gapminder data from a file with a special argument:</span></a>
+<a class="sourceLine" id="cb108-2" title="2">gapminder &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="kw">file.path</span>(<span class="st">&#39;..&#39;</span>, <span class="st">&#39;data&#39;</span>, <span class="st">&#39;gapminder-FiveYearData.csv&#39;</span>),</a>
+<a class="sourceLine" id="cb108-3" title="3">          <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>) <span class="co"># This was the default before R 4.0</span></a>
+<a class="sourceLine" id="cb108-4" title="4"><span class="kw">class</span>(gapminder<span class="op">$</span>continent)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1"><span class="kw">head</span>(gapminder<span class="op">$</span>continent) <span class="co"># What order are the factors in?</span></a></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">head</span>(gapminder<span class="op">$</span>continent) <span class="co"># What order are the factors in?</span></a></code></pre></div>
 <pre><code>## [1] Asia Asia Asia Asia Asia Asia
 ## Levels: Africa Americas Asia Europe Oceania</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1"><span class="kw">levels</span>(gapminder[[<span class="st">&quot;continent&quot;</span>]])  <span class="co"># note alternate way to get the variable</span></a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1"><span class="kw">levels</span>(gapminder[[<span class="st">&quot;continent&quot;</span>]])  <span class="co"># note alternate way to get the variable</span></a></code></pre></div>
 <pre><code>## [1] &quot;Africa&quot;   &quot;Americas&quot; &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot;</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1"><span class="kw">summary</span>(gapminder<span class="op">$</span>continent)</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" title="1"><span class="kw">summary</span>(gapminder<span class="op">$</span>continent)</a></code></pre></div>
 <pre><code>##   Africa Americas     Asia   Europe  Oceania 
 ##      624      300      396      360       24</code></pre>
 <ul>
@@ -513,15 +508,15 @@ mylist[[2]] &lt;- NULL</code></pre>
 <li>Think ordinal data</li>
 </ul>
 <p>This example is a bit artificial as ‘continent’ doesn’t really have a natural ordering.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">gapminder<span class="op">$</span>continent2 &lt;-<span class="st"> </span><span class="kw">ordered</span>(gapminder<span class="op">$</span>continent, </a>
-<a class="sourceLine" id="cb121-2" title="2">     <span class="dt">levels =</span> <span class="kw">levels</span>(gapminder<span class="op">$</span>continent)[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</a>
-<a class="sourceLine" id="cb121-3" title="3"></a>
-<a class="sourceLine" id="cb121-4" title="4"><span class="kw">head</span>(gapminder<span class="op">$</span>continent2)</a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" title="1">gapminder<span class="op">$</span>continent2 &lt;-<span class="st"> </span><span class="kw">ordered</span>(gapminder<span class="op">$</span>continent, </a>
+<a class="sourceLine" id="cb116-2" title="2">     <span class="dt">levels =</span> <span class="kw">levels</span>(gapminder<span class="op">$</span>continent)[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>)])</a>
+<a class="sourceLine" id="cb116-3" title="3"></a>
+<a class="sourceLine" id="cb116-4" title="4"><span class="kw">head</span>(gapminder<span class="op">$</span>continent2)</a></code></pre></div>
 <pre><code>## [1] Asia Asia Asia Asia Asia Asia
 ## Levels: Americas &lt; Africa &lt; Asia &lt; Europe &lt; Oceania</code></pre>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">levels</span>(gapminder<span class="op">$</span>continent2)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" title="1"><span class="kw">levels</span>(gapminder<span class="op">$</span>continent2)</a></code></pre></div>
 <pre><code>## [1] &quot;Americas&quot; &quot;Africa&quot;   &quot;Asia&quot;     &quot;Europe&quot;   &quot;Oceania&quot;</code></pre>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1"><span class="kw">boxplot</span>(lifeExp <span class="op">~</span><span class="st"> </span>continent2, <span class="dt">data =</span> gapminder)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" title="1"><span class="kw">boxplot</span>(lifeExp <span class="op">~</span><span class="st"> </span>continent2, <span class="dt">data =</span> gapminder)</a></code></pre></div>
 <p><img src="data:image/png;base64,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" /></p>
 </div>
 <div id="advanced-reclassifying-factors" class="slide section level1">
@@ -529,11 +524,11 @@ mylist[[2]] &lt;- NULL</code></pre>
 <ul>
 <li>Turning factors into other data types can be tricky. All factors have an underlying numeric structure.</li>
 </ul>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">students &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;basic&#39;</span>,<span class="st">&#39;proficient&#39;</span>,<span class="st">&#39;advanced&#39;</span>,<span class="st">&#39;basic&#39;</span>, </a>
-<a class="sourceLine" id="cb126-2" title="2">      <span class="st">&#39;advanced&#39;</span>, <span class="st">&#39;minimal&#39;</span>))</a>
-<a class="sourceLine" id="cb126-3" title="3"><span class="kw">levels</span>(students)</a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">students &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;basic&#39;</span>,<span class="st">&#39;proficient&#39;</span>,<span class="st">&#39;advanced&#39;</span>,<span class="st">&#39;basic&#39;</span>, </a>
+<a class="sourceLine" id="cb121-2" title="2">      <span class="st">&#39;advanced&#39;</span>, <span class="st">&#39;minimal&#39;</span>))</a>
+<a class="sourceLine" id="cb121-3" title="3"><span class="kw">levels</span>(students)</a></code></pre></div>
 <pre><code>## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;</code></pre>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">unclass</span>(students)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" title="1"><span class="kw">unclass</span>(students)</a></code></pre></div>
 <pre><code>## [1] 2 4 1 2 1 3
 ## attr(,&quot;levels&quot;)
 ## [1] &quot;advanced&quot;   &quot;basic&quot;      &quot;minimal&quot;    &quot;proficient&quot;</code></pre>
@@ -541,19 +536,19 @@ mylist[[2]] &lt;- NULL</code></pre>
 <li>Hmmm, what happened?</li>
 <li>Be careful! The best way to convert a factor is to convert it to a character first.</li>
 </ul>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" title="1">students &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;basic&#39;</span>,<span class="st">&#39;proficient&#39;</span>,<span class="st">&#39;advanced&#39;</span>,<span class="st">&#39;basic&#39;</span>, </a>
-<a class="sourceLine" id="cb130-2" title="2">      <span class="st">&#39;advanced&#39;</span>, <span class="st">&#39;minimal&#39;</span>))</a>
-<a class="sourceLine" id="cb130-3" title="3">score =<span class="st"> </span><span class="kw">c</span>(<span class="dt">minimal =</span> <span class="dv">3</span>, <span class="dt">basic =</span> <span class="dv">1</span>, <span class="dt">advanced =</span> <span class="dv">13</span>, <span class="dt">proficient =</span> <span class="dv">7</span>) <span class="co"># a named vector</span></a>
-<a class="sourceLine" id="cb130-4" title="4">score[<span class="st">&quot;advanced&quot;</span>]  <span class="co"># look up by name</span></a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" title="1">students &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&#39;basic&#39;</span>,<span class="st">&#39;proficient&#39;</span>,<span class="st">&#39;advanced&#39;</span>,<span class="st">&#39;basic&#39;</span>, </a>
+<a class="sourceLine" id="cb125-2" title="2">      <span class="st">&#39;advanced&#39;</span>, <span class="st">&#39;minimal&#39;</span>))</a>
+<a class="sourceLine" id="cb125-3" title="3">score =<span class="st"> </span><span class="kw">c</span>(<span class="dt">minimal =</span> <span class="dv">3</span>, <span class="dt">basic =</span> <span class="dv">1</span>, <span class="dt">advanced =</span> <span class="dv">13</span>, <span class="dt">proficient =</span> <span class="dv">7</span>) <span class="co"># a named vector</span></a>
+<a class="sourceLine" id="cb125-4" title="4">score[<span class="st">&quot;advanced&quot;</span>]  <span class="co"># look up by name</span></a></code></pre></div>
 <pre><code>## advanced 
 ##       13</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" title="1">students[<span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" title="1">students[<span class="dv">3</span>]</a></code></pre></div>
 <pre><code>## [1] advanced
 ## Levels: advanced basic minimal proficient</code></pre>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">score[students[<span class="dv">3</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">score[students[<span class="dv">3</span>]]</a></code></pre></div>
 <pre><code>## minimal 
 ##       3</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">score[<span class="kw">as.character</span>(students[<span class="dv">3</span>])]</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">score[<span class="kw">as.character</span>(students[<span class="dv">3</span>])]</a></code></pre></div>
 <pre><code>## advanced 
 ##       13</code></pre>
 <p>What went wrong and how did we fix it? Notice how easily this could be a big bug in your code.</p>
@@ -561,10 +556,10 @@ mylist[[2]] &lt;- NULL</code></pre>
 <div id="subsetting" class="slide section level1">
 <h1>Subsetting</h1>
 <p>There are many ways to select subsets in R. The syntax below is useful for vectors, matrices, data frames, arrays and lists.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">vec &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>lifeExp</a>
-<a class="sourceLine" id="cb138-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb138-3" title="3"><span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb138-4" title="4">mat</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" title="1">vec &lt;-<span class="st"> </span>gapminder2007<span class="op">$</span>lifeExp</a>
+<a class="sourceLine" id="cb133-2" title="2">mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>, <span class="dv">4</span>, <span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb133-3" title="3"><span class="kw">rownames</span>(mat) &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb133-4" title="4">mat</a></code></pre></div>
 <pre><code>##   [,1] [,2] [,3] [,4] [,5]
 ## a    1    5    9   13   17
 ## b    2    6   10   14   18
@@ -573,9 +568,9 @@ mylist[[2]] &lt;- NULL</code></pre>
 <ol style="list-style-type: decimal">
 <li>by direct indexing</li>
 </ol>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">14</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" title="1">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">14</span>)]</a></code></pre></div>
 <pre><code>## [1] 72.301 75.320 65.554 74.852 50.728</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" title="1">vec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" title="1">vec[<span class="op">-</span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>)]</a></code></pre></div>
 <pre><code>##   [1] 43.828 76.423 42.731 81.235 79.829 75.635 64.062 79.441 56.728 65.554
 ##  [11] 74.852 50.728 72.390 73.005 52.295 49.580 59.723 50.430 80.653 44.741
 ##  [21] 50.651 78.553 72.961 72.889 65.152 46.462 55.322 78.782 48.328 75.748
@@ -590,28 +585,28 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## [111] 42.568 79.972 74.663 77.926 48.159 49.339 80.941 72.396 58.556 39.613
 ## [121] 80.884 81.701 74.143 78.400 52.517 70.616 58.420 69.819 73.923 71.777
 ## [131] 51.542 79.425 78.242 76.384 73.747 74.249 73.422 62.698 42.384 43.487</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" title="1">gapminder[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" title="1">gapminder[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="dv">5</span>]</a></code></pre></div>
 <pre><code>## [1] 30.332 34.020</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">gapminder[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="st">&#39;lifeExp&#39;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" title="1">gapminder[<span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">4</span>), <span class="st">&#39;lifeExp&#39;</span>]</a></code></pre></div>
 <pre><code>## [1] 30.332 34.020</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="co">## Advanced: subset using a 2-column matrix of indices:</span></a>
-<a class="sourceLine" id="cb148-2" title="2">rowInd &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb148-3" title="3">colInd &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb148-4" title="4">elemInd &lt;-<span class="st"> </span><span class="kw">cbind</span>(rowInd, colInd)</a>
-<a class="sourceLine" id="cb148-5" title="5">elemInd</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1"><span class="co">## Advanced: subset using a 2-column matrix of indices:</span></a>
+<a class="sourceLine" id="cb143-2" title="2">rowInd &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb143-3" title="3">colInd &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb143-4" title="4">elemInd &lt;-<span class="st"> </span><span class="kw">cbind</span>(rowInd, colInd)</a>
+<a class="sourceLine" id="cb143-5" title="5">elemInd</a></code></pre></div>
 <pre><code>##      rowInd colInd
 ## [1,]      1      2
 ## [2,]      3      2
 ## [3,]      4      1</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" title="1">gapminder[elemInd]</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">gapminder[elemInd]</a></code></pre></div>
 <pre><code>## [1] &quot;1952&quot;        &quot;1962&quot;        &quot;Afghanistan&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>by a vector of logicals</li>
 </ol>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">wealthy &lt;-<span class="st"> </span>gapminder<span class="op">$</span>gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000</span></a>
-<a class="sourceLine" id="cb152-2" title="2">gapminder<span class="op">$</span>gdpPercap[wealthy]</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" title="1">wealthy &lt;-<span class="st"> </span>gapminder<span class="op">$</span>gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000</span></a>
+<a class="sourceLine" id="cb147-2" title="2">gapminder<span class="op">$</span>gdpPercap[wealthy]</a></code></pre></div>
 <pre><code>## [1] 108382.35 113523.13  95458.11  80894.88 109347.87  59265.48</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">gapminder[wealthy, ]</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1">gapminder[wealthy, ]</a></code></pre></div>
 <pre><code>##     country year     pop continent lifeExp gdpPercap continent2
 ## 853  Kuwait 1952  160000      Asia  55.565 108382.35       Asia
 ## 854  Kuwait 1957  212846      Asia  58.033 113523.13       Asia
@@ -623,7 +618,7 @@ mylist[[2]] &lt;- NULL</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>by a vector of names</li>
 </ol>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">mat[<span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;a&#39;</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1">mat[<span class="kw">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;a&#39;</span>), ]</a></code></pre></div>
 <pre><code>##   [,1] [,2] [,3] [,4] [,5]
 ## a    1    5    9   13   17
 ## d    4    8   12   16   20
@@ -631,7 +626,7 @@ mylist[[2]] &lt;- NULL</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>using <em>subset()</em></li>
 </ol>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" title="1"><span class="kw">subset</span>(gapminder, gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" title="1"><span class="kw">subset</span>(gapminder, gdpPercap <span class="op">&gt;</span><span class="st"> </span><span class="dv">50000</span>)</a></code></pre></div>
 <pre><code>##     country year     pop continent lifeExp gdpPercap continent2
 ## 853  Kuwait 1952  160000      Asia  55.565 108382.35       Asia
 ## 854  Kuwait 1957  212846      Asia  58.033 113523.13       Asia
@@ -646,16 +641,16 @@ mylist[[2]] &lt;- NULL</code></pre>
 <div id="assignment-into-subsets" class="slide section level1">
 <h1>Assignment into subsets</h1>
 <p>We can assign into subsets by using similar syntax, as we saw with vectors.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb160-2" title="2">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">14</span>)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb160-3" title="3">vec</a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" title="1">vec &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb155-2" title="2">vec[<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">12</span><span class="op">:</span><span class="dv">14</span>)] &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb155-3" title="3">vec</a></code></pre></div>
 <pre><code>##  [1]  0.68615386  0.19928042  1.00000000 -0.41305965  2.00000000 -0.21323893
 ##  [7] -0.06604651 -0.68278173 -0.31895107  1.24019040  0.33010415  3.00000000
 ## [13]  4.00000000  5.00000000 -1.28014740 -1.03745526 -0.80873682  0.96277590
 ## [19]  0.02609979 -2.27285840</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1">mat[<span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb162-2" title="2">mat[mat[,<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ] &lt;-<span class="st"> </span><span class="op">-</span><span class="ot">Inf</span></a>
-<a class="sourceLine" id="cb162-3" title="3">mat</a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">mat[<span class="dv">2</span>, <span class="dv">3</span><span class="op">:</span><span class="dv">5</span>] &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb157-2" title="2">mat[mat[,<span class="dv">1</span>] <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, ] &lt;-<span class="st"> </span><span class="op">-</span><span class="ot">Inf</span></a>
+<a class="sourceLine" id="cb157-3" title="3">mat</a></code></pre></div>
 <pre><code>##   [,1] [,2] [,3] [,4] [,5]
 ## a -Inf -Inf -Inf -Inf -Inf
 ## b -Inf -Inf -Inf -Inf -Inf
@@ -695,20 +690,20 @@ mylist[[2]] &lt;- NULL</code></pre>
 <div id="strings" class="slide section level1">
 <h1>Strings</h1>
 <p>R has lots of functionality for character strings. Usually these are stored as vectors of strings, each with arbitrary length.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" title="1">chars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;hi&#39;</span>, <span class="st">&#39;hallo&#39;</span>, <span class="st">&quot;mother&#39;s&quot;</span>, <span class="st">&#39;father</span><span class="ch">\&#39;</span><span class="st">s&#39;</span>, <span class="st">&quot;He said, </span><span class="ch">\&quot;</span><span class="st">hi</span><span class="ch">\&quot;</span><span class="st">&quot;</span> )</a>
-<a class="sourceLine" id="cb165-2" title="2"><span class="kw">length</span>(chars)</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" title="1">chars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;hi&#39;</span>, <span class="st">&#39;hallo&#39;</span>, <span class="st">&quot;mother&#39;s&quot;</span>, <span class="st">&#39;father</span><span class="ch">\&#39;</span><span class="st">s&#39;</span>, <span class="st">&quot;He said, </span><span class="ch">\&quot;</span><span class="st">hi</span><span class="ch">\&quot;</span><span class="st">&quot;</span> )</a>
+<a class="sourceLine" id="cb160-2" title="2"><span class="kw">length</span>(chars)</a></code></pre></div>
 <pre><code>## [1] 5</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" title="1"><span class="kw">nchar</span>(chars)</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" title="1"><span class="kw">nchar</span>(chars)</a></code></pre></div>
 <pre><code>## [1]  2  5  8  8 13</code></pre>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;bill&quot;</span>, <span class="st">&quot;clinton&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)  <span class="co"># paste together a set of strings</span></a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" title="1"><span class="kw">paste</span>(<span class="st">&quot;bill&quot;</span>, <span class="st">&quot;clinton&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>)  <span class="co"># paste together a set of strings</span></a></code></pre></div>
 <pre><code>## [1] &quot;bill clinton&quot;</code></pre>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" title="1"><span class="kw">paste</span>(chars, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)  <span class="co"># paste together things from a vector</span></a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" title="1"><span class="kw">paste</span>(chars, <span class="dt">collapse =</span> <span class="st">&#39; &#39;</span>)  <span class="co"># paste together things from a vector</span></a></code></pre></div>
 <pre><code>## [1] &quot;hi hallo mother&#39;s father&#39;s He said, \&quot;hi\&quot;&quot;</code></pre>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" title="1"><span class="kw">strsplit</span>(<span class="st">&quot;This is the R bootcamp&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" title="1"><span class="kw">strsplit</span>(<span class="st">&quot;This is the R bootcamp&quot;</span>, <span class="dt">split =</span> <span class="st">&quot; &quot;</span>)</a></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;This&quot;     &quot;is&quot;       &quot;the&quot;      &quot;R&quot;        &quot;bootcamp&quot;</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" title="1">countries &lt;-<span class="st"> </span><span class="kw">as.character</span>(gapminder2007<span class="op">$</span>country)</a>
-<a class="sourceLine" id="cb175-2" title="2"><span class="kw">substring</span>(countries, <span class="dv">1</span>, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" title="1">countries &lt;-<span class="st"> </span><span class="kw">as.character</span>(gapminder2007<span class="op">$</span>country)</a>
+<a class="sourceLine" id="cb170-2" title="2"><span class="kw">substring</span>(countries, <span class="dv">1</span>, <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##   [1] &quot;Afg&quot; &quot;Alb&quot; &quot;Alg&quot; &quot;Ang&quot; &quot;Arg&quot; &quot;Aus&quot; &quot;Aus&quot; &quot;Bah&quot; &quot;Ban&quot; &quot;Bel&quot; &quot;Ben&quot; &quot;Bol&quot;
 ##  [13] &quot;Bos&quot; &quot;Bot&quot; &quot;Bra&quot; &quot;Bul&quot; &quot;Bur&quot; &quot;Bur&quot; &quot;Cam&quot; &quot;Cam&quot; &quot;Can&quot; &quot;Cen&quot; &quot;Cha&quot; &quot;Chi&quot;
 ##  [25] &quot;Chi&quot; &quot;Col&quot; &quot;Com&quot; &quot;Con&quot; &quot;Con&quot; &quot;Cos&quot; &quot;Cot&quot; &quot;Cro&quot; &quot;Cub&quot; &quot;Cze&quot; &quot;Den&quot; &quot;Dji&quot;
@@ -721,9 +716,9 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## [109] &quot;Sao&quot; &quot;Sau&quot; &quot;Sen&quot; &quot;Ser&quot; &quot;Sie&quot; &quot;Sin&quot; &quot;Slo&quot; &quot;Slo&quot; &quot;Som&quot; &quot;Sou&quot; &quot;Spa&quot; &quot;Sri&quot;
 ## [121] &quot;Sud&quot; &quot;Swa&quot; &quot;Swe&quot; &quot;Swi&quot; &quot;Syr&quot; &quot;Tai&quot; &quot;Tan&quot; &quot;Tha&quot; &quot;Tog&quot; &quot;Tri&quot; &quot;Tun&quot; &quot;Tur&quot;
 ## [133] &quot;Uga&quot; &quot;Uni&quot; &quot;Uni&quot; &quot;Uru&quot; &quot;Ven&quot; &quot;Vie&quot; &quot;Wes&quot; &quot;Yem&quot; &quot;Zam&quot; &quot;Zim&quot;</code></pre>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" title="1">tmp &lt;-<span class="st"> </span>countries</a>
-<a class="sourceLine" id="cb177-2" title="2"><span class="kw">substring</span>(tmp, <span class="dv">5</span>, <span class="dv">10</span>) &lt;-<span class="st"> &quot;______&quot;</span></a>
-<a class="sourceLine" id="cb177-3" title="3">tmp[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" title="1">tmp &lt;-<span class="st"> </span>countries</a>
+<a class="sourceLine" id="cb172-2" title="2"><span class="kw">substring</span>(tmp, <span class="dv">5</span>, <span class="dv">10</span>) &lt;-<span class="st"> &quot;______&quot;</span></a>
+<a class="sourceLine" id="cb172-3" title="3">tmp[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>]</a></code></pre></div>
 <pre><code>##  [1] &quot;Afgh______n&quot;            &quot;Alba___&quot;                &quot;Alge___&quot;               
 ##  [4] &quot;Ango__&quot;                 &quot;Arge_____&quot;              &quot;Aust_____&quot;             
 ##  [7] &quot;Aust___&quot;                &quot;Bahr___&quot;                &quot;Bang______&quot;            
@@ -732,13 +727,13 @@ mylist[[2]] &lt;- NULL</code></pre>
 ## [16] &quot;Bulg____&quot;               &quot;Burk______so&quot;           &quot;Buru___&quot;               
 ## [19] &quot;Camb____&quot;               &quot;Came____&quot;</code></pre>
 <p>We can search for patterns in character vectors and replace patterns (both vectorized!)</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" title="1">indexes &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;Korea&quot;</span>, countries)</a>
-<a class="sourceLine" id="cb179-2" title="2">indexes</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" title="1">indexes &lt;-<span class="st"> </span><span class="kw">grep</span>(<span class="st">&quot;Korea&quot;</span>, countries)</a>
+<a class="sourceLine" id="cb174-2" title="2">indexes</a></code></pre></div>
 <pre><code>## [1] 70 71</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" title="1">countries[indexes]</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" title="1">countries[indexes]</a></code></pre></div>
 <pre><code>## [1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;</code></pre>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" title="1">countries2 &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;Korea Dem. Rep.&quot;</span>, <span class="st">&quot;North Korea&quot;</span>, countries)</a>
-<a class="sourceLine" id="cb183-2" title="2">countries2[indexes]</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" title="1">countries2 &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;Korea Dem. Rep.&quot;</span>, <span class="st">&quot;North Korea&quot;</span>, countries)</a>
+<a class="sourceLine" id="cb178-2" title="2">countries2[indexes]</a></code></pre></div>
 <pre><code>## [1] &quot;Korea, Dem. Rep.&quot; &quot;Korea, Rep.&quot;</code></pre>
 </div>
 <div id="regular-expressions-regex-or-regexp" class="slide section level1">
@@ -752,39 +747,39 @@ mylist[[2]] &lt;- NULL</code></pre>
 <p>Remember that you’ll need to know the current working directory so that you know where R is looking for files.</p>
 <p>The workhorse for reading into a data frame is <em>read.table()</em>, which allows any separator (CSV, tab-delimited, etc.). <em>read.csv()</em> is a special case of <em>read.table()</em> for CSV files.</p>
 <p>You’ve already seen a bit of this, but let’s work through a more involved example, so you can see some of the steps and tricks involved in reading data into R.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">rta &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;../data/RTAData.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb185-2" title="2">rta[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" title="1">rta &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;../data/RTAData.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb180-2" title="2">rta[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##               time X40010 X40015 X40020 X40025
 ## 1 2010-03-01 14:58    821    209    828    258
 ## 2 2010-03-01 15:01    804    209    804    248
 ## 3 2010-03-01 15:04    892    212    801    237
 ## 4 2010-03-01 15:07    857    214    821    243
 ## 5 2010-03-01 15:10    849    222    834    252</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" title="1"><span class="kw">dim</span>(rta)</a></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" title="1"><span class="kw">dim</span>(rta)</a></code></pre></div>
 <pre><code>## [1] 120822     62</code></pre>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="co"># great, we&#39;re all set, right?</span></a>
-<a class="sourceLine" id="cb189-2" title="2"><span class="co"># Not so fast...</span></a>
-<a class="sourceLine" id="cb189-3" title="3"><span class="kw">unlist</span>(<span class="kw">lapply</span>(rta, class))[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="co"># great, we&#39;re all set, right?</span></a>
+<a class="sourceLine" id="cb184-2" title="2"><span class="co"># Not so fast...</span></a>
+<a class="sourceLine" id="cb184-3" title="3"><span class="kw">unlist</span>(<span class="kw">lapply</span>(rta, class))[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##        time      X40010      X40015      X40020      X40025 
 ## &quot;character&quot; &quot;character&quot; &quot;character&quot; &quot;character&quot; &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="co"># let&#39;s delve more deeply</span></a>
-<a class="sourceLine" id="cb191-2" title="2"><span class="co"># unique(rta[ , 2])  # don&#39;t run when creating slides</span></a>
-<a class="sourceLine" id="cb191-3" title="3"><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(rta[ , <span class="dv">2</span>])))</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="co"># let&#39;s delve more deeply</span></a>
+<a class="sourceLine" id="cb186-2" title="2"><span class="co"># unique(rta[ , 2])  # don&#39;t run when creating slides</span></a>
+<a class="sourceLine" id="cb186-3" title="3"><span class="kw">head</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(rta[ , <span class="dv">2</span>])))</a></code></pre></div>
 <pre><code>## [1] &quot;&quot;     &quot;1000&quot; &quot;1001&quot; &quot;1002&quot; &quot;1003&quot; &quot;1004&quot;</code></pre>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">tail</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(rta[ , <span class="dv">2</span>])))</a></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">tail</span>(<span class="kw">sort</span>(<span class="kw">unique</span>(rta[ , <span class="dv">2</span>])))</a></code></pre></div>
 <pre><code>## [1] &quot;995&quot; &quot;996&quot; &quot;997&quot; &quot;998&quot; &quot;999&quot; &quot;x&quot;</code></pre>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" title="1"><span class="co"># can we handle that with read.table?</span></a>
-<a class="sourceLine" id="cb195-2" title="2"><span class="co"># help(read.table)</span></a>
-<a class="sourceLine" id="cb195-3" title="3"></a>
-<a class="sourceLine" id="cb195-4" title="4">rta2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;../data/RTAData.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>, </a>
-<a class="sourceLine" id="cb195-5" title="5">      <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&#39;NA&#39;</span>, <span class="st">&#39;x&#39;</span>))</a>
-<a class="sourceLine" id="cb195-6" title="6"><span class="kw">unlist</span>(<span class="kw">lapply</span>(rta2, class))[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" title="1"><span class="co"># can we handle that with read.table?</span></a>
+<a class="sourceLine" id="cb190-2" title="2"><span class="co"># help(read.table)</span></a>
+<a class="sourceLine" id="cb190-3" title="3"></a>
+<a class="sourceLine" id="cb190-4" title="4">rta2 &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;../data/RTAData.csv&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">head =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb190-5" title="5">      <span class="dt">na.strings =</span> <span class="kw">c</span>(<span class="st">&#39;NA&#39;</span>, <span class="st">&#39;x&#39;</span>))</a>
+<a class="sourceLine" id="cb190-6" title="6"><span class="kw">unlist</span>(<span class="kw">lapply</span>(rta2, class))[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a></code></pre></div>
 <pre><code>##        time      X40010      X40015      X40020      X40025 
 ## &quot;character&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;   &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="co"># checking...</span></a>
-<a class="sourceLine" id="cb197-2" title="2"><span class="kw">sum</span>(<span class="kw">is.na</span>( rta2[ , <span class="dv">2</span>] ))</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" title="1"><span class="co"># checking...</span></a>
+<a class="sourceLine" id="cb192-2" title="2"><span class="kw">sum</span>(<span class="kw">is.na</span>( rta2[ , <span class="dv">2</span>] ))</a></code></pre></div>
 <pre><code>## [1] 24507</code></pre>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1"><span class="kw">sum</span>( rta[ , <span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;&#39;</span>,<span class="st">&#39;x&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">sum</span>( rta[ , <span class="dv">2</span>] <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;&#39;</span>,<span class="st">&#39;x&#39;</span>))</a></code></pre></div>
 <pre><code>## [1] 24507</code></pre>
 <p>It’s good to first look at your data in plain text format outside of R and then to check it after you’ve read it into R.</p>
 </div>
