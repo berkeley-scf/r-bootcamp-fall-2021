@@ -356,14 +356,14 @@ system.time(trunc &lt;- ifelse(vals &gt; 0, vals, 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.032   0.008   0.040
+##   0.033   0.008   0.041
 </code></pre>
 
 <pre><code class="r">system.time(vals &lt;- vals * (vals &gt; 0))
 </code></pre>
 
 <pre><code>##    user  system elapsed 
-##   0.005   0.000   0.004
+##   0.005   0.000   0.005
 </code></pre>
 
 <p><strong>Question</strong>: What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
@@ -608,10 +608,13 @@ lapply(myList, min)
 
 <p>Recall that a dataframe is a list:</p>
 
-<pre><code class="r">sapply(gap, class)
+<pre><code class="r">sapply(gapminder, class)
 </code></pre>
 
-<pre><code>## Error in lapply(X = X, FUN = FUN, ...): object &#39;gap&#39; not found
+<pre><code>##     country   continent        year     lifeExp         pop   gdpPercap 
+##    &quot;factor&quot;    &quot;factor&quot;   &quot;integer&quot;   &quot;numeric&quot;   &quot;integer&quot;   &quot;numeric&quot; 
+##       year2 
+## &quot;character&quot;
 </code></pre>
 
 <h1><code>lapply()</code> and <code>sapply()</code> with vectors</h1>

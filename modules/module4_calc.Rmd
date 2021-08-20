@@ -247,7 +247,7 @@ Note that we don't generally want to use `apply()` on a data frame.
 Recall that a dataframe is a list:
 
 ```{r}
-sapply(gap, class)
+sapply(gapminder, class)
 ```
 
 # `lapply()` and `sapply()` with vectors

@@ -176,10 +176,10 @@ vec1 + vec2</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">vals &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="fl">1e6</span>)</a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="kw">system.time</span>(trunc &lt;-<span class="st"> </span><span class="kw">ifelse</span>(vals <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, vals, <span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.032   0.008   0.040</code></pre>
+##   0.033   0.008   0.041</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="kw">system.time</span>(vals &lt;-<span class="st"> </span>vals <span class="op">*</span><span class="st"> </span>(vals <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>))</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.005   0.000   0.004</code></pre>
+##   0.005   0.000   0.005</code></pre>
 <p><strong>Question</strong>: What am I doing with <code>vals * (vals &gt; 0)</code> ? What happens behind the scenes in R?</p>
 <p>If you use a trick like this, having a comment in your code is a good idea.</p>
 </div>
@@ -344,8 +344,11 @@ vec1 + vec2</code></pre>
 <pre><code>## [1] -1.106239 -1.174645 -1.238755</code></pre>
 <p>Note that we don’t generally want to use <code>apply()</code> on a data frame.</p>
 <p>Recall that a dataframe is a list:</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">sapply</span>(gap, class)</a></code></pre></div>
-<pre><code>## Error in lapply(X = X, FUN = FUN, ...): object &#39;gap&#39; not found</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">sapply</span>(gapminder, class)</a></code></pre></div>
+<pre><code>##     country   continent        year     lifeExp         pop   gdpPercap 
+##    &quot;factor&quot;    &quot;factor&quot;   &quot;integer&quot;   &quot;numeric&quot;   &quot;integer&quot;   &quot;numeric&quot; 
+##       year2 
+## &quot;character&quot;</code></pre>
 </div>
 <div id="lapply-and-sapply-with-vectors" class="slide section level1">
 <h1><code>lapply()</code> and <code>sapply()</code> with vectors</h1>
