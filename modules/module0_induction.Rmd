@@ -38,7 +38,7 @@ I encourage you to:
 - try to guess what the syntax means in cases we haven't yet seen that syntax
 - play with it and try variations and try to break it and see what happens
 - tell us if something interesting happens as you experiment, or post a comment in the chat room
-- ask questions of me, the counselors, and in the Google group.
+- ask questions of me, the counselors, and on Piazza/D-Lab front desk.
 
 This is a bootcamp. So there may be some pain involved! If you find yourself not following everything, that's ok. You may miss some details, but try to follow the basics and the big picture. 
 
