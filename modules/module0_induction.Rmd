@@ -179,5 +179,4 @@ The building blocks of scientific computing include:
 
 # We want your feedback (even if you leave early)!
 
-During the afternoon break tomorrow, we'll ask everyone to fill out a feedback form, but if you leave early, please also fill it out:
-[https://berkeley.qualtrics.com/jfe/form/SV_3Qmh1KuwGkEDNEp](https://berkeley.qualtrics.com/jfe/form/SV_3Qmh1KuwGkEDNEp)
+During the afternoon break tomorrow, we'll ask everyone to fill out a feedback form, but if you leave early, please see Piazza for the link. In order to view the recordings after the last day of the bootcamp, you'll need to fill out the feedback form!
